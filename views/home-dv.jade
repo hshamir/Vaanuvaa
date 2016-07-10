@@ -65,7 +65,7 @@ block body
 					-if(ads.homepage_above_top_news)
 						-each ad in ads.homepage_above_top_news
 							section
-								img(src="http://placehold.it/320x420?text=advertisement")
+								img(src="http://placehold.it/320x420?text=advertisement").img-responsive
 		hr
 	section.container
 		section.row
@@ -150,6 +150,13 @@ block body
 									a(href='/'+gallery.article_number)
 										span.glyphicon.glyphicon-camera
 										span &nbsp;#{gallery.title}
+				section.container(style='margin-top: 10px;')
+					section.col-md-9
+						-if(typeof ads != 'undefined' && ads.top_banner)
+							-each ad in ads.top_banner
+								section
+									img(src="/statics/ads/" + ad.file_name)
+
 				
 				br
 				-each category in c1

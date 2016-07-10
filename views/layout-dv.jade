@@ -5,6 +5,7 @@ html
 		//meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
 		block meta
 		title Vaanuvaa | Maldivian Online News
+		link(rel="icon", type="image/png", href="/images/icon.png")
 		link(href='https://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet', type='text/css')
 		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css')
 		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.2.0-rc2/css/bootstrap-rtl.min.css')
@@ -22,7 +23,7 @@ html
 		script(src='/js/web.js')
 		script(src='/templates.js')
 		script $(function(){ $("img").each(function(){ var t = $(this); if(t.attr('src').indexOf('statics') != -1){ t.attr('src', 'http://dhivehi.com.mv' + t.attr('src')) } }) })		
-		style .container{width:1290px !important}
+		style .container{width:1245px !important}
 		if(locals && locals._user)
 			script window.dcom.user = '#{locals._user.username}';
 	body
@@ -31,7 +32,7 @@ html
 			section.container(style='margin-top: 10px;')
 				section.col-md-3(style='margin:0;')
 					a(href='/')
-						img(src="http://www.vaanuvaa.mv/wp-content/uploads/2015/09/vnv-logo.png")
+						img(src="/images/logo.png")
 				section.col-md-9
 					-if(typeof ads != 'undefined' && ads.top_banner)
 						-each ad in ads.top_banner
