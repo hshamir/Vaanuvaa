@@ -1,0 +1,16 @@
+li.media(media-data=encodeURIComponent(JSON.stringify(item)), media-type=item.type, media-id=item._id)
+	a(href="/media/" + item._id)
+		-var url = "http://cinepix.mv/images/posters/"+item._id+"_med.jpg";
+		div.img-holder
+			img(src='')
+		section(style="background-image:url("+url+")")
+		h4=item.title
+li.media-sm.row
+	a(href="/media/" + item._id)
+		div.col-xs-4.media-sm-imgholder(style="background-image:url("+url+");")
+			div.img-holder
+				img(src='')
+		div.col-xs-8
+			h4=item.title
+			-var des = item.description.length > 140 ? item.description.substring(0,140) + "..." : item.description;
+			h6=des

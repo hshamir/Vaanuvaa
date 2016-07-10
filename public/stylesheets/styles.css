@@ -1,0 +1,513 @@
+.btn-primary {
+	padding: 7px 15px;
+	border-radius: 0;
+	border: 1px solid rgb(40, 81, 151);
+	background: rgb(65, 107, 180);
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+.btn-primary:hover {
+	background: rgb(40, 81, 151);
+}
+
+a {
+	color: #416BB4;
+}
+
+a:hover {
+	color: #416BB4;
+}
+
+p {
+	font-size: 13px;
+}
+
+#top-space {
+	margin-top: 97px;
+}
+
+#main-header {
+	margin: 0;
+	position: absolute;
+	max-height: 80px;
+}
+
+#main-header .brand {
+	width: 120px;
+	padding: 0!important;
+	margin-top: 3px;
+}
+
+#main-header .navbar-inner {
+	background: white;
+	box-shadow: none;
+	border-bottom: 2px solid #ddd;
+	padding: 15px;
+	border-radius: 0;
+}
+
+#main-header .nav {
+	margin-top: 3px;
+}
+
+#main-header .navbar-inner a {
+	font-weight: bold;
+	color: #555;
+	font-size: 1em;
+	padding: 10px;
+}
+
+#rol-carousel {
+	height: 500px;
+	overflow: hidden;
+}
+
+#body {
+	
+}
+
+#login-area {
+	padding-top: 20px;
+	padding-bottom: 30px;
+	font-size: 14px;
+	color: #666;
+}
+
+#login-area h3 {
+	font-size: 28px;
+	font-family: 'Titillium Web', sans-serif;
+	color: #416BB4;
+	font-weight: normal;
+}
+
+
+#login-area h4 {
+	font-size: 24px;
+	font-family: 'Titillium Web', sans-serif;
+	color: #416BB4;
+	font-weight: normal;
+}
+
+#login-form-footer {
+	margin-top: 5px;
+}
+
+#service-annoucement h3 {
+	padding-top: 10px;
+	margin-bottom: 15px;
+}
+
+#page h2 {
+	font-size: 36px;
+	margin: 25px 0;
+	font-family: 'Titillium Web', sans-serif;
+	color: #416BB4;
+	font-weight: normal;
+}
+
+#page h3 {
+	font-size: 28px;
+	margin: 25px 0;
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: normal;
+}
+
+#page p {
+	font-size: 13px;
+	color: #666;
+}
+
+#page-box {
+	border-right: 1px solid #eee;
+	height: 350px;
+}
+
+#section-image {
+	height: 200px;
+}
+
+#box-row h3 {
+	font-size: 28px;
+	font-family: 'Titillium Web', sans-serif;
+	color: #416BB4;
+	font-weight: normal;
+}
+
+#box-row .spacer {
+	margin-top: 30px;
+}
+
+#box-row img {
+	margin: 0;
+}
+
+#box-row p {
+	color: #666;
+}
+
+#package-row {
+	margin-left: -20px;
+	margin-bottom: 30px;
+}
+
+#package-row h2 {
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 120%;
+	margin: 0;
+}
+
+#package-row .rol-package {
+	position: relative;
+	color: #666;
+	background: #eee;
+	padding: 40px;
+	text-decoration: none;
+}
+
+#package-row .arrow {
+	position: absolute;
+	bottom: -15px;
+	left: 45%;
+	width: 0; 
+	height: 0; 
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #416BB4;
+}
+
+#package-row .rol-package:hover {
+	background: #ddd;
+	color: #777;
+}
+
+#package-row .rol-package.active {
+	background: #416BB4;
+	color: white;
+}
+
+#selected-package p {
+	color: #666;
+}
+
+.img-placeholder {
+	min-height: 180px;
+}
+
+.inner-box {
+	margin: 20px;
+	margin-left: 10px;
+}
+
+.separator {
+	text-align: center;
+	margin: 20px;
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+    opacity: .7;
+    margin-bottom: 30px;
+}
+
+.rol-h {
+	color: #416BB4;
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: normal;
+	margin: 0;
+	margin-left: 20px;
+	margin-bottom: 25px;
+}
+
+.rol-h2 {
+	color: #416BB4;
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: normal;
+	margin-bottom: 30px 0;
+	margin-bottom: 30px;
+}
+
+footer {
+	color: #777;
+	padding: 20px 0;
+	margin-top: 30px;
+	font-size: 12px;
+	border-top: 1px solid #ddd;
+}
+
+.none {
+	display: none;
+}
+
+#sign-in-form .rol-input {
+	-webkit-appearance: none;
+	appearance: none;
+	padding: 8px;
+	margin-bottom: 16px;
+	border: 1px solid rgb(217, 217, 217);
+	border-top: 1px solid silver;
+	-webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1),inset 0 -1px 0 rgba(0, 0, 0, .07);
+	box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1),inset 0 -1px 0 rgba(0, 0, 0, .07);
+	width: 90%;
+}
+
+#sign-in-form .rol-select {
+	width: 90%;
+}
+
+#sign-in-form .btn.dropdown-toggle {
+	padding: 8px;
+}
+
+#sign-in-form label {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+#stay-signed {
+	margin-left: 10px;
+	margin-top: -3px;
+}
+
+#stay-signed-in {
+	font-size: 12px;
+}
+
+/* iCheck plugin Square skin, blue
+----------------------------------- */
+.icheckbox_square-blue,
+.iradio_square-blue {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    background: url(blue.png) no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox_square-blue {
+    background-position: 0 0;
+}
+    .icheckbox_square-blue.hover {
+        background-position: -24px 0;
+    }
+    .icheckbox_square-blue.checked {
+        background-position: -48px 0;
+    }
+    .icheckbox_square-blue.disabled {
+        background-position: -72px 0;
+        cursor: default;
+    }
+    .icheckbox_square-blue.checked.disabled {
+        background-position: -96px 0;
+    }
+
+.iradio_square-blue {
+    background-position: -120px 0;
+}
+    .iradio_square-blue.hover {
+        background-position: -144px 0;
+    }
+    .iradio_square-blue.checked {
+        background-position: -168px 0;
+    }
+    .iradio_square-blue.disabled {
+        background-position: -192px 0;
+        cursor: default;
+    }
+    .iradio_square-blue.checked.disabled {
+        background-position: -216px 0;
+    }
+
+	/* Retina support */
+	@media only screen and (-webkit-min-device-pixel-ratio: 1.5)
+,	       only screen and (-moz-min-device-pixel-ratio: 1.5),
+	       only screen and (-o-min-device-pixel-ratio: 3/2),
+	       only screen and (min-device-pixel-ratio: 1.5) {
+	    .icheckbox_square-blue,
+	    .iradio_square-blue {
+	        background-image: url(blue@2x.png);
+	        -webkit-background-size: 240px 24px;
+	        background-size: 240px 24px;
+	    }
+	}
+
+	#sub-nav {
+		background: rgb(249, 249, 249);
+		width: 100%;
+		position: relative;
+		padding-top: 5px;
+		border-bottom: 1px solid #eee;
+	}
+
+	#sub-nav .active {
+		font-weight: bold;
+	}
+
+.pages-head h3 {
+	margin: 20px 0!important;
+}
+
+.pages-head {
+	border-bottom: 2px solid #eee;
+}
+
+.package-row h2 {
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: normal;
+	color: #416BB4;
+	margin-top: 20px;
+}
+
+.package-row {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 30px;
+	margin-bottom: 10px;
+}
+
+.package-row:last-child {
+	border: 0;
+}
+
+.sitemap-row h3, .package-row h3, .company-row h3, .contact-row h4 {
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 24px;
+	margin-bottom: 0px!important;
+	font-weight: normal;
+	color: #666;
+}
+
+.contact-row h4 {
+	margin-bottom: 25px!important;
+}
+
+.sitemap-row a, .package-row a {
+	color: #416BB4;
+	font-size: 11px;
+}
+
+.package-box-inner {
+	margin: 5.5%;
+}
+
+.package-box h3 {
+	font-size: 20px;
+	margin: 0px!important;
+}
+
+.package-box p {
+	font-size: 12px;
+	color: #666;
+	margin-top: 10px;
+}
+
+#footer-links li {
+	float: left;
+	margin-left: 20px;
+}
+
+#sub-nav .nav li a {
+	padding-right: 35px;
+}
+
+#sub-nav .nav li a:first-child {
+	padding-left: 0!important;
+}
+
+.package-box {
+	margin-top: 20px;
+	background: whiteSmoke;
+	height: 180px;
+}
+
+.package-box:hover {
+	background: #e7e7e7;
+	text-decoration: none;
+}
+
+#faq {
+	font-size: 13px;
+}
+
+.contact-row h4 {
+	margin: 20px 0;
+	margin-top: 30px;
+}
+
+.press-row {
+	font-size: 13px;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #eee;
+}
+
+.press-row .span1 {
+	font-size: 12px;
+	color: #666;
+}
+
+.press-row:last-child {
+	border: 0;
+}
+
+.company-row h3 {
+	color: #666;
+	margin-bottom: 15px!important;
+}
+
+.thirteen {
+	font-size: 13px;
+}
+
+.zero-margin {
+	margin: 0;
+}
+
+.center {
+	text-align: center;
+}
+
+.blue-h2 {
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: normal;
+	color: #416BB4;
+	margin-top: 20px;
+}
+
+.margin-bottom-15 {
+	margin-bottom: 15px;
+}
+
+#job-heads {
+	margin-bottom: 15px;
+}
+a.product-listing{
+	text-decoration:none;
+	height:380px;
+}
+.product-listing .price{
+	color:#c0c0c0;
+	
+}
+.products-categories h3 a{
+	color:#555;
+}
+.products-categories h3 a.active {
+	font-weight:bold;
+}
+
+.contactmsg{
+     -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;    
+     box-sizing: border-box;        
+     width:100%;
+     min-height:300px; 
+}
+#faqs .accordion-group{
+	border:0;
+}
+#faqs .accordion-heading a{
+	font-size:12px;
+}

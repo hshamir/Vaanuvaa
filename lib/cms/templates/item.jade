@@ -1,0 +1,18 @@
+div(id="__item_#{id}", class='cms-document', data-id=_id, data-feature=feature)
+	div.accordion-group
+		div.accordion-heading
+			a.accordion-toggle(href="#__collapse#{id}", data-parent="#__item_#{id}", data-toggle="collapse")=name || "item"
+		div.accordion-body.collapse(style="height: 0px;", id="__collapse#{id}")
+			div.accordion-inner
+				div.form-horizontal
+					fieldset.cms-elems
+						//section.pull-right
+							span.btn Raw data
+							span.btn History
+				div.form-actions
+					button.btn.cms-update(cms-feature=feature,cms-id=_id)
+						| Update
+						i.icon-refresh
+					button.btn.btn-danger.cms-remove(cms-feature=feature,cms-id=_id)
+						| Delete
+						i.icon-trash.icon-white

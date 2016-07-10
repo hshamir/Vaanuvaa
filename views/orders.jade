@@ -1,0 +1,108 @@
+extends layout
+
+block content
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js", async)
+	style.
+		#listing{}
+		#listing .item{margin-bottom:5px;background:white;padding:10px;}
+		#listing .item .heading{cursor:pointer;}
+	h1.cpx-heading
+		section.btn-group(data-toggle="buttons")#order
+			button.btn.btn-success(type='button', value="verification")
+				input(type='radio', name='new-releases-type')
+				| Not Verified
+			button.btn.btn-success(type='button', value="pending")
+				input(type='radio', name='new-releases-type')
+				| Pending
+			button.btn.btn-danger(type='button', value="files-copied")
+				input(type='radio', name='new-releases-type')
+				| Delivery
+			button.btn.btn-danger(type='button', value="payment-received")
+				input(type='radio', name='new-releases-type')
+				| Payment Received
+			button.btn.btn-success(type='button', value="disk-collected")
+				input(type='radio', name='new-releases-type')
+				| Disk Collected
+			button.btn.btn-success(type='button', value="done")
+				input(type='radio', name='new-releases-type')
+				| Done
+	section#listing
+
+	script.
+		$(function(){
+			$("body").on('click', '.item .heading', function(){
+				var el = $(this).parent().find('.header');
+				if(el.hasClass("hide")){
+					el.removeClass("hide");
+				}else{
+					el.addClass("hide");
+				}
+			});
+			$("body").on('click', '#order button', function(){
+				var btn = $(this);
+				var status = btn.attr("value");
+				$.getJSON('/cart/status/'+status, function(res){
+					res = res.reverse()
+					res = res.map(function(l){
+						var MAX_LIMIT = Math.pow(1024,3) * 29;
+						l.files = _.compact(l.files);
+						var total_size = _.reduce(l.files, function(sum, f){
+							return sum + f.size;
+						},0)
+						var time = moment(l.date_added).fromNow();
+						var available_pretty = "";
+						var avail = {};
+						var files_price = 0;
+						l.files.forEach(function(file){
+							files_price += file.price;
+							file.datacenter = _.uniq(file.datacenter);
+							file.datacenter.forEach(function(d){
+								if(!avail[d] || !avail[d].length){
+									avail[d] = [];
+								}
+								avail[d].push(file);
+							});
+						});
+						for(var i in avail){
+							var avail_size = _.reduce(avail[i], function(sum, f){
+								return sum + f.size;
+							},0)
+							if(available_pretty.length > 1){
+								available_pretty += "\n";
+							}
+							available_pretty += avail[i].length + " files ("+prettyBytes(avail_size)+") found in " + i;
+						}
+						var goodies = "no";
+						var goodies_total=0;
+						if(goodies.length){
+							goodies = l.goodies.map(function(g){
+								goodies_total += (g.selling_price * g.purchase_quantity);
+								return g.purchase_quantity + " " + g.name;
+							}).join('\n');
+						}
+						var g_total = (goodies_total+files_price);
+						var delivery_total = g_total  < 20 ? 15 : 0;
+						
+						l.time = moment(new Date(l.date_added)).fromNow();
+						l.total_bytes = prettyBytes(l.total_bytes);
+						l.files_price = files_price;
+						l.goodies_total = goodies_total;
+						l.delivery_total = delivery_total;
+						l.grand_total = g_total;
+						l.note = l.note || "";
+						l.goodie_note = "";
+						if(l.goodies.length){
+							l.goodie_note = l.goodies.map(function(goodie){
+								return goodie.purchase_quantity + " " + goodie.name;
+							}).join(", ")
+						}						
+						var html = jade.render('order-item', l);
+						return html;
+					}).join('');
+					if(res == ""){
+						res = "<h4>Nothing found</h4>"
+					}
+					$("#listing").html(res)
+				})
+			})
+		})

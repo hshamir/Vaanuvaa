@@ -1,0 +1,18 @@
+div#__newitem
+	div.accordion-group
+		div.accordion-heading
+			a.accordion-toggle(href="#__newitemcollapse", data-parent="#__newitem", data-toggle="collapse", style="background-color: #F5F5F5;")
+				i.icon-plus
+				span Add new item
+		div#__newitemcollapse.accordion-body.collapse(style="height: 0px;")
+			div.accordion-inner
+				form.form-horizontal
+					fieldset.cms-elems
+						legend Label
+				div.form-actions
+					button#cms-item-add.btn.btn-info
+						| Add
+						i.icon-plus.icon-white
+					button.btn.btn-danger(href="")
+						| Clear
+						i.icon-trash.icon-white

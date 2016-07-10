@@ -1,0 +1,550 @@
+trans()
+	transition: arguments
+	-moz-transition: arguments
+	-webkit-transition: arguments
+	-o-transition: arguments
+body
+	font-family arial
+	background-color: #2A313A;
+	background-image: -moz-linear-gradient(top, #313944, #20252c);
+	background-image: -ms-linear-gradient(top, #313944, #20252c);
+	//background-image: -webkit-gradient(linear, 0 0, 0 100%, from (#313944), to(#20252c));
+	background-image: -webkit-linear-gradient(top, #313944, #20252c);
+	background-image: -o-linear-gradient(top, #313944, #20252c);
+	background-image: linear-gradient(top, #313944, #20252c);
+	background-repeat: repeat-x;
+	background url(/images/bg.jpg)
+	color #eee;
+.hide
+	//display none !important
+#main
+	padding 10px
+	overflow auto
+	//border solid 1px #c0c0c0
+	width 980px
+	margin 0px auto
+#logo
+	text-align center
+	margin 0
+	img
+		width: 253px;
+#contents
+	position static
+	background white
+	min-height 500px
+	border-radius 15px
+	overflow hidden
+#footer
+	height: 50px;
+	padding: 20px 0px;
+	text-align: right;
+	a
+		font-family 'lemongrass'
+		display inline-block
+		width 15px
+		height 15px
+		font-size 15px
+		font-weight bold
+		margin-left 20px
+		background: #777;
+		color: #f0f0f0;
+		padding: 10px;
+		border-radius: 40px;
+		cursor pointer
+		transition: background .3s, color .3s, text-shadow .3s, box-shadow .3s ease-in;
+		-moz-transition: background .3s, color .3s, text-shadow .3s, box-shadow .3s ease-in;
+		-webkit-transition: background .3s, color .3s, text-shadow .3s, box-shadow.3s ease-in; 
+		-o-transition: background .3s, color .3s, text-shadow .3s, box-shadow.3s ease-in;
+		&:hover
+			box-shadow 0px 0px 15px rgba(0,0,0,.3) inset
+			color yellowGreen
+			text-shadow 1px 1px 2px black
+
+.homemap
+	transition: background 0.2s ease-in-out;
+	text-decoration none
+	position relative
+	vertical-align top
+	color #fcfcf
+	background url(/images/food1.jpg) no-repeat #536682
+	border solid 0px white
+	display inline-block
+	width 100%
+	height 280px
+	float left
+	overflow none
+	margin-bottom: 10px
+	&:hover
+		//background #B52C38
+		box-shadow 0px 0px 23px black inset, 0px 0px 2px rgba(255,255,255,.9)
+		color white
+		>section
+			display block
+
+	>section
+		//display none
+		position absolute
+		bottom 0
+		width 100%
+		h1
+			color #fff
+			margin 0
+			padding 10px 0
+			font-size 30px
+			background rgba(154, 205, 50, .8)
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+			transition: background .6s, color .6s, text-shadow .6s, padding-left .3s ease-in;
+			-moz-transition: background .6s, color .6s, text-shadow .6s, padding-left .3s ease-in;
+			-webkit-transition: background .6s, color .6s, text-shadow .6s, padding-left .3s ease-in; 
+			-o-transition: background .6s, color .6s, text-shadow .6s, padding-left .3s ease-in;
+			&:hover
+				background rgba(0,0,0,.4)
+				color white
+				text-shadow 1px 1px 5px black
+				padding-left 10px
+.large
+	width 580px
+.large2
+	width 580px
+	height 230px
+.small
+	float right
+	width 40%
+	height 180px
+.small2
+	float right
+	width 40%
+	height 140px
+hb = 15px
+.lefttopround
+	border-radius hb 0px 0px 0px
+.leftbottomround
+	border-radius 0px 0px 0px hb
+.rightbottomround
+	border-radius 0px 0px hb 0px
+.righttopround
+	border-radius 0px hb 0px 0px
+.top
+	//overflow auto
+.holder
+	position relative
+	width 1960px
+	height 500px
+	background #f0f0f0
+	>section
+		width 980px
+.red
+	background red
+.green
+	background green
+.dark
+	a
+		color white !important
+		text-shadow 0px 0px 9px rgba(10, 10, 10, .5)
+.bottom
+	ul
+		background yellowGreen
+		height 57px
+		overflow hidden
+		margin 0
+		position relative
+		padding 0
+		display: inline-block;
+		float: right;
+		li
+			padding 17px 17px 17px
+			display inline-block
+			a
+				selection none
+				-moz-selection none
+				-webkit-selection none
+				margin-top 27px
+				cursor pointer
+				font-size 25px
+				color darkOliveGreen
+				font-family 'lemongrass'
+				-webkit-transition: color .3s; 
+				&:hover
+					color lightBlue
+					//font-weight bold
+#t
+	color black
+	position absolute
+	border-top: 13px solid #f0f0f0;
+	border-right: 13px solid transparent;
+	border-left: 13px solid transparent;
+	padding 0
+
+@font-face {
+  font-family: 'BlackJackRegular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Courgette Regular'), local('Courgette-Regular'), url(http://themes.googleusercontent.com/static/fonts/abeezee/v1/m_J3nYLkIiGqm2wAiy01kg.woff) format('woff');
+}
+.bjqs-controls 
+	li
+		a
+			background: rgba(200, 200, 200, .3) !important;
+			color white !important
+.borderly
+	padding-top 20px
+#menu_list
+	position: absolute;
+	color: red;
+	top: 10px;
+	//background: rgba(255, 0, 0, .4);
+	padding: 10px 0px;
+	text-align center
+	width 100%
+	a
+		font-weight bold
+		margin-right 30px
+		cursor pointer
+
+.setmenu-selected
+	text-shadow 0px 0px 10px rgba(20,20,20,.5)
+	font-family 'BlackJackRegular'
+	font-size 35px
+	color: rgb(245, 207, 35);
+	trans: font-size .2s ease-in-out, color .2s, text-shadow .2s, padding-left .2s ease-in;
+	
+.setmenu-normal
+	text-shadow 0px 0px 10px rgba(20,20,20,.5)
+	font-family 'BlackJackRegular'
+	font-size 20px
+	color: white
+	trans: font-size .2s, color .2s, text-shadow .2s, padding-left .2s ease-in;
+	&:hover
+		text-shadow 0px 0px 5px yellowGreen
+.setmenu
+
+	position: absolute;
+	top: 60px;
+	height: 400px;
+	width 100% !important
+	background rgba(0, 85, 85, 0.898438)
+	//width: 220px !important;
+	>strong
+		text-shadow 0px 0px 10px rgba(20,20,20,.5)
+		font-family 'BlackJackRegular'
+		font-size 35px
+		color: rgb(245, 207, 35);
+	ul
+		&:first-child
+			margin-left 20px
+		display block
+		float left
+		width 220px
+		border: solid 1px transparent;
+		padding: 0px;
+		&:hover
+			background: rgba(0, 0, 0, .5);
+			border: solid 1px black;
+			box-shadow 0px 0px 15px rgba(255,255,255,.8)
+	li
+		text-align center
+		border-bottom solid 1px rgba(255,255,255,.2)
+		list-style-type none
+		padding 10px
+		font-size 12px
+		transition: background .6s, color .6s, text-shadow .6s, padding-left .3s ease-in;
+		-moz-transition: background .6s, color .6s, text-shadow .6s, padding-left .3s ease-in;
+		-webkit-transition: background .6s, color .6s, text-shadow .6s, padding-left .3s ease-in; 
+		-o-transition: background .6s, color .6s, text-shadow .6s, padding-left .3s ease-in;
+		&:hover
+			background rgba(245, 207, 35,1)
+			color black
+			strong
+				text-shadow 1px 1px white
+#price
+	color: white;
+	position: absolute;
+	top: 194px;
+	display: inline;
+	right: 40px;
+	bottom: 0;
+	font-family: 'BlackJackRegular';
+	font-weight: bold;
+	text-align: center;
+	line-height: 30px;
+	font-size: 25px;
+	border-radius: 101px;
+	width: 94px;
+	padding: 45px;
+
+	#price_amount
+		font-size: 45px;
+		color: #F0E70E
+.price-effect
+	font-size: 30px;
+	text-shadow: 0px 0px 23px white;
+	color white
+	trans font-size .3s cubic-bezier(0.6, 0, 0.4, 1.0), color .2s, text-shadow .2s, padding-left .2s ease-in;
+#about-information
+	background: url(/images/stripe.png) no-repeat;
+	margin 0px auto
+	border: solid 1px silver;
+	border-radius 4px
+
+	>section
+		height 480px
+		
+.about-paragraph
+	background: url(/images/meals-info.jpg) no-repeat 0px 88px;
+	padding 0px 10px
+	color black
+	h1
+		text-align: center;
+		color: white;
+		text-shadow: 1px 1px 1px rgba(10, 10, 10, .5);
+		margin 10px
+		font-family: 'BlackJackRegular'
+		font-size 40px
+	h2
+		color #444
+		margin 0
+	p
+		line-height: 35px;
+		font-size: 19px;
+		color: white;
+#about-contact
+	ul
+		text-align center
+		li
+			padding 7px
+			margin-right 15px
+			display inline-block
+			color #666
+			border-top solid 5px transparent
+			h2
+				color #444
+				margin 0
+				font-size 16px
+			h1
+				font-size 23px
+			&:hover
+				background rgba(10,10,10,.1)
+				color #333
+				text-shadow 1px 1px white
+				h1
+					color yellowGreen
+#main-menu
+	margin 0
+	li
+		display inline
+		
+		a
+			font-family 'BlackJackRegular'	
+			display inline-block
+			font-weight bold
+			text-decoration none
+			color #eee
+			font-size 25px
+			padding 10px
+			//background #084
+			&:hover
+				//background #092
+				color yellowGreen
+				text-shadow -1px -1px 2px black
+	&:hover
+		li
+			a
+				//box-shadow 0px 0px 12px white
+#catering
+	position relative
+	background white
+#catering-heading
+	top 0
+	background rgba(255,255,255,.9)
+	box-sizing: border-box;
+	width 100%
+	position absolute
+	color: #555;
+	font-size: 30px;
+	margin: 0;
+	padding: 19px;
+#catering-heading-call
+	float right
+	color #888
+#catering_information
+	display inline-block
+	background: #EEE;
+	color: #555;
+	//height: 250px;
+	float: right;
+	width: 236px;
+	margin-right: 34px;
+	margin-top: 17px;
+	box-sizing: border-box;
+	padding 10px
+	border: solid 1px silver;
+	h2
+		margin 0
+	h4
+		margin 7px
+		padding 10px
+		cursor pointer
+		trans(padding-left .2s linear)
+		&:hover
+			padding-left 30px
+			color white
+			background yellowGreen
+
+.no-padding
+	padding 0 !important
+.catering_para
+	width 300px
+	float left
+	color #555
+	margin-left 30px
+	p
+		font-size 13px
+.row
+	margin-bottom 20px
+	display table
+#contact
+	overflow-y scroll
+	z-index 1000
+	position fixed
+	top 0
+	left 0
+	background rgba(0,0,0,0.9)
+	width 100%
+	height 100%
+	display none
+#contact-contents
+	background: url(/images/contact-bg.jpg) ;
+	box-shadow: 0px 0px 49px rgba(255,255,255,.4);
+	color #555
+	//padding 10px
+	border-radius 15px
+	margin 0px auto
+	width 600px
+	margin-top 35px
+	h2
+		background: rgba(20, 20, 20, .95);
+		text-shadow: 1px 1px 1px rgba(50, 50, 50, .6);
+		color: darkCyan;
+		margin 0
+		border-bottom solid 1px #f0f0f0
+		span
+			padding 20px 
+			display block
+	overflow auto
+#catering_popup
+	overflow-y scroll
+	z-index 10000
+	position fixed
+	top 0
+	left 0
+	background rgba(255,255,255,0.9)
+	width 100%
+	height 100%
+	display none
+#catering_popup_contents
+	//background: url(/images/contact-bg.jpg) ;
+	
+	background: #f0f0f0
+	box-shadow: 0px 0px 49px rgba(25,25,25,0.4);
+	color #555
+	//padding 10px
+
+	margin 0px auto
+	width 500px
+	margin-top 50px
+	margin-bottom 50px
+	h2
+		font-family 'Gentium Book Basic'
+		background yellowGreen
+		text-shadow: 1px 1px 1px rgba(50, 50, 50, .6);
+		color: white;
+		margin 0
+		padding 15px
+		border-bottom solid 1px #f0f0f0
+		span
+			padding 20px 
+			display block
+	ul
+		padding 0
+		li
+			text-align center
+			padding 5px 0px
+			font-family: 'BlackJackRegular';
+			list-style-type none
+	overflow auto
+#contact-contents-info
+	padding 0px
+	padding-top 20px
+
+.catering-informationbox
+	//border solid 1px rgba(0,0,0,0.1)
+	display block
+	padding 0px
+	margin-bottom 5px
+	background: rgba(255, 255, 255, .8);
+	//margin 0px 0px 20px 20px
+	//float left
+	section
+		padding 10px
+		p
+			font-family 'BlackJackRegular'
+			margin 0
+			line-height 20px
+			font-size 12px
+	h3
+		margin 0
+		color #00364C
+		text-shadow 1px 1px rgba(0,0,0,.1)
+		span
+			display block
+			padding 10px
+	&:hover
+		h3
+			background #00364C
+			color white
+#contact-close
+	background: rgba(20, 20, 20, .5);
+	color: white;
+	font normal
+	font-size 10px
+	display inline
+	float right
+	padding 10px
+	margin: 10px;
+	border-radius: 27px;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 11px;
+	height: 10px;
+	width: 9px;
+	text-align: center;
+	&:hover
+		box-shadow: 0px 0px 13px rgba(255,255,255,.3) inset,0px 0px 3px rgba(200,200,200,.3);
+#contact-contents-msg
+	background rgba(255,255,255,.6)
+	padding 10px
+	input[type=text]
+		width 500px
+		display block
+	textarea
+		width 100%
+		box-sizing border-box
+		height 150px
+	input
+	textarea
+		padding 7px
+		border solid 1px #c0c0c0
+		font-family arial
+		margin-bottom: 11px;
+		box-shadow: 2px 2px 8px rgba(100,100,100,.1) inset;
+	button
+		padding: 10px;
+		font-size: 16px;
+		cursor pointer
+.headingblock
+	font-family 'BlackJackRegular'
+	strong
+		cursor pointer
+		&:hover
+			color white
+

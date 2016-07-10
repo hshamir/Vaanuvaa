@@ -1,0 +1,73 @@
+doctype html
+html
+	head
+		meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+		//meta(name="robots" content="noarchive")
+		//meta(name="robots" content="noindex, nofollow")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+		block meta
+		title Dhivehi Online
+		link(href='https://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet', type='text/css')
+		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/secret.css')		
+		link(rel='stylesheet', href='/css/app.css')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.7.2/jquery.serializejson.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.15/autosize.min.js')
+		script(src='/pretty-bytes/pretty-bytes.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/async/1.5.1/async.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/superagent/1.2.0/superagent.min.js')
+		script(src='/js/thaana.js')
+		script(src='/js/secret.js')
+		script(src='/js/web.js')
+		script(src='/templates.js')
+		script(src='/manage-templates.js')
+		if(locals._user)
+			script window.cinepix.user = '#{locals._user.username}';
+	body
+		include modals/reset-account
+		include modals/add-image
+		include modals/verify
+		include modals/error
+		section.tabpop
+			h1
+			p
+		header(style='background: white;')
+			section.container
+				nav.navbar.navbar-default(role="navigation")
+					div.container-fluid
+						div.navbar-header
+							button(type='button', data-toggle="collapse", data-target="#header-menu").navbar-toggle
+								span.sr-only Toggle
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+							a(href='/')
+								img(src="/images/logo.png")#logo
+								
+						div.collapse.navbar-collapse#header-menu.pull-right
+							ul.nav.navbar-nav
+								-if(locals._user.hasAccess("writer"))
+									li
+										a(href="/manage/writers") Writers
+								-if(locals._user.hasAccess("admin"))
+									li
+										a(href="/user") Users
+								li
+									a(href="/logout") Logout
+
+								li
+									a.command(href='#', title='Settings', data-cmd-route='/user/details', data-cmd-method='get')
+										span.glyphicon.glyphicon-cog
+		section.container
+			section.row
+				section.col-md-9
+					section#search-content
+					section#main-content
+						block content
+				section.col-md-3#sub-contents
+					block rightside

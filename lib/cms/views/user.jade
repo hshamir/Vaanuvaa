@@ -1,0 +1,137 @@
+extends layout
+
+block content
+
+	style .selecteduser{font-weight:bold;} .cms-users-load li {cursor:pointer;}
+	-var struct = JSON.stringify(pages);
+	script var page_structure = !{struct};
+	section.row
+		section.span3
+			div.well
+				h4 Users
+				a(href="#newUserModal", data-toggle="modal", role="button").btn.btn-primary.btn-block New user
+			-console.log(menus);
+			- each menu,key in menus
+				div(id='accordian_#{key}')
+					div.accordion-group
+						div.accordion-heading
+							a.accordion-toggle.capitalize(href="#collapse_#{key}",data-parent="#accordion_#{key}",data-toggle="collapse")=key
+						div.accordion-body.in.collapse(style="height: auto; ", id='collapse_#{key}')
+							div.accordion-inner.no-padding
+								ul.cms-users-load
+									each men in menu
+										- var m = men.name.split("_")[1];
+										- var searchable = men.searchable ? "true" : "false";								
+										li.capitalize(data-id=men._id.toString(), data-data=men)=m
+		section.span10	
+			section#componentsblock.span10
+			section#components.span10
+
+	//modals
+
+	div#newUserModal.modal.hide.fade(tabindex='-1',role='dialog',aria-hidden='true',style='display: none;')
+		div.modal-header
+			button.close(type='button',data-dismiss='modal',aria-hidden='true') ×
+			h4 Create new user
+		div.modal-body
+			div.form(method='post').form-horizontal
+				div.control-group
+					label.control-label Name
+					div.controls
+						input(type='text', name='realname', placeholder='Full name')#newuser_realname
+				div.control-group
+					label.control-label Username
+					div.controls
+						input(type='text', name='username', placeholder='Username')#newuser_username
+				div.control-group
+					label.control-label Password
+					div.controls
+						p default password: 
+							span.badge welcome
+				div.control-group
+					label.control-label Type
+					div.controls
+						div.btn-group(data-toggle='buttons-radio')#newuser_type
+							button(type='button').btn.btn-info.active Normal
+							button(type='button').btn.btn-info Administrator
+		div.modal-footer
+			button(type='button').btn.btn-primary#createuser Create user
+
+	script
+		$(function(){
+			$("#createuser").click(function(){
+				var username = $("#newuser_username").val();
+				var realname = $("#newuser_realname").val();
+				var type = $("#newuser_type button.active").text();
+				if(username == ""){
+					return alert("Please provide a username");
+				}
+				if(realname == ""){
+					return alert("Please provide a full name");
+				}
+				$.post("/cms/users/create", {username:username, realname:realname, type:type}, function(res){
+					if(res.error){
+						alert(res.error);
+					}else{
+						window.location.reload(true);
+					}
+				});
+			});
+			$("body").on("click", "#newuser_update", function(){
+				var id = $(".selecteduser").data().id;
+				var username = $("#newuser_update_username").val();
+				var realname = $("#newuser_update_realname").val();
+				var type = $("#newuser_update_type button.active").text();			
+				if(username == ""){
+					return alert("Please provide a username");
+				}
+				if(realname == ""){
+					return alert("Please provide a full name");
+				}
+				//get allowed list
+				var access = [];
+				_.each($("#newuser_update_access button"), function(el){
+					if($(el).hasClass('active')){
+						access.push({module:$(el).data().name});
+					}
+				});
+				access = JSON.stringify(access);
+				$.post("/cms/users/update", {id:id, username:username, realname:realname, type:type, access:access}, function(res){
+					if(res.error){
+						alert(res.error);
+					}else{
+						window.location.reload(true);
+					}
+				});
+			});
+			$("body").on("click", ".cms-users-load li", function(){
+				var user = $(this).data().data;
+				var self = $(this);
+				self.siblings().removeClass("selecteduser");
+				self.addClass("selecteduser");
+				console.log(user);
+				$("#components").html(jade.render('edit-user', user));
+			});
+			$("body").on('click', '#newuser_remove', function(){
+				var user = $(".selecteduser").data().id;
+				if(confirm("Are you sure you want to remove this user?")){
+					$.post('/cms/users/remove', {user:user, page_structure:page_structure}, function(res){
+						if(res.error){
+							return alert(res.error);
+						}
+						window.location.reload(true);
+					});
+				}
+			});
+			$("body").on('click', '#newuser_update_reset_password', function(){
+				var user = $(".selecteduser").data().id;
+				$.post('/cms/users/passwordreset', {user:user}, function(res){
+					if(res.error){
+						return alert(res.error);
+					}
+					alert(res.success);
+				});			
+			});		
+		});
+
+

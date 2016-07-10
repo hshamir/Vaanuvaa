@@ -1,0 +1,15 @@
+section.row(style='background:white;margin-bottom:5px;')
+	section.col-md-12.thaana
+		a(href='/' + item.article_number)
+			h3=item.title
+		section
+			-each comment in item.comments
+				section.comment-container
+					p 
+						span #{comment.user.name} 
+						span.pull-left(style='font-family:sans-serif;arial;font-size:13px;') (#{comment.user.username})
+						span #{comment.time_pretty} 
+					p=comment.comment
+					section.btn-group
+						span.btn.btn-info.btn-xs(data-id=comment._id).approve-comment Approve
+					hr

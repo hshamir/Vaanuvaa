@@ -1,0 +1,286 @@
+extends layout-manage
+
+block content
+	script.
+		function renderArticle(doc){
+			$("#article-sections").html('');
+			$("#url").attr('href', 'http://dhivehi.com.mv/' + doc.article_number);
+			$("#url").text('http://dhivehi.com.mv/' + doc.article_number);
+			$("#article_properties span.active").removeClass("active");
+			$("#article_properties span").each(function(){
+				var t = $(this).text();
+				$(this).attr('data-text', t);
+			});
+			$("#article_properties .btn-group").each(function(){
+				var id = $(this).attr('id'); 
+				var text = typeof doc[id] == "boolean" ? (doc[id] == true ? "Yes" : "No") : doc[id];
+				$("#"+ id +" span[data-text='"+ text +"']").addClass('active');
+			});
+			$("#article-title input").val(doc.title);
+			$("#title_latin").val(doc.title_latin);
+			$("#description_latin").val(doc.description_latin);
+			$("#parent").val(doc.parent);
+			$("#article-title input").val(doc.title);
+			doc.contents.forEach(function(c){
+				addBlock(c.type, null, c);
+			});
+			$("#delete").show()
+		}
+	-if(id)
+		script.
+			$.getJSON('/article/'+#{id}, function(res){
+				renderArticle(res);
+			});
+			window.article_id = "#{id}";
+	-else
+		script.
+			window.article_id = null;
+			$(function(){
+				addBlock('image');
+			})
+	h1.vod-heading Write
+	section.row
+		section.col-md-5#article_properties
+			section.form-group
+				label
+					a#url(href='')
+			hr
+			section.form-group
+				label Parent Article
+				p Enter the article number (ex: 51320)
+				section
+					input(type='text', placeholder="optional" , value=(typeof parent != 'undefined' ? parent : "")).form-control#parent
+			section.form-group
+				label Entry Type
+				section
+					div.btn-group(data-toggle="buttons")#entry_type
+						span.btn.btn-info.btn-sm.active
+							input(type='radio', name='entry_type')
+							| News Article
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='entry_type')
+							| Gallery
+			section.form-group
+				label Type
+				section
+					div.btn-group(data-toggle="buttons")#type
+						span.btn.btn-info.btn-sm.active
+							input(type='radio', name='type')
+							| Article
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='type')
+							| Breaking News
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='type')
+							| Report
+			section.form-group
+				label Category
+				section
+					div.btn-group(data-toggle="buttons")#category
+						span.btn.btn-info.btn-sm.active
+							input(type='radio', name='category')
+							| ރާއްޖެ
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='category')
+							| ދުނިޔެ
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='category')
+							| ކުޅިވަރު
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='category')
+							| ވާހަކަ
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='category')
+							| ވިޔަފާރި
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='category')
+							| މުނިފޫހި ފިލުވުން
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='category')
+							| ރިޕޯޓު
+			section.form-group
+				label Live Event
+				section
+					div.btn-group(data-toggle="buttons")#live_event
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='live_event')
+							| Yes
+						span.btn.btn-info.btn-sm.active
+							input(type='radio', name='live_event')
+							| No
+			section.form-group
+				label Top Article
+				section
+					small First article to feature in homepage
+				section
+					div.btn-group(data-toggle="buttons")#top_article
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='top_article')
+							| Yes
+						span.btn.btn-info.btn-sm.active
+							input(type='radio', name='top_article')
+							| No
+			section.form-group
+				label Hide Author
+				section
+					div.btn-group(data-toggle="buttons")#hide_author
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='hide_author')
+							| Yes
+						span.btn.btn-info.btn-sm.active
+							input(type='radio', name='hide_author')
+							| No
+			section.form-group
+				label Post Comments
+				section
+					div.btn-group(data-toggle="buttons")#post_comments
+						span.btn.btn-info.btn-sm.active
+							input(type='radio', name='post_comments')
+							| Yes
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='post_comments')
+							| No
+			section.form-group
+				label Show in latest news
+				section
+					div.btn-group(data-toggle="buttons")#show_in_latest_news
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='show_in_latest_news')
+							| Yes
+						span.btn.btn-info.btn-sm.active
+							input(type='radio', name='show_in_latest_news')
+							| No
+			section.form-group
+				label Show in top news
+				section
+					div.btn-group(data-toggle="buttons")#show_in_top_news
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='show_in_top_news')
+							| Yes
+						span.btn.btn-info.btn-sm.active
+							input(type='radio', name='show_in_top_news')
+							| No
+			section.form-group
+				label Ready To Publish
+				section
+					div.btn-group(data-toggle="buttons")#ready_to_publish
+						span.btn.btn-info.btn-sm.active
+							input(type='radio', name='ready_to_publish')
+							| Yes
+						span.btn.btn-info.btn-sm
+							input(type='radio', name='ready_to_publish').active
+							| No
+			hr
+			section.form-group
+				label Title Latin (for social media sharing)
+				section
+					input(type='text', placeholder="required").form-control#title_latin
+			section.form-group
+				label Description Latin (for social media sharing)
+				section
+					small Description in 140 characters or less
+				section
+					textarea.form-control#description_latin(placeholder="optional")
+			section
+				button(type='button', data-type='quote').btn.btn-default#save
+					span.glyphicon.glyphicon-floppy-disk
+					strong &nbsp; Save Changes
+				button(type='button', data-type='quote',style='display:none').btn.btn-danger#delete
+					span.glyphicon.glyphicon-floppy-remove
+					strong &nbsp; Delete
+		section.col-md-7
+			section#article-title
+				input(type='text', placeholder="ސުރުޚީ").form-control.thaana
+			section#article-sections(style='background:white')
+	script.
+		$("body").on("click", "#delete", function(){
+			if (!confirm("Are you sure you want to remove this article?")){
+				return;
+			}
+			$.post('/article/'+article_id+'/remove', function(res){
+				if(res.error){
+					return alert(res.error);
+				}
+				window.location.reload(true)
+			})
+		})
+		$("body").on("click", "#save", function(){
+			var title = $("#article-title input").val();
+			var title_latin = $("#title_latin").val();
+			var description_latin = $("#description_latin").val();
+			var contents = $("#article-sections>section");
+			contents = contents.toArray()
+			if(!contents.length){
+				return alert('no content added')
+			}
+			contents = contents.map(function(t){
+				var self = $(t);
+				var obj = {};
+				obj.type = self.data().type;
+				obj.content = "";
+				obj.time = self.attr("data-time");
+				obj.ip = self.attr("data-ip");
+				obj.user = self.attr("data-user");
+				switch(obj.type){
+					case "paragraph-dv":
+						obj.content = self.find("textarea").val().trim();
+						break;
+					case "image":
+						var img = self.find(".selected-image img");
+						if(!img.length){
+							return alert('empty image block found, please put an image or remove it')
+						}
+						obj.content = self.find(".selected-image img").data().id;
+						break;
+					case "tweet":
+						obj.content = self.find("input").val();
+						break;
+					case "youtube":
+						obj.content = self.find("input").val();
+						if(obj.content.indexOf('embed') == -1){
+							obj.content = obj.content.replace("watch?v=", "embed/");
+						}					
+						break;
+				}
+				return obj;
+			});
+			if(title_latin == ""){
+				return alert('Title latin cannot be empty');
+			}
+			var data = {
+				title:title,
+				title_latin:title_latin,
+				description_latin:description_latin,
+				entry_type:$("#entry_type span.active").text(),
+				type:$("#type span.active").text(),
+				category:$("#category span.active").text(),
+				contents:contents,
+				live_event:$("#live_event span.active").text() == "Yes",
+				top_article:$("#top_article span.active").text() == "Yes",
+				hide_author:$("#hide_author span.active").text() == "Yes",
+				show_in_top_news:$("#show_in_top_news span.active").text() == "Yes",
+				show_in_latest_news:$("#show_in_latest_news span.active").text() == "Yes",
+				ready_to_publish:$("#ready_to_publish span.active").text() == "Yes",
+				post_comments:$("#post_comments span.active").text() == "Yes"
+			}
+			var parent = $("#parent").val();
+			if(parent != ""){
+				if(!isNumeric(parent)){
+					return alert("Parent ID is not a number");
+				}
+				data.parent = parent;
+			}
+
+			var url = article_id ? '/article/' + article_id : '/article';
+			var strdata = JSON.stringify(data);
+			$.post(url, {data:strdata}, function(res){
+				if(res){
+					window.article_id = res.article_number;
+					renderArticle(res);
+					window.location.href = "/manage/Write/" + article_id;
+				}
+			});
+		});
+		function isNumeric(n) {
+			return !isNaN(parseFloat(n)) && isFinite(n);
+		}

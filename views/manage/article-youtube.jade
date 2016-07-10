@@ -1,0 +1,7 @@
+extends article-box
+
+block content
+	-var rand = "___aid" + ~~(Math.random()*1000000)
+	section(type='article-youtube', id=rand)
+		input(type='text', placeholder='URL of the Youtube video').form-control.article-youtube
+		section.youtube-display.video-wrap

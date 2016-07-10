@@ -1,0 +1,50 @@
+extends layout-dv
+
+block body
+	style .glyphicon-camera{color:#cb3837}
+	section(style='background:white')
+		section.container
+			h3
+				span "#{search}"
+				span &nbsp;
+				span(style='color:#c0c0c0;') ގެ ހޯދުންތައް
+			br
+			section.row
+				section.col-md-7
+					section.row
+						-var last_article_number;
+						-each article in articles
+							-last_article_number = article.article_number;
+							section.col-md-6(style='height:100px')
+								section.news-el-4.row
+									a(href="/" + article.article_number)
+										section.col-md-5
+											-if(article.image)
+												img.img-responsive(src=article.image.file.sizes.mediumsmall)
+										section.col-md-7(style='padding:0px;margin:0px')
+											-if(article.entry_type == "Gallery")
+												span
+													span.glyphicon.glyphicon-camera
+													| &nbsp; #{article.title}
+											-else
+												span=article.title
+											div(style='direction:ltr;font-family:sans-serif;text-align:right')
+												-if(article.live_event)
+													span.pull-right.label.label-success.label-live ވަގުތުން
+													small=article.time_pretty
+													small &nbsp;
+												-else
+													small=article.time_pretty
+					a(href='/category/'+search+'/since/' + last_article_number).btn.btn-info.btn-block
+						h5 ކުރީގެ ޚަބަރު
+				section.col-md-5
+					-if(typeof ads != 'undefined' && ads.left_side_main)
+						-each ad in ads.left_side_main
+							section
+								img(src="/statics/ads/" + ad.file_name)
+						br
+						br
+					div.fb-page(data-href="https://www.facebook.com/dhivehionlinemv", data-small-header="true", data-adapt-container-width="true",data-hide-cover="false", data-show-facepile="true")
+						div.fb-xfbml-parse-ignore
+							blockquote(cite="https://www.facebook.com/dhivehionlinemv")
+							a(href="https://www.facebook.com/dhivehionlinemv") Facebook

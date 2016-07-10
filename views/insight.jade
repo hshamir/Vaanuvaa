@@ -1,0 +1,19 @@
+extends layout-manage
+
+block content
+	script(src='/moment/min/moment.min.js')
+	script(src='http://www.chartjs.org/assets/Chart.min.js')
+	script.
+		window.socket.on('v2h:connected', function (data) {
+			console.log(data);
+		});
+
+	h1 Insights
+	header
+		nav.navbar.navbar-default(role="navigation")
+			ul.nav.navbar-nav
+				li
+					a.command(href='#', title='Settings', data-cmd-route='/insight/articles', data-cmd-method='get', data-cmd-display="#insight") Articles
+				li
+					a.command(href='#', title='Settings', data-cmd-route='/insight/writers', data-cmd-method='get', data-cmd-display="#insight") Writers
+	section.row#insight

@@ -1,0 +1,166 @@
+doctype html
+html
+	head
+		meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+		//meta(name="robots" content="noarchive")
+		//meta(name="robots" content="noindex, nofollow")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+		block meta
+		title Dhivehi Online
+		link(href='https://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet', type='text/css')
+		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/app.css')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.4.1/jquery.serializejson.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js')
+		script(src='/pretty-bytes/pretty-bytes.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/async/1.5.1/async.min.js')
+		script(src='/js/web.js')
+		script(src='/templates.js')
+		if(locals._user)
+			script window.cinepix.user = '#{locals._user.username}';
+	body
+		include modals/reset-account
+		include modals/request
+		include modals/verify
+		include modals/error
+		section.tabpop
+			h1
+			p
+		header
+			section.container
+				nav.navbar.navbar-default(role="navigation")
+					div.container-fluid
+						div.navbar-header
+							button(type='button', data-toggle="collapse", data-target="#header-menu").navbar-toggle
+								span.sr-only Toggle
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+							a(href='/')
+								img(src="/images/logo_new.png")#logo
+								
+						div.collapse.navbar-collapse#header-menu.pull-right
+							ul.nav.navbar-nav
+								//li
+									a(href="/") Subscriptions
+								li
+									a(href="/live") Live
+								li
+									a(href="/movies") Movies
+								li
+									a(href="/series") TV Shows
+								li
+									a(href="/applications") Apps
+								-if(locals._user)
+									li
+										a(href='/user/watchlist') Watchlist
+									li
+										a(href='/logout') Logout
+									li
+										a.command(href='#', title='Settings', data-cmd-route='/user/details', data-cmd-method='get')
+											span.glyphicon.glyphicon-cog
+								-else
+									li
+										a(href="/login") Login
+		section.container
+			section.row
+				section.col-md-9
+					-if(ads.above_search_bar)
+						section.advertisement(data-id=ads.above_search_bar._id.toString())
+							img(src='http://img-cdn.video2home.net:8020/ads/' + ads.above_search_bar.file_name)
+							br
+							br
+					section#search-content
+					section#main-content
+						block content
+				section.col-md-3#sub-contents
+					-if(locals._user && locals._user.level > 1)
+						h3.vod-heading manage
+						section.watchlist#admin-panel
+							a(href='/manage/media').home-task
+								h5
+									span.glyphicon.glyphicon-plus
+									| &nbsp; Manage media
+							a(href='/manage/flagged').home-task
+								h5
+									span.glyphicon.glyphicon-align-left
+									| &nbsp; Flagged media
+									| &nbsp;
+									span.label.label-info=admin_flagged_count
+							a(href='/media/requests').home-task
+								h5
+									span.glyphicon.glyphicon-pencil
+									| &nbsp;  Requests
+									| &nbsp;
+									span.label.label-info=admin_request_count
+							a(href='/insight').home-task
+								h5
+									span.glyphicon.glyphicon-pencil
+									| &nbsp;  Insights
+									| &nbsp;
+							-if(locals._user.level >= 2)
+								a(href='/user').home-task
+									h5
+										span.glyphicon.glyphicon-user
+										| &nbsp;  Users
+						-if(locals._user && locals._user.hasAccess("marketing"))
+							section.watchlist#admin-panel
+								a(href='/ad').home-task
+									h5
+										span.glyphicon.glyphicon-user
+										| &nbsp;  Ads								
+
+					-if(locals._user && locals._user.level >= 2)
+						h3.vod-heading Servers
+						section.watchlist.vod-heading
+							-each server in stat_servers
+								-var con  = parseInt(server.status.connections);
+								section(style='padding: 2px 5px')
+									h5
+										span(style=(con != -1 ? "color:green":"color:red")).glyphicon.glyphicon-stop
+										| &nbsp; #{server.host}
+						-var total_con = stat_servers.reduce(function(a,b){return a+parseInt((b.status.connections == "-1" ? 0: b.status.connections))},0)
+						-var total_trans = stat_servers.reduce(function(a,b){return a+parseInt((b.status.transfer_rate == "-1" ? 0: b.status.transfer_rate))},0)
+						section
+							strong #{total_con} 
+							span connections
+						section
+							-var conv = function bytesToSize(bytes) {   if(bytes == 0) return '0 Byte';   var k = 1000;   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];   var i = Math.floor(Math.log(bytes) / Math.log(k));   return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];}
+							strong #{conv(total_trans)}/Sec
+					-if(locals._user)
+						h3.vod-heading Watchlist
+						section.watchlist.vod-heading
+							
+							-if(!to_watch || !to_watch.length)
+								h6 No new posting
+							-else
+								-each episode in to_watch
+									a(href='/v/' + episode.series_id).row
+										section.col-md-4
+											-var url = "http://img-cdn.video2home.net:8020/posters/"+ episode.series_id +"_small.jpg";
+											img.img-responsive(src=url)
+										section.col-md-8
+											h5=episode.series
+											h6 Season #{episode.season} Episode #{episode.episode}
+					-if(!locals._user)
+						h2 Login to download
+						form(method='post', action='/login').well.vod-form
+							input(type='text', placeholder='Username', name='username').form-control
+							input(type='password', placeholder='Password', name='password').form-control
+							input(type='submit', value='Login').btn.btn-danger
+							span#signin-help &nbsp; Can't sign in?
+						h2 Sign up
+						section.well.vod-form#signup-form
+							input(type='text', placeholder='Full name', name='Name').form-control#signup-name
+							input(type='text', placeholder='Username', name='Username').form-control#signup-username
+							input(type='email', placeholder='Email', name='Email').form-control#signup-email
+							input(type='password', placeholder='Password', name='password').form-control#signup-password
+							input(type='text', placeholder='Phone number', name='mobile').form-control#signup-mobile
+							input(type='submit', value='Sign up').btn.btn-danger#signup
+					-if(ads.sidebar_1)
+						section.advertisement(data-id=ads.sidebar_1._id.toString())
+							img(src='http://img-cdn.video2home.net:8020/ads/' + ads.sidebar_1.file_name)

@@ -1,0 +1,8 @@
+extends layout
+
+block content
+	h3 Movie updates
+	ul.dl-horizontal.listing.list-inline#new-releases-movies
+	h3 Series Updates
+	ul.dl-horizontal.listing.list-inline#new-releases-series
+	script $(function(){$("#newmedia-media-options button").trigger('click');});

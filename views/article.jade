@@ -1,0 +1,192 @@
+extends layout-dv
+
+block body
+	script(src='/js/thaana.js')
+	script $(function(){$(".thaana").thaana();})
+	style p{color:#555;font-family:"Faseyha";}
+	section#fb-root
+	section.container
+		section.row
+			section.col-xs-2
+				section.white
+					section(style='text-align:center;')
+						-if(hide_author == false)
+							small ލިޔުނީ #{user.name}
+							section
+								small(style='font-family:sans serif')=time_formatted
+							hr
+					section(style='text-align:center;')
+						section.form-group
+							section.fb-like(data-href="http://dhivehi.com.mv/"+article_number, data-layout="box_count", data-action="like", data-show-faces="true", data-share="true")
+						section.form-group
+							a(href="https://twitter.com/share", data-via="DhivehiOnline").twitter-share-button Tweet
+						section.form-group
+			article.col-xs-6.white
+				section#article-header
+					h1#article-header-title=title
+				-if(live_event == true)
+					-contents = contents.reverse();
+				-each para in contents
+					-if(live_event)
+						h6.line-by-side
+							span(data-time=para.time)=para.time_pretty
+					-if(para.type == "image")
+						include components/render/image
+					-if(para.type == "paragraph-dv")
+						include components/render/paragraph-dv
+					-if(para.type == "tweet")
+						include components/render/tweet
+					-if(para.type == "youtube")
+						include components/render/youtube
+				section.row
+					section.col-xs-12
+						hr
+						img(src='https://placeholdit.imgix.net/~text?txtsize=33&txt=advertisement&w=470&h=150')
+						hr
+						h3 ކިޔުންތެރިންގެ ޚިޔާލު
+				section.row(style='direction: ltr;background:#E2E2E2;'+ (locals._user?'display:none;':''))#reg-login-forms
+					form.col-xs-6#login-frm
+						h4(style="text-align:center") ލޮގިން
+						section.form-group
+							input.form-control(placeholder='username', type='text', name='username')
+						section.form-group
+							input.form-control(placeholder='password', type='password', name='password')
+						section.form-group
+							span.btn.btn-block.btn-success#login ލޮގިން
+					form.col-xs-6#reg-frm
+						h4(style="text-align:center") ރަޖިސްޓަރ
+						section.form-group
+							input.form-control(placeholder='ނަން', type='text', name='name').thaana
+						section.form-group
+							input.form-control(placeholder='username', type='text', name='username')
+						section.form-group
+							input.form-control(placeholder='password', type='password', name='password')
+						section.form-group
+							input.form-control(placeholder='repeat password', type='password', name='password_confirm')
+						section.form-group
+							span.btn.btn-block.btn-success#register ރަޖިސްޓަރ
+				section.row(style=(!locals._user?'display:none;':''))#cmt-forms
+					section.col-xs-12
+						form#comment-frm(data-article=article_number)
+							section.form-group
+								textarea.thaana(style='width:100%',placeholder='ޚިޔާލު', name="comment").form-control
+							section.form-group
+								span.btn.btn-info#send-comment ފޮނުވާ
+				section.row
+					-console.log(comments)
+					-each comment in comments
+						-if(comment.approved)
+							section.comment-container.col-xs-12
+								h4 
+									span #{comment.user.name} 
+								h5(style='font-family: sans-serif;direction: ltr;text-align: right;')
+									small #{comment.time_pretty} 
+								p=comment.comment
+								section.btn-group
+			section.col-xs-4
+				-if(ads.homepage_above_top_news)
+					-each ad in ads.homepage_above_top_news
+						section
+							img(src="/statics/ads/" + ad.file_name).img-responsive
+				br
+				-if(thread.parents.length || thread.children.length)
+					section.related-articles
+						section.col-xs-12
+							-each item in thread.parents
+								section.row.news-el-4
+									a(href="/" + item.article_number)
+										section.col-xs-3(style='padding:0')
+											img.img-responsive(src=item.image?item.image.file.sizes.small : '')
+										section.col-xs-9(style='padding: 0px 8px 0px;')
+											span=item.title
+											div(style='direction:ltr;font-family:sans-serif;text-align:right')
+												small=item.time_pretty
+							section.row.news-el-4.active
+								section
+									section.col-xs-3(style='padding:0')
+										img.img-responsive(src=image?image.file.sizes.small : '')
+									section.col-xs-9(style='padding: 0px 8px 0px;')
+										span=title
+										div(style='direction:ltr;font-family:sans-serif;text-align:right')
+											small=time_pretty
+							-each item in thread.children
+								section.row.news-el-4
+									a(href="/" + item.article_number)
+										section.col-xs-3(style='padding:0')
+											img.img-responsive(src=item.image?item.image.file.sizes.small : '')
+										section.col-xs-9(style='padding: 0px 8px 0px;')
+											span=item.title
+											div(style='direction:ltr;font-family:sans-serif;text-align:right')
+												small=item.time_pretty
+				section.btn-group(data-toggle="buttons",style='margin-bottom:15px')
+					span.btn.btn-link އެންމެ ހިނގާ
+						input(type='radio', name="filter-type")
+					span.btn.btn-link.active ފަހުގެ ޚަބަރު
+						input(type='radio', name="filter-type")
+				-if(latest_all_articles.length)
+					-each article in latest_all_articles
+						section.row.news-el-4
+							a(href="/" + article.article_number)
+								-if(article.image && article.image.file)
+									section.col-xs-3
+										img.img-responsive(src=article.image.file.sizes.small)
+								section.col-xs-9(style='padding:0px;margin:0px')
+									span=article.title
+									div(style='direction:ltr;font-family:sans-serif;text-align:right')
+										small=article.time_pretty
+
+				section
+					div.fb-page(data-href="https://www.facebook.com/facebook", data-small-header="true", data-adapt-container-width="true",data-hide-cover="false", data-show-facepile="true")
+						div.fb-xfbml-parse-ignore
+							blockquote(cite="https://www.facebook.com/facebook")
+							a(href="https://www.facebook.com/facebook") Facebook
+	script.
+		$(function(){
+			$("#register").on('click', function(){
+				var data = $("#reg-frm").serializeJSON();
+				data.t='u';
+				data.c='0';
+				data.n='5';
+				data.b='skmx';
+				cinepix.handleCommand({
+					route:'/user/register',
+					method:'post',
+					payload:data
+				}) 
+			})
+			$("#login").on('click', function(){
+				var data = $("#login-frm").serializeJSON();
+				cinepix.handleCommand({
+					route:'/login',
+					method:'post',
+					payload:data
+				}, function(res){
+					if(!res.error){
+						$("#reg-login-forms").hide();
+						$("#cmt-forms").show();
+					}
+				}) 
+			})
+			$("#send-comment").on('click', function(){
+				var data = $("#comment-frm").serializeJSON();
+				var id = $("#comment-frm").attr("data-article");
+				cinepix.handleCommand({
+					route:'/article/' + id + "/comment",
+					method:'post',
+					payload:data
+				}, function(res){
+					if(!res.error){
+						$("#comment-frm").html("<h4>"+res.message+"</h4>");
+					}
+				}) 
+			})
+		})
+
+block meta
+	meta(property="og:site_name", content="Dhivehi Online")
+	meta(property="og:title", content=(title_latin=="" || !title_latin ? title : title_latin))
+	meta(property="og:description", content=(description_latin=="" || !description_latin ? description : description_latin))
+	meta(property="og:type", content="article")
+	meta(property="og:url", content="http://dhivehi.com.mv/" + article_number )
+	-if(image != null)
+		meta(property="og:image", content="http://dhivehi.com.mv" + image.file.sizes.large)

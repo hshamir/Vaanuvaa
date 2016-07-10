@@ -1,0 +1,167 @@
+extends layout-manage
+
+block content
+	script(src='/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')
+	link(rel='stylesheet', href='/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')
+	h1.vod-heading Advertisements Manager
+	section.row
+		section.col-md-3
+			section#watchlist-series.row
+				section.col-md-12
+					h5.command(data-cmd-route='/ad/ongoing', data-cmd-method='get', data-cmd-template='ad', data-cmd-display='#ads-display') Ongoing ads
+				section.col-md-12
+					h5.command(data-cmd-route='/ad/expired', data-cmd-method='get', data-cmd-template='ad', data-cmd-display='#ads-display') Expired ads
+		section.col-md-9
+			section.row
+				section.col-md-12#ads-display
+					div.btn-group
+						button(type='button', data-toggle="dropdown").btn.btn-default.dropdown-toggle
+							| New advertisement 
+							span.caret
+						ul.dropdown-menu.ad-type(role='menu')
+							li(data-type='top_banner', data-size="[710, 90]")
+								a(href='#') Top banner 
+									strong 710 x 90 pixel
+							li(data-type='homepage_above_top_news', data-size="[303, 85]")
+								a(href='#') Homepage above latest news 
+									strong 303 x 85 pixel
+							li(data-type='homepage_below_top_news', data-size="[390, 85]")
+								a(href='#') Homepage below top news 
+									strong 390 x 85 pixel
+							li(data-type='left_side_main', data-size="[350, 350]")
+								a(href='#') Left side main 
+									strong 350 x 350 pixel
+							li(data-type='left_side_entertainment', data-size="[350, 350]")
+								a(href='#') Left side below entertainment 
+									strong 350 x 350 pixel
+			br
+			section#ads
+
+	style.
+		.ad-manager-container{
+			background:white;
+			position: relative;
+			margin-bottom: 15px;
+		}
+		.ad-manager-head,
+		.ad-manager-footer,
+		.ad-manager-body {
+			padding:7px;
+		}
+		.ad-manager-footer{
+			text-align:center;
+		}
+		hr {
+			margin: 5px 0;
+		}
+		.ad-manager-controls{
+			position: absolute;
+			right: 0;
+			opacity: .9;	
+			
+		}
+		.ad-manager-controls .btn{
+			border-radius:0;
+		}
+		.ad-manager-controls:hover{
+			opacity: 1;
+		}
+		.light{
+			color:#c0c0c0;
+		}
+	script.
+		$(function(){
+			var s;
+			$("body").on('click', '.save', function(){
+				var self = $(this).parent().parent();
+				var id = self.attr('data-id');
+				var type = self.attr('data-type');
+				var url = self.find('input.url').val();
+				var title = self.find('.title').text();
+				var size = self.attr('data-size').split(',');
+				var effective_from = self.find('.effective-from').val()
+				var effective_to = self.find('.effective-to').val()
+				var size = self.attr('data-size').split(',');
+				var payment_type = self.find('.payment_type button.active').text();
+				var payment_amount = self.find('.payment_amount').val();
+
+				var q = {
+					type:type, 
+					size:size,
+					title:title,
+					payment_type:payment_type,
+					payment_amount:payment_amount,
+					effective_from:effective_from,
+					effective_to:effective_to,
+					priority:'average',
+
+				};
+				if(id){
+					q.id = id;
+				}
+				var form = new FormData();
+				for(var i in q){
+					form.append(i, q[i]);
+				}			
+				var file = self.find('.file').get(0).files;
+				if(file.length){
+					form.append('file', file[0]);
+				}
+				cinepix.handleCommand({
+					route: '/ad',
+					method: 'post',
+					payload:form
+				});
+			})
+			$("body").on('click', '.ad-type li', function(){
+				var self = $(this);
+				var type = self.attr('data-type');
+				var size = JSON.parse(self.attr('data-size'));
+				var q = {
+					type:type, 
+					size:size,
+					title:'ad title',
+					payment_type:'fixed',
+					payment_amount:0,
+					priority:'average',
+					url:''
+
+				};
+				var newad = jade.render('ad', {item:q});
+				newad = $(newad);
+				newad.find('.date').datetimepicker({
+					minView:2,
+					format:"dd-mm-yyyy",
+					autoclose:true
+				});
+				$("#ads").prepend(newad);
+			});
+			$("body").on('click', '.user-type-set li a', function(){
+				var id = $(this).parent().parent().attr('data-id');
+				var type = $(this).text();
+				var label = $(this).parent().parent().parent().find('.user-type-label');
+				$.post('/user/' + id + '/type',{type:type}, function(res){
+					label.text(type);
+				});
+			});
+			$("body").on('keyup', '#search-user', function(){
+				var val = $(this).val();
+				if(s){
+					s.abort();
+				}
+				s = $.getJSON('/user/search',{query:val}, function(res){
+					var html = jade.render('user',{users:res});
+					$("#display-users-body").html(html);
+				})
+			});
+			$("body").on('click', '.remove-ad', function(){
+				if(!confirm("Are you sure you want to remove this?")){
+					return;
+				}
+				var id = $(this).attr('data-id');
+				$(this).parent().parent().remove();
+				$.post('/ad/'+id+'/remove', function(){
+
+				})
+			})
+		})

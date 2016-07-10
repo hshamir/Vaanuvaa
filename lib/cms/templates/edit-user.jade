@@ -1,0 +1,39 @@
+div.form.form-horizontal
+	div.control-group
+		label.control-label Name
+		div.controls
+			input(type='text', name='realname', placeholder='Full name', value=realname)#newuser_update_realname
+	div.control-group
+		label.control-label Username
+		div.controls
+			input(type='text', name='username', placeholder='Username', value=user)#newuser_update_username
+	div.control-group
+		label.control-label Password
+		div.controls
+			button(type='button').btn.btn-info#newuser_update_reset_password Reset password
+	div.control-group
+		label.control-label Access
+		div.controls
+			div.btn-group.btn-group-vertical.span3(data-toggle='buttons-checkbox')#newuser_update_access
+				- each menu,key in page_structure
+					each men in menu
+						- var split = men.name.split("_");
+						- var m = split[1];
+						//li.capitalize(data-id=men._id.toString(), data-data=men)=m
+						-if(_.find(access, function(a){console.log(a);return a.module == men.name}))
+							button(type='button', data-name=men.name).btn.btn-block.btn-info.active #{split[0]} &raquo; #{m}
+						-else
+							button(type='button', data-name=men.name).btn.btn-block.btn-info #{split[0]} &raquo; #{m}
+	div.control-group
+		label.control-label Type
+		div.controls
+			div.btn-group(data-toggle='buttons-radio')#newuser_update_type
+				button(type='button', class=(type=='normal'?'active':'')).btn.btn-info Normal
+				button(type='button', class=(type=='administrator'?'active':'')).btn.btn-info Administrator
+	div.control-group
+		label.control-label
+		div.controls
+			div.btn-group
+				button(type='button').btn.btn-primary#newuser_update Update
+				button(type='button').btn.btn-danger#newuser_remove Remove
+

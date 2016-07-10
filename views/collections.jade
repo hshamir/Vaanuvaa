@@ -1,0 +1,20 @@
+extends layout
+
+block content
+	-each collection in collections
+		a(href='/collections/' + collection._id)
+			h3=collection.name
+		ul.list-inline.dl-horizontal.listing
+			-each item in collection.medias
+				include components/item
+		br
+block meta
+	-if(collections.length == 1)
+		-var col=collections[0];
+		meta(property="og:site_name", content="Cinepix")
+		meta(property="og:title", content=col.name)
+		meta(property="og:type", content="article")
+		meta(property="og:url", content="http://cinepix.mv/collections/" + col._id )
+		meta(property="og:image", content="http://cinepix.mv/collections/" + col._id + "/image.png")
+		meta(property="og:description", content=col.name)
+		meta(name="description", content=col.name)

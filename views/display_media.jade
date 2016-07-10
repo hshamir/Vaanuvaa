@@ -1,0 +1,101 @@
+extends layout
+
+block content
+	section.row
+		section.col-md-12
+			h1 #{title} (#{year})
+		section.col-md-5
+			section#media-display-container
+				-var  url =  "http://cinepix.mv/images/posters/"+_id +'.jpg'
+				img(src=url).img-responsive
+		section.col-md-7(style='background: white')
+			section.row
+				//
+					-if(rating_imdb)
+						section.col-md-4
+							h1=rating_imdb
+							h5 IMDB
+					-if(rating_rt)
+						section.col-md-4
+							h1 #{rating_rt}%
+							h5 RT
+			-if(quality)
+				h4 Quality: #{quality}
+			br
+			br
+			-if(type == "Application")
+				pre=description
+			-else
+				p=description
+			hr
+			-if(type=='Series')
+				section
+					h4 Season
+					ul.pagination#season-listing
+						-for(var i in formatted)
+							li
+								a(href='javascript:;',  data-episodes=formatted[i])=i
+					h4 Episodes
+					ul.pagination#episode-listing
+					br
+					section
+						span.btn.btn-info.add-all-episodes.hide Add entire season
+					br
+					section#files
+			-else
+				section#files
+					h2 Files
+					include components/display-media-files
+	script.
+		$(function(){
+			$('body').on('click', '.add-file', function(){
+				var id = $(this).attr('data-id');
+				$.post('/cart/add', {file:id}, function(res){
+					if(res.error){
+						return alert(res.error);
+					}
+					cinepix.refreshCart();
+				});
+			});
+			$('body').on('click', '.add-all-episodes', function(){
+				var id = $(this).attr('data-id');
+				var eps = $("#episode-listing li");
+				var e = [];
+				eps.each(function(){
+					var ep = $(this);
+					var files = ep.find("a").attr('data-files');
+					files = decodeURIComponent(files);
+					files = JSON.parse(files)[0];
+					e.push(files._id);
+				});
+				$.post('/cart/add', {file:e.join(",")}, function(res){
+					if(res.error){
+						return alert(res.error);
+					}
+					cinepix.refreshCart();
+				});				
+			});
+			$('body').on('click', '#season-listing a', function(){
+				var self = $(this);
+				$('#season-listing li').removeClass('active');
+				self.parent().addClass('active');
+				var d = self.data().episodes;
+				$('#episode-listing').html('');
+				$(".add-all-episodes").removeClass('hide')
+				for(var ep in d){
+					var episode = d[ep];
+					$('#episode-listing').append('<li><a data-files="'+encodeURIComponent(JSON.stringify(episode))+'" href="javascript:;">'+ ep +'</a></li>');
+				}
+			});
+			$('body').on('click', '#episode-listing a', function(){
+				var self = $(this);
+				$('#episode-listing li').removeClass('active');
+				self.parent().addClass('active');
+				var files = self.data().files;
+				files = decodeURIComponent(files);
+				files = JSON.parse(files);
+				var html = jade.render('display-media-files', {files:files});
+
+				$('#files').html(html);
+			});
+		});

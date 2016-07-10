@@ -1,0 +1,8 @@
+extends article-box
+
+block content
+	-var rand = "___aid" + ~~(Math.random()*1000000)
+	section(type='article-paragraph', id=rand)
+		textarea.form-control.thaana(placeholder='ޕެރެގްރާފް')
+	//script $(function(){$("##{rand} textarea").wysihtml5({link:true, size:"xs"}); $("##{rand} iframe").thaana();})
+	script $(function(){$("##{rand} textarea").thaana();})

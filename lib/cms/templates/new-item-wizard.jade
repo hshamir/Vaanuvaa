@@ -1,0 +1,43 @@
+section.well
+	a(href="#new-item-modal", role="button", class="btn", data-toggle="modal") add new item
+div#new-item-modal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+	div.modal-header
+		button(type='button', data-dismiss="modal", aria-hidden="true").close ×
+		h3 hehe
+	div.modal-body
+		div.wizard#MyWizard
+			ul.steps
+				li(data-target="#step1").active
+					span.badge.badge-info 1
+					span.chevron
+				li(data-target="#step2")
+					span.badge 2
+					span.chevron
+				li(data-target="#step3")
+					span.badge 3
+					span.chevron
+			div.actions
+				button.btn.btn-mini.btn-prev
+					i.icon-arrow-left
+					| prev
+				button.btn.btn-mini.btn-next(data-last='Finish')
+					| Next
+					i.icon-arrow-right
+		div.step-content.form-horizontal
+			-var counter = 1;
+				div.step-pane(id='step1').active
+					-for(var item in locals)
+						-if(locals[item].type.indexOf('image') == -1)
+							-var data = cms.renderField(item, locals[item]);
+							-var d = $("<div />").html(data.html()).html();
+								div.wizard-content!=d
+				div.step-pane(id='step2')
+					-for(var item in locals)
+						-if(locals[item].type.indexOf('image') != -1)
+							-var data = cms.renderField(item, locals[item]);
+							-var d = $("<div />").html(data.html()).html();
+								div.wizard-content!=d
+				div.step-pane(id='step3')
+					div.form-actions
+						button.btn.btn-info#cms-item-add(cms-feature=feature) Add item
+

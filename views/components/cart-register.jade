@@ -1,0 +1,17 @@
+section.form-group.col-md-5#cart-register
+	script(src='https://www.google.com/recaptcha/api.js')
+	h2.cpx-heading Register
+	table(style='width: 100%;')
+		tbody
+			tr
+				td(style='text-align:right')
+					+960&nbsp;
+				td
+					input(type='text', placeholder='Enter your phone number', style='margin-bottom: 10px;')#number.form-control
+			tr
+				td &nbsp;
+				td
+					div.g-recaptcha(data-sitekey="6Lc80BQTAAAAAF3LNWpYhRJ3WHjAqPZ3FC1NpHTr", style='margin-bottom: 10px;')
+			tr
+				td(colspan=2)
+					span.btn.btn-info.btn-block#register Register

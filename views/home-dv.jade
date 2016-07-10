@@ -1,0 +1,210 @@
+extends layout-dv
+
+block body
+	script.
+		$(function(){
+			var len = $("#second-col").height();
+			$("#first-col img, #third-col img").css("height", len+"px");
+		})
+	-var c1 = categories.splice(0,4);
+	-var c2 = categories;
+	style .glyphicon-camera{color:#cb3837} #second-col section:last-child{margin-bottom:0;}
+	section
+		section.container
+			section.row
+				-if(breaking && breaking.length)
+					hr
+					-each article in breaking
+						a(href='/'+article.article_number).breaking-news.col-md-12
+							h5 ކުއްލި ޚަބަރު
+							h1=article.title
+							-if(article.image)
+								img(src=article.image.file.sizes.large)
+							br
+							br
+
+					hr(style='margin-top:0')
+			section.row(style='margin-top:20px;')
+				-var top = homepage_main_top ? homepage_main_top : homepage_main.main_article
+				-if(top)
+					section.col-md-6#first-col
+						a(href="/" + top.article_number).news-el.news-el-3
+							-if(top.live_event)
+								span.label.label-success.label-live ވަގުތުން
+							img.img-responsive(src=top.image ? top.image.file.sizes.large: "")
+							h3(style='font-size:22px;line-height:35px;font-weight:normal;')=top.title
+				section.col-md-3#second-col
+					a(href="/" + homepage_main.second_main_article.article_number).news-el.news-el-2b
+						-if(homepage_main.second_main_article.live_event)
+							span.label.label-success.label-live ވަގުތުން
+						h3=homepage_main.second_main_article.title
+						img.img-responsive(src=homepage_main.second_main_article.image ? homepage_main.second_main_article.image.file.sizes.mediumsmall: "")
+					-if(homepage_main.primary_article_list.length)
+						-each article in homepage_main.primary_article_list
+							section.news-el-4.col-md-12
+								a(href="/" + article.article_number)
+									section.row(style='padding:5px;background:white;')
+										section.col-md-5(style='margin-right:0;padding-right:0;')
+											-if(article.image)
+												img.img-responsive(src=article.image.file.sizes.small)
+										section.col-md-7(style='padding:0px;margin:0px')
+											-if(article.entry_type == "Gallery")
+												span
+													span.glyphicon.glyphicon-camera
+													| &nbsp #{article.title}
+											-else
+												span=article.title
+											div(style='direction:ltr;font-family:sans-serif;text-align:right')
+												-if(article.live_event)
+													span.pull-right.label.label-success.label-live ވަގުތުން
+													small=article.time_pretty
+													small &nbsp;
+												-else
+													small=article.time_pretty
+				section.col-md-3#third-col
+					-if(ads.homepage_above_top_news)
+						-each ad in ads.homepage_above_top_news
+							section
+								img(src="http://placehold.it/320x420?text=advertisement")
+		hr
+	section.container
+		section.row
+			section.col-md-12
+				section.row.homepage-category
+					//- section.col-md-4
+					//- 	iframe(src="http://www.youtube.com/embed?listType=playlist&list=PL5NZxQqu65inV2BBOFBjs2IBDf0D1kkDH", height="300", style='width:98%;')
+					section.col-md-4
+						h4.homepage-category-heading
+							a(href="/category/gallery") އެންމެ މަޤުބޫލް
+						-each article in popular
+							section.news-el-4.col-md-12
+								a(href="/" + article.article_number)
+									section.row(style='padding:5px;background:white;')
+										section.col-md-5(style='margin-right:0;padding-right:0;')
+											-if(article.image)
+												img.img-responsive(src=article.image.file.sizes.small)
+										section.col-md-7(style='padding:0px;margin:0px')
+											-if(article.entry_type == "Gallery")
+												span
+													span.glyphicon.glyphicon-camera
+													| &nbsp #{article.title}
+											-else
+												span=article.title
+											div(style='direction:ltr;font-family:sans-serif;text-align:right')
+												-if(article.live_event)
+													span.pull-right.label.label-success.label-live ވަގުތުން
+													small=article.time_pretty
+													small &nbsp;
+												-else
+													small=article.time_pretty
+					section.col-md-4
+						h4.homepage-category-heading
+							a(href="/category/gallery") އެންމެ މަޤުބޫލް
+						-each article in popular
+							section.news-el-4.col-md-12
+								a(href="/" + article.article_number)
+									section.row(style='padding:5px;background:white;')
+										section.col-md-5(style='margin-right:0;padding-right:0;')
+											-if(article.image)
+												img.img-responsive(src=article.image.file.sizes.small)
+										section.col-md-7(style='padding:0px;margin:0px')
+											-if(article.entry_type == "Gallery")
+												span
+													span.glyphicon.glyphicon-camera
+													| &nbsp #{article.title}
+											-else
+												span=article.title
+											div(style='direction:ltr;font-family:sans-serif;text-align:right')
+												-if(article.live_event)
+													span.pull-right.label.label-success.label-live ވަގުތުން
+													small=article.time_pretty
+													small &nbsp;
+												-else
+													small=article.time_pretty
+					section.col-md-4
+						-var gallery = galleries.pop();
+						-if(gallery)
+							h4.homepage-category-heading
+								a(href="/category/gallery") ގެލެރީ
+							section
+								div#gallery-hp-main.carousel.slide(data-ride="carousel")
+									ol.carousel-indicators
+										li(data-target="#gallery-hp-main", data-slide-to="0").active
+										li(data-target="#gallery-hp-main", data-slide-to="1")
+										li(data-target="#gallery-hp-main", data-slide-to="2")
+									div.carousel-inner(role="listbox")
+										-var k=0;
+										-each gal in gallery.contents
+											-if(gal.type == 'image')
+												div(class=' item news-el-2' + (k==0?' active' :''), style='height:294px')
+													- k++
+													img(src=gal.file.sizes.medium).img-responsive
+													h3=gal.description_dv
+									a.left.carousel-control(href="#gallery-hp-main", role="button", data-slide="prev")
+										span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+										span.sr-only Prev
+									a.right.carousel-control(href="#gallery-hp-main", role="button", data-slide="next")
+										span.glyphicon.glyphicon-chevron-right(aria-hidden="true")
+										span.sr-only Next
+								h4
+									a(href='/'+gallery.article_number)
+										span.glyphicon.glyphicon-camera
+										span &nbsp;#{gallery.title}
+				
+				br
+				-each category in c1
+					section.row.homepage-category
+						section.col-md-12
+							h4.homepage-category-heading
+								a(href="")=category.category
+						section.col-md-4
+							-var article = category.articles.pop();
+							-if(article)
+								a(href="/" + article.article_number).news-el.news-el-2
+									-if(article.image && article.image.file)
+										img.img-responsive(src=article.image.file.sizes.medium)
+									h3=article.title
+						section.col-md-4
+							-each article in category.articles
+								-if(article && article.article_number)
+										a(href="/" + article.article_number)
+											section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+												section.col-md-5(style='margin-right:0;padding-right:0;')
+													-if(article.image)
+														img.img-responsive(src=article.image.file.sizes.small)
+												section.col-md-7(style='padding:0px;margin:0px')
+													-if(article.entry_type == "Gallery")
+														span
+															span.glyphicon.glyphicon-camera
+															| &nbsp #{article.title}
+													-else
+														span=article.title
+													div(style='direction:ltr;font-family:sans-serif;text-align:right')
+														-if(article.live_event)
+															span.pull-right.label.label-success.label-live ވަގުތުން
+															small=article.time_pretty
+															small &nbsp;
+														-else
+															small=article.time_pretty
+						section.col-md-4
+							-var article = category.articles.pop();
+							-if(article)
+								a(href="/" + article.article_number).news-el.news-el-2
+									-if(article.image && article.image.file)
+										img.img-responsive(src=article.image.file.sizes.medium)
+									h3=article.title
+				section
+					img(src="http://placehold.it/540x150?text=advertisement")
+					br
+					br
+			section.col-md-4
+				-if(typeof ads != 'undefined' && ads.left_side_main)
+					-each ad in ads.left_side_main
+						section
+							img(src="/statics/ads/" + ad.file_name).img-responsive
+					br
+					br
+				div.fb-page(data-href="https://www.facebook.com/dhivehionlinemv", data-small-header="true", data-adapt-container-width="true",data-hide-cover="false", data-show-facepile="true")
+					div.fb-xfbml-parse-ignore
+						blockquote(cite="https://www.facebook.com/dhivehionlinemv")
+						a(href="https://www.facebook.com/dhivehionlinemv") Facebook

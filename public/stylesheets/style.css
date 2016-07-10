@@ -1,0 +1,620 @@
+body {
+  font-family: arial;
+  background-color: #2a313a;
+  background-image: -moz-linear-gradient(top, #313944, #20252c);
+  background-image: -ms-linear-gradient(top, #313944, #20252c);
+  background-image: -webkit-linear-gradient(top, #313944, #20252c);
+  background-image: -o-linear-gradient(top, #313944, #20252c);
+  background-image: linear-gradient(top, #313944, #20252c);
+  background-repeat: repeat-x;
+  background: url("/images/bg.jpg");
+  color: #eee;
+}
+#main {
+  padding: 10px;
+  overflow: auto;
+  width: 980px;
+  margin: 0px auto;
+}
+#logo {
+  text-align: center;
+  margin: 0;
+}
+#logo img {
+  width: 253px;
+}
+#contents {
+  position: static;
+  background: #fff;
+  min-height: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+#footer {
+  height: 50px;
+  padding: 20px 0px;
+  text-align: right;
+}
+#footer a {
+  font-family: 'lemongrass';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 20px;
+  background: #777;
+  color: #f0f0f0;
+  padding: 10px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s ease-in;
+  -moz-transition: background 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s ease-in;
+  -webkit-transition: background 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s ease-in;
+  -o-transition: background 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s ease-in;
+}
+#footer a:hover {
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.3) inset;
+  color: yellowGreen;
+  text-shadow: 1px 1px 2px #000;
+}
+.homemap {
+  transition: background 0.2s ease-in-out;
+  text-decoration: none;
+  position: relative;
+  vertical-align: top;
+  color: rgba(255,204,255,0.8) f;
+  background: url("/images/food1.jpg") no-repeat #536682;
+  border: solid 0px #fff;
+  display: inline-block;
+  width: 100%;
+  height: 280px;
+  float: left;
+  overflow: none;
+  margin-bottom: 10px;
+}
+.homemap:hover {
+  box-shadow: 0px 0px 23px #000 inset, 0px 0px 2px rgba(255,255,255,0.9);
+  color: #fff;
+}
+.homemap:hover >section {
+  display: block;
+}
+.homemap >section {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.homemap >section h1 {
+  color: #fff;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 30px;
+  background: rgba(154,205,50,0.8);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  transition: background 0.6s, color 0.6s, text-shadow 0.6s, padding-left 0.3s ease-in;
+  -moz-transition: background 0.6s, color 0.6s, text-shadow 0.6s, padding-left 0.3s ease-in;
+  -webkit-transition: background 0.6s, color 0.6s, text-shadow 0.6s, padding-left 0.3s ease-in;
+  -o-transition: background 0.6s, color 0.6s, text-shadow 0.6s, padding-left 0.3s ease-in;
+}
+.homemap >section h1:hover {
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  text-shadow: 1px 1px 5px #000;
+  padding-left: 10px;
+}
+.large {
+  width: 580px;
+}
+.large2 {
+  width: 580px;
+  height: 230px;
+}
+.small {
+  float: right;
+  width: 40%;
+  height: 180px;
+}
+.small2 {
+  float: right;
+  width: 40%;
+  height: 140px;
+}
+.lefttopround {
+  border-radius: 15px 0px 0px 0px;
+}
+.leftbottomround {
+  border-radius: 0px 0px 0px 15px;
+}
+.rightbottomround {
+  border-radius: 0px 0px 15px 0px;
+}
+.righttopround {
+  border-radius: 0px 15px 0px 0px;
+}
+.holder {
+  position: relative;
+  width: 1960px;
+  height: 500px;
+  background: #f0f0f0;
+}
+.holder >section {
+  width: 980px;
+}
+.red {
+  background: #f00;
+}
+.green {
+  background: #008000;
+}
+.dark a {
+  color: #fff !important;
+  text-shadow: 0px 0px 9px rgba(10,10,10,0.5);
+}
+.bottom ul {
+  background: yellowGreen;
+  height: 57px;
+  overflow: hidden;
+  margin: 0;
+  position: relative;
+  padding: 0;
+  display: inline-block;
+  float: right;
+}
+.bottom ul li {
+  padding: 17px 17px 17px;
+  display: inline-block;
+}
+.bottom ul li a {
+  selection: none;
+  -moz-selection: none;
+  -webkit-selection: none;
+  margin-top: 27px;
+  cursor: pointer;
+  font-size: 25px;
+  color: darkOliveGreen;
+  font-family: 'lemongrass';
+  -webkit-transition: color 0.3s;
+}
+.bottom ul li a:hover {
+  color: lightBlue;
+}
+#t {
+  color: #000;
+  position: absolute;
+  border-top: 13px solid #f0f0f0;
+  border-right: 13px solid transparent;
+  border-left: 13px solid transparent;
+  padding: 0;
+}
+@font-face {
+  font-family: 'BlackJackRegular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Courgette Regular'), local('Courgette-Regular'), url("http://themes.googleusercontent.com/static/fonts/abeezee/v1/m_J3nYLkIiGqm2wAiy01kg.woff") format('woff');
+}
+.bjqs-controls li a {
+  background: rgba(200,200,200,0.3) !important;
+  color: #fff !important;
+}
+.borderly {
+  padding-top: 20px;
+}
+#menu_list {
+  position: absolute;
+  color: #f00;
+  top: 10px;
+  padding: 10px 0px;
+  text-align: center;
+  width: 100%;
+}
+#menu_list a {
+  font-weight: bold;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.setmenu-selected {
+  text-shadow: 0px 0px 10px rgba(20,20,20,0.5);
+  font-family: 'BlackJackRegular';
+  font-size: 35px;
+  color: #f5cf23;
+  transition: font-size 0.2s ease-in-out, color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+  -moz-transition: font-size 0.2s ease-in-out, color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+  -webkit-transition: font-size 0.2s ease-in-out, color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+  -o-transition: font-size 0.2s ease-in-out, color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+}
+.setmenu-normal {
+  text-shadow: 0px 0px 10px rgba(20,20,20,0.5);
+  font-family: 'BlackJackRegular';
+  font-size: 20px;
+  color: #fff;
+  transition: font-size 0.2s, color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+  -moz-transition: font-size 0.2s, color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+  -webkit-transition: font-size 0.2s, color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+  -o-transition: font-size 0.2s, color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+}
+.setmenu-normal:hover {
+  text-shadow: 0px 0px 5px yellowGreen;
+}
+.setmenu {
+  position: absolute;
+  top: 60px;
+  height: 400px;
+  width: 100% !important;
+  background: rgba(0,85,85,0.898);
+}
+.setmenu >strong {
+  text-shadow: 0px 0px 10px rgba(20,20,20,0.5);
+  font-family: 'BlackJackRegular';
+  font-size: 35px;
+  color: #f5cf23;
+}
+.setmenu ul {
+  display: block;
+  float: left;
+  width: 220px;
+  border: solid 1px transparent;
+  padding: 0px;
+}
+.setmenu ul:first-child {
+  margin-left: 20px;
+}
+.setmenu ul:hover {
+  background: rgba(0,0,0,0.5);
+  border: solid 1px #000;
+  box-shadow: 0px 0px 15px rgba(255,255,255,0.8);
+}
+.setmenu li {
+  text-align: center;
+  border-bottom: solid 1px rgba(255,255,255,0.2);
+  list-style-type: none;
+  padding: 10px;
+  font-size: 12px;
+  transition: background 0.6s, color 0.6s, text-shadow 0.6s, padding-left 0.3s ease-in;
+  -moz-transition: background 0.6s, color 0.6s, text-shadow 0.6s, padding-left 0.3s ease-in;
+  -webkit-transition: background 0.6s, color 0.6s, text-shadow 0.6s, padding-left 0.3s ease-in;
+  -o-transition: background 0.6s, color 0.6s, text-shadow 0.6s, padding-left 0.3s ease-in;
+}
+.setmenu li:hover {
+  background: #f5cf23;
+  color: #000;
+}
+.setmenu li:hover strong {
+  text-shadow: 1px 1px #fff;
+}
+#price {
+  color: #fff;
+  position: absolute;
+  top: 194px;
+  display: inline;
+  right: 40px;
+  bottom: 0;
+  font-family: 'BlackJackRegular';
+  font-weight: bold;
+  text-align: center;
+  line-height: 30px;
+  font-size: 25px;
+  border-radius: 101px;
+  width: 94px;
+  padding: 45px;
+}
+#price #price_amount {
+  font-size: 45px;
+  color: #f0e70e;
+}
+.price-effect {
+  font-size: 30px;
+  text-shadow: 0px 0px 23px #fff;
+  color: #fff;
+  transition: font-size 0.3s cubic-bezier(0.6, 0, 0.4, 1), color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+  -moz-transition: font-size 0.3s cubic-bezier(0.6, 0, 0.4, 1), color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+  -webkit-transition: font-size 0.3s cubic-bezier(0.6, 0, 0.4, 1), color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+  -o-transition: font-size 0.3s cubic-bezier(0.6, 0, 0.4, 1), color 0.2s, text-shadow 0.2s, padding-left 0.2s ease-in;
+}
+#about-information {
+  background: url("/images/stripe.png") no-repeat;
+  margin: 0px auto;
+  border: solid 1px #c0c0c0;
+  border-radius: 4px;
+}
+#about-information >section {
+  height: 480px;
+}
+.about-paragraph {
+  background: url("/images/meals-info.jpg") no-repeat 0px 88px;
+  padding: 0px 10px;
+  color: #000;
+}
+.about-paragraph h1 {
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(10,10,10,0.5);
+  margin: 10px;
+  font-family: 'BlackJackRegular';
+  font-size: 40px;
+}
+.about-paragraph h2 {
+  color: #444;
+  margin: 0;
+}
+.about-paragraph p {
+  line-height: 35px;
+  font-size: 19px;
+  color: #fff;
+}
+#about-contact ul {
+  text-align: center;
+}
+#about-contact ul li {
+  padding: 7px;
+  margin-right: 15px;
+  display: inline-block;
+  color: #666;
+  border-top: solid 5px transparent;
+}
+#about-contact ul li h2 {
+  color: #444;
+  margin: 0;
+  font-size: 16px;
+}
+#about-contact ul li h1 {
+  font-size: 23px;
+}
+#about-contact ul li:hover {
+  background: rgba(10,10,10,0.1);
+  color: #333;
+  text-shadow: 1px 1px #fff;
+}
+#about-contact ul li:hover h1 {
+  color: yellowGreen;
+}
+#main-menu {
+  margin: 0;
+}
+#main-menu li {
+  display: inline;
+}
+#main-menu li a {
+  font-family: 'BlackJackRegular';
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  color: #eee;
+  font-size: 25px;
+  padding: 10px;
+}
+#main-menu li a:hover {
+  color: yellowGreen;
+  text-shadow: -1px -1px 2px #000;
+}
+#catering {
+  position: relative;
+  background: #fff;
+}
+#catering-heading {
+  top: 0;
+  background: rgba(255,255,255,0.9);
+  box-sizing: border-box;
+  width: 100%;
+  position: absolute;
+  color: #555;
+  font-size: 30px;
+  margin: 0;
+  padding: 19px;
+}
+#catering-heading-call {
+  float: right;
+  color: #888;
+}
+#catering_information {
+  display: inline-block;
+  background: #eee;
+  color: #555;
+  float: right;
+  width: 236px;
+  margin-right: 34px;
+  margin-top: 17px;
+  box-sizing: border-box;
+  padding: 10px;
+  border: solid 1px #c0c0c0;
+}
+#catering_information h2 {
+  margin: 0;
+}
+#catering_information h4 {
+  margin: 7px;
+  padding: 10px;
+  cursor: pointer;
+  transition: padding-left 0.2s linear;
+  -moz-transition: padding-left 0.2s linear;
+  -webkit-transition: padding-left 0.2s linear;
+  -o-transition: padding-left 0.2s linear;
+}
+#catering_information h4:hover {
+  padding-left: 30px;
+  color: #fff;
+  background: yellowGreen;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.catering_para {
+  width: 300px;
+  float: left;
+  color: #555;
+  margin-left: 30px;
+}
+.catering_para p {
+  font-size: 13px;
+}
+.row {
+  margin-bottom: 20px;
+  display: table;
+}
+#contact {
+  overflow-y: scroll;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.9);
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+#contact-contents {
+  background: url("/images/contact-bg.jpg");
+  box-shadow: 0px 0px 49px rgba(255,255,255,0.4);
+  color: #555;
+  border-radius: 15px;
+  margin: 0px auto;
+  width: 600px;
+  margin-top: 35px;
+  overflow: auto;
+}
+#contact-contents h2 {
+  background: rgba(20,20,20,0.95);
+  text-shadow: 1px 1px 1px rgba(50,50,50,0.6);
+  color: darkCyan;
+  margin: 0;
+  border-bottom: solid 1px #f0f0f0;
+}
+#contact-contents h2 span {
+  padding: 20px;
+  display: block;
+}
+#catering_popup {
+  overflow-y: scroll;
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(255,255,255,0.9);
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+#catering_popup_contents {
+  background: #f0f0f0;
+  box-shadow: 0px 0px 49px rgba(25,25,25,0.4);
+  color: #555;
+  margin: 0px auto;
+  width: 500px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  overflow: auto;
+}
+#catering_popup_contents h2 {
+  font-family: 'Gentium Book Basic';
+  background: yellowGreen;
+  text-shadow: 1px 1px 1px rgba(50,50,50,0.6);
+  color: #fff;
+  margin: 0;
+  padding: 15px;
+  border-bottom: solid 1px #f0f0f0;
+}
+#catering_popup_contents h2 span {
+  padding: 20px;
+  display: block;
+}
+#catering_popup_contents ul {
+  padding: 0;
+}
+#catering_popup_contents ul li {
+  text-align: center;
+  padding: 5px 0px;
+  font-family: 'BlackJackRegular';
+  list-style-type: none;
+}
+#contact-contents-info {
+  padding: 0px;
+  padding-top: 20px;
+}
+.catering-informationbox {
+  display: block;
+  padding: 0px;
+  margin-bottom: 5px;
+  background: rgba(255,255,255,0.8);
+}
+.catering-informationbox section {
+  padding: 10px;
+}
+.catering-informationbox section p {
+  font-family: 'BlackJackRegular';
+  margin: 0;
+  line-height: 20px;
+  font-size: 12px;
+}
+.catering-informationbox h3 {
+  margin: 0;
+  color: #00364c;
+  text-shadow: 1px 1px rgba(0,0,0,0.1);
+}
+.catering-informationbox h3 span {
+  display: block;
+  padding: 10px;
+}
+.catering-informationbox:hover h3 {
+  background: #00364c;
+  color: #fff;
+}
+#contact-close {
+  background: rgba(20,20,20,0.5);
+  color: #fff;
+  font: normal;
+  font-size: 10px;
+  display: inline;
+  float: right;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 27px;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 11px;
+  height: 10px;
+  width: 9px;
+  text-align: center;
+}
+#contact-close:hover {
+  box-shadow: 0px 0px 13px rgba(255,255,255,0.3) inset, 0px 0px 3px rgba(200,200,200,0.3);
+}
+#contact-contents-msg {
+  background: rgba(255,255,255,0.6);
+  padding: 10px;
+}
+#contact-contents-msg input[type=text] {
+  width: 500px;
+  display: block;
+}
+#contact-contents-msg textarea {
+  width: 100%;
+  box-sizing: border-box;
+  height: 150px;
+}
+#contact-contents-msg input,
+#contact-contents-msg textarea {
+  padding: 7px;
+  border: solid 1px #c0c0c0;
+  font-family: arial;
+  margin-bottom: 11px;
+  box-shadow: 2px 2px 8px rgba(100,100,100,0.1) inset;
+}
+#contact-contents-msg button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.headingblock {
+  font-family: 'BlackJackRegular';
+}
+.headingblock strong {
+  cursor: pointer;
+}
+.headingblock strong:hover {
+  color: #fff;
+}
+
+.product-listing{
+	width:300px !important;
+}
+

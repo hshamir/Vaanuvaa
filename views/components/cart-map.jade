@@ -1,0 +1,23 @@
+section.form-group.col-md-5#cart-map
+	h4.cpx-heading Click on the map to select the location for delivery
+	#map(style='height:340px')
+	br
+	textarea.form-control#delivery-note(placeholder='Enter your address or a delivery note (optional)')
+	br
+	span.btn.btn-info.btn-block#done Done
+	script.
+		$(function(){
+			var map = L.map('map').setView([4.174, 73.51], 15);
+			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+				maxZoom: 18,
+				id: 'cinepix.ol2l43c9',
+				accessToken: 'pk.eyJ1IjoiY2luZXBpeCIsImEiOiJjaWo1aGp1OW0wMDYydTZsdnAxM2RtbnJhIn0.GxYimuUGo3fehevKohT60g'
+			}).addTo(map);
+			var marker = window.marker = L.marker([0,0]).addTo(map);
+			map.on('click', function(e){
+				marker.setLatLng(e.latlng);
+				marker.update();
+				marker.openPopup();
+			})
+		})

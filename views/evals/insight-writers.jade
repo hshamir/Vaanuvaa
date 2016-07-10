@@ -1,0 +1,92 @@
+section.row
+	section.col-md-4
+		section.insight-box
+			h3 Today
+			table.table
+				thead
+					tr
+						th Writer
+						th Articles
+				tbody
+					-each a in data.today
+						tr
+							td=a._id
+							td=a.count
+	section.col-md-4
+		section.insight-box
+			h3 Yesterday
+			table.table
+				thead
+					tr
+						th Writer
+						th Articles
+				tbody
+					-each a in data.yesterday
+						tr
+							td=a._id
+							td=a.count
+	section.col-md-4
+		section.insight-box
+			h3 This week
+			table.table
+				thead
+					tr
+						th Writer
+						th Articles
+				tbody
+					-each a in data.week
+						tr
+							td=a._id
+							td=a.count
+	section.col-md-4
+		section.insight-box
+			h3 Last week
+			table.table
+				thead
+					tr
+						th Writer
+						th Articles
+				tbody
+					-each a in data.last_week
+						tr
+							td=a._id
+							td=a.count
+	section.col-md-4
+		section.insight-box
+			h3 Month
+			table.table
+				thead
+					tr
+						th Writer
+						th Articles
+				tbody
+					-each a in data.month
+						tr
+							td=a._id
+							td=a.count
+	section.col-md-4
+		section.insight-box
+			h3 Last month
+			table.table
+				thead
+					tr
+						th Writer
+						th Articles
+				tbody
+					-each a in data.last_month
+						tr
+							td=a._id
+							td=a.count
+	section.col-md-4
+		section.insight-box
+			h3 Overall
+			table.table
+				thead
+					tr
+						th Writer
+						th Articles
+				tbody
+					-each a in data.overall
+						tr
+							td=a._id
+							td=a.count

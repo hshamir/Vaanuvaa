@@ -1,0 +1,18 @@
+section.article-section
+	section.article-controls
+		button.btn.remove-block.btn-xs remove
+	block content
+	section.article-block-controls
+		section.btn-group.control-toolbar
+			button(type='button', data-type='paragraph-dv').btn.btn-info.btn-xs.toolbar-item Paragraph
+			button(type='button', data-type='image').btn.btn-info.btn-xs.toolbar-item Image
+			div.btn-group(role='group')
+				button(type='button', data-toggle="dropdown").btn.btn-info.btn-xs.dropdown-toggle Video &nbsp;
+					span.caret
+				ul.dropdown-menu
+					li
+						a(href='#', data-type='youtube').toolbar-item Youtube
+					li
+						a(href='#', data-type='vine').toolbar-item Vine
+			button(type='button', data-type='tweet').btn.btn-info.btn-xs.toolbar-item Tweet
+			button(type='button', data-type='quote').btn.btn-info.btn-xs.toolbar-item Quote

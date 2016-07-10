@@ -1,0 +1,34 @@
+div.span8
+	h4 Carousel
+	div.row
+		div.span2
+			a(href='#carouselModal',role='button',data-toggle='modal')
+				img.img-polaroid(src='http://placehold.it/140x140')
+		div.span2
+			img.img-polaroid(src='http://placehold.it/140x140')
+		div.span2
+			img.img-polaroid(src='http://placehold.it/140x140')
+		div.span2
+			img.img-polaroid(src='http://placehold.it/140x140')
+	h4 Featured Products
+	div.row
+		div.span2
+			a(href='#featuredModal',role='button',data-toggle='modal')
+				img.img-polaroid(src='http://placehold.it/140x140')
+		div.span2
+			img.img-polaroid(src='http://placehold.it/140x140')
+		div.span2
+			img.img-polaroid(src='http://placehold.it/140x140')
+		div.span2
+			img.img-polaroid(src='http://placehold.it/140x140')
+	h4 Popular Products
+	div.row
+		div.span2
+			a(href='#popularModal',role='button',data-toggle='modal')
+				img.img-polaroid(src='http://placehold.it/140x140')
+		div.span2
+			img.img-polaroid(src='http://placehold.it/140x140')
+		div.span2
+			img.img-polaroid(src='http://placehold.it/140x140')
+		div.span2
+			img.img-polaroid(src='http://placehold.it/140x140')

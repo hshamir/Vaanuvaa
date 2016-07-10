@@ -1,0 +1,92 @@
+extends layout-dv
+
+block body
+	section#fb-root
+	section.container
+		section.row
+			section.col-md-2
+				section.white
+					section(style='text-align:center;')
+						-if(hide_author == false)
+							small ލިޔުނީ #{user.name}
+							section
+								small(style='font-family:sans serif')=time_formatted
+							hr
+					section(style='text-align:center;')
+						section.form-group
+							section.fb-like(data-href="http://dhivehi.com.mv/"+article_number, data-layout="box_count", data-action="like", data-show-faces="true", data-share="true")
+						section.form-group
+							a(href="https://twitter.com/share", data-via="DhivehiOnline").twitter-share-button Tweet
+						section.form-group
+			article.col-md-6.white(style='font-family:sans serif;')
+				script(src='http://202.21.176.106/flowplayer-3.2.0.min.js')
+				h1.vod-heading Watch Live TV
+				section.btn-group(data-toggle="buttons")#switch
+					button.btn(type='button', data-live='dhitv',application='rtmp://202.21.176.106/dhitv')
+						input(type='radio', name='top-downloads-type')
+						| DhiTV
+					button.btn(type='button', data-live='dhiplus',application='rtmp://202.21.176.106/dhiplus')
+						input(type='radio', name='top-downloads-type')
+						| DhiPlus
+					button.btn(type='button', data-live='d24',application='rtmp://202.21.176.106/d24')
+						input(type='radio', name='top-downloads-type')
+						| D24
+				section#player(style='height:450px;')
+				
+				script.
+					$("body").on('click', '#switch button', function(){
+						var s = $(this).attr('data-live');
+						var r = $(this).attr('application');
+						$f("player", "http://releases.flowplayer.org/swf/flowplayer-3.2.18.swf", {
+							clip: {
+								url : s, 
+								live : true,
+								provider: 'rtmp'
+							},
+							plugins: {
+								rtmp: {
+									url: 'flowplayer.rtmp-3.2.0.swf',
+									netConnectionUrl: r ,
+									subscribe:true ,
+									scaling: 'fit',
+
+								}
+							}   ,
+							canvas: {
+								backgroundGradient: 'none'
+							}
+						});
+					});
+					$('#switch button[data-live="#{channel}"]').trigger('click');
+
+
+			section.col-md-4
+				-if(ads.homepage_above_top_news)
+					-each ad in ads.homepage_above_top_news
+						section
+							img(src="/statics/ads/" + ad.file_name).img-responsive
+				br
+				section.btn-group(data-toggle="buttons",style='margin-bottom:15px')
+					span.btn.btn-link އެންމެ ހިނގާ
+						input(type='radio', name="filter-type")
+					span.btn.btn-link.active ފަހުގެ ޚަބަރު
+						input(type='radio', name="filter-type")
+				-if(latest_all_articles.length)
+					-each article in latest_all_articles
+						section.row.news-el-4
+							a(href="/" + article.article_number)
+								-if(article.image && article.image.file)
+									section.col-md-3
+										img.img-responsive(src=article.image.file.sizes.small)
+								section.col-md-9(style='padding:0px;margin:0px')
+									span=article.title
+									div(style='direction:ltr;font-family:sans-serif;text-align:right')
+										small=article.time_pretty
+
+				section
+					div.fb-page(data-href="https://www.facebook.com/facebook", data-small-header="true", data-adapt-container-width="true",data-hide-cover="false", data-show-facepile="true")
+						div.fb-xfbml-parse-ignore
+							blockquote(cite="https://www.facebook.com/facebook")
+							a(href="https://www.facebook.com/facebook") Facebook
+
+block footer

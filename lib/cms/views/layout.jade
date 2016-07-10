@@ -1,0 +1,71 @@
+doctype html
+html.fuelux
+	head
+		title CMS
+		meta(name="robots", content="noindex, nofollow")
+		//link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+		link(rel='stylesheet', href='/stylesheets/fuelux.min.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap-fileupload.min.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap-wysihtml5.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrapSwitch.css')
+		link(rel='stylesheet', href='/stylesheets/jquery.jcrop.css')
+		link(rel='stylesheet', href='/stylesheets/cms.css')
+		script(type='text/javascript', src='/javascripts/underscore.js')
+		script(type='text/javascript', src='/javascripts/jquery.js')
+		script(type='text/javascript', src='/javascripts/wysihtml5-0.4.0pre.min.js')
+		//script(type='text/javascript', src='/javascripts/thaana.js')
+		//script(type='text/javascript', src='/javascripts/hogan-2.0.0.js')
+		script(type='text/javascript', src='/javascripts/bootstrap.js')
+		script(type='text/javascript', src='/javascripts/bootstrap-wysihtml5.js')
+		script(type='text/javascript', src='/cms/templates.js')
+		script(type='text/javascript', src='/javascripts/wizard.js')
+		script(type='text/javascript', src='/javascripts/bootstrap-fileupload.min.js')
+		script(type='text/javascript', src='/javascripts/jquery.jcrop.min.js')
+		script(type='text/javascript', src='/javascripts/bootstrapSwitch.js')
+		script(type='text/javascript', src='/javascripts/cms.js')
+		style .fuelux ul, .fuelux ol{margin:0 !important;} .btn.active{background:gray !important;} body{padding:40px} .wizard-content .control-label{font-size:15px;}.step-content{padding:15px;}			.loading{cursor:progress;}			textarea{width:500px !important; height:150px !important;}
+	body
+		div(style='position: fixed; padding: 10px 62px; background: rgba(255, 255, 255, .7); text-align: center; left: 38%; top: 69px; border: solid 1px #f9f9f9;display:none;z-index:10000;')#loading
+			img(src='/images/load.gif')
+			h5 loading
+
+		section.row-fluid
+			section.navbar.navbar-inverse
+				div.navbar-inner
+					div.container
+						div.nav-collapse.navbar-inverse-collapse.collapse
+							ul.nav
+								li
+									a(href='/cms') CMS
+								li
+									a(href='/cms/users') Users
+								li
+									a(href='/cms/logs') Logs
+								li
+									a(href='/cms/subscriptions') Subscriptions
+								li
+									a(href='#change-password',data-toggle="modal", role="button") Change password
+							ul.nav.pull-right
+								li
+									a(href='/') &laquo; Back to Website
+								li
+									a(href='/cms/logout') Logout
+		block content
+		//modals
+		div#change-password.modal.hide.fade(tabindex='-1',role='dialog',aria-hidden='true',style='display: none;')
+			div.modal-header
+				button.close(type='button',data-dismiss='modal',aria-hidden='true') ×
+				h4 Change your passwords
+			div.modal-body
+				div.form(method='post').form-horizontal
+					div.control-group
+						label.control-label New Password
+						div.controls
+							input(type='password', placeholder='new password')#newpassword_newpass
+					div.control-group
+						label.control-label Confirm Password
+						div.controls
+							input(type='password', placeholder='new password')#newpassword_confirm
+			div.modal-footer
+				button(type='button').btn.btn-primary#updatepassword Update password
+

@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'AammuFRasmyRegular';
+    src: url('aafrasmy.eot');
+    src: url('aafrasmy.eot') format('embedded-opentype'),
+         url('aafrasmy.woff') format('woff'),
+         url('aafrasmy.ttf') format('truetype'),
+         url('aafrasmy.svg#AammuFRasmyRegular') format('svg');
+}

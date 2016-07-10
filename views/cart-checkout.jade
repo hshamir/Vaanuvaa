@@ -1,0 +1,166 @@
+extends cart-layout
+
+block content
+	-if(locals._user)
+		link(rel="stylesheet", href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css")
+		script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")
+		section#stuff
+			section#cart-and-goodies
+				section.col-md-5
+					h3.cpx-heading Media
+					section.watchlist.cpx-heading#cart-items
+					script cinepix.refreshCart(true)
+				section.col-md-5			
+					h3.cpx-heading Goodies
+					-each item in goodies
+						section.goodie-item(data-id=item._id, data-qty=0, data-price=item.selling_price)
+							h4 #{item.name}  – 
+								small MVR #{item.selling_price}
+							section
+								img.img-rounded.img-responsive(src='/goodies/' + item.image, style='width:100%')
+							h6.item-goodie-qty.hide
+							section.add-remove-grp.btn-group.btn-group-justified(role="group", data-limit=item.quantity > 20 ? 20 : item.quantity)
+								span.btn.btn-default.btn-lg Add
+								span.btn.btn-default.btn-lg Remove
+				section.col-md-12
+					section.row
+						section.col-md-5
+							section#total
+							section#delivery-total
+							section#grand-total
+							br
+							section
+								span.btn.btn-block.btn-info#confirm-cart-goodies Confirm Checkout
+		script.
+			$(function(){
+				updateGrandTotal();
+				$("body").on('click', "#done", function(){
+					var goodies = [];
+					var latlng = marker.getLatLng();
+					var note = $("#delivery-note").val();
+					$(".goodie-item").each(function(){
+						var self = $(this);
+						var qty = self.attr('data-qty');
+						qty = parseInt(qty);
+						var id = self.attr('data-id');
+						var att = {};
+						att[id] = qty;
+						if(qty > 0){
+							goodies.push(att);
+						}
+					});
+					if(latlng.lat == 0){
+						return alert("Please select a location on map.");
+					}
+					latlng = {
+						lat:latlng.lat,
+						lng:latlng.lng,
+					}
+					$.post('/cart/complete', {data:JSON.stringify({goodies:goodies, latlng:latlng, note:note})}, function(res){
+						if(res.error){
+							return alert(res.error);
+						}
+						$("#cart-map").hide();
+						var donehtml = jade.render('cart-done');
+						$("#stuff").append(donehtml);
+						setTimeout(function(){
+							window.location = "/";
+						},3000);
+					});
+				});
+				$("body").on('click', "#verify", function(){
+					var vf = $("#vf").val();
+					var code = $("#code").val();
+					$.post('/cart/verify', {vf:vf, code:code}, function(res){
+						if(res.error){
+							return alert(res.error);
+						}
+						if(res.verified == false){
+							return alert("invalid code");
+						}
+						//show cart map
+						$("#cart-register-code").hide();
+						var maphtml = jade.render('cart-map');
+						$("#stuff").append(maphtml);
+					});
+				});
+				$("body").on('click', "#register", function(){
+					var number = $("#number").val();
+					if(number < 7 || number == ""){
+						return alert("Enter a valid mobile number");
+					}
+					if(number.length > 7){
+						return alert("number too long");
+					}
+					if(grecaptcha.getResponse() == ""){
+						return alert("Please click on reCAPTCHA verification button to avoid spamming");
+					}
+					$.post('/cart/register', {captcha:grecaptcha.getResponse(), number:number}, function(res){
+						$("#cart-register").hide();
+						if(res.error){
+							return alert(res.error);
+						}
+						if(res.verified == false){
+							var codehtml = jade.render('cart-register-code');
+							$("#stuff").append(codehtml);
+							$("#vf").val(res.vf);
+						}else{
+							var maphtml = jade.render('cart-map');
+							$("#stuff").append(maphtml);
+						}
+						//show cart map						
+					});
+				})
+				$("#confirm-cart-goodies").on('click', function(){
+					$("#cart-and-goodies").hide();
+					var registerhtml = jade.render('cart-register');
+					$("#stuff").append(registerhtml);
+				});
+				$('body').on('click', '.add-remove-grp span', function(){
+					var parent = $(this).parent().parent();
+					var add = $(this).text() == "Add" ? 1:-1;
+					var msg = parent.find(".item-goodie-qty");
+					var qty = parent.attr('data-qty');
+					qty = parseInt(qty);
+					var calc = qty + add;
+					var limit = $(this).parent().attr('data-limit');
+					if(calc >= limit){
+						calc = limit;
+					}
+					parent.attr('data-qty', calc);
+					if(calc <= 0){
+						parent.attr('data-qty', 0);
+						updateGrandTotal();
+						return msg.addClass("hide");
+					}
+					var item = calc > 1 ? "items" : "item";
+					msg.text(calc + " " + item +" added");
+					msg.removeClass("hide");
+					updateGrandTotal();
+				})
+			});
+			function updateGrandTotal(){
+				var total = $("#total");
+				var delivery_total = $("#delivery-total");
+				var grand_total = $("#grand-total");
+
+				var files_total = 0;
+				var goodies_total = 0;
+				$(".cart-file").each(function(){
+					var f = $(this);
+					var price = parseFloat(f.attr('data-price'));
+					files_total += price;
+				});
+				$(".goodie-item").each(function(){
+					var g = $(this);
+					var price = parseFloat(g.attr('data-price'));
+					var qty = parseInt(g.attr('data-qty'));
+					goodies_total += price*qty;
+				});
+				var _total = (files_total + goodies_total);
+				var _delivery_total = _total < 20 ? 15 : 0;
+				var _grand_total = _total + _delivery_total;
+				total.text("Total: MVR "+ _total);
+				delivery_total.text("Delivery: MVR "+ _delivery_total);
+				grand_total.text("Grand Total: MVR "+ _grand_total);
+			}

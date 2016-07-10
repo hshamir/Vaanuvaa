@@ -1,0 +1,13 @@
+section.news-admin-item
+	a(href='/'+item.article_number)
+		h3
+			span.thaana.pull-right=item.title
+			small #{item.time_pretty} by #{item.user.username}
+	section
+		small views: #{item.views}
+		small &nbsp;| 
+		small(style='cursor:pointer;', data-article=item.article_number).publish=(item.published?"unpublish":"publish")
+		small &nbsp;| 
+		a(style='cursor:pointer;', href='/manage/write/'+item.article_number) edit
+		small &nbsp;| 
+		small(style='cursor:pointer;', data-article=item.article_number).remove-article remove

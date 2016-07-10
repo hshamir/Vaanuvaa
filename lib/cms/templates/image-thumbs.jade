@@ -1,0 +1,8 @@
+-if(typeof image == 'string')
+	img(src="/files/" + image, style="width:200px").thumbnail
+-else
+	-each img in image
+		div(style='margin-bottom:20px;')
+			img(src="/files/" + img, style="width:200px").thumbnail
+			button.btn.thumbnail-remove(data-name=img, data-label=label)
+				i.icon-trash

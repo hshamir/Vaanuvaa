@@ -1,0 +1,248 @@
+extends layout-dv
+
+block body
+	section(style='background:white')
+		section.container
+			section.row
+			hr
+			section.row
+				section.col-md-4
+					a(href="").news-el.news-el-3
+						span.label.label-success ވަގުތުން
+						img.img-responsive(src="http://f1.haveeru.com.mv/photos/2016/01/0_1452354163img_2273_mid.jpg")
+						h3 ޒަކާތު ފައިސާ ބެލެހެއްޓުމަށް އާ ކޮމިޝަނެއް އުފައްދަނީ
+						p ބޭސްފަރުވާ އަކަށް ކަމަށް ބުނެ އިނގިރޭސިވިލާތަށް ވަޑައިގެން އުޅުއްވާ ކުރީގެ ރައީސް މުހަންމަދު ނަޝީދު އެގައުމުގެ ބޮޑުވަޒީރު ޑޭވިޑް ކެމަރަން އާއި މިއަދު ބައްދަލުކުރައްވައިފި އެވެ
+					section
+						img(src="http://placehold.it/350x150?text=advertisement")
+				section.col-md-3
+					a(href="").news-el.news-el-2
+						h3 ތިން ދާއިރާއެއްގެ އިންތިޚާބު ބާތިލްކުރަން ހުށަހެޅި މައްސަލަތައް ބަލައެއް ނުގަތް
+						img.img-responsive(src="http://dhivehi.com.mv/wp-content/uploads/2016/01/Moodhu-364x245.jpg")
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-5
+								img.img-responsive(src="http://f4.haveeru.com.mv/photos/2015/12/0_1450944926fiyo_thumb.jpg")
+							section.col-md-7(style='padding:0px;margin:0px')
+								span ތިން ދާއިރާއެއްގެ އިންތިޚާބު ބާތިލްކުރަން ހުށަހެޅި މައްސަލަތައް ބަލައެއް ނުގަތް
+								div
+									small 5 ގަޑި ކުރިން
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-5
+								img.img-responsive(src="http://f4.haveeru.com.mv/photos/2016/01/0_1453610617sto2_thumb.jpg")
+							section.col-md-7(style='padding:0px;margin:0px')
+								span ކުޑަހުވަދޫ އައުޓް ރީޗް ސެންޓަރުން ހިންގާ ކޯސްތަކާ ގުޅޭ މަޢުލޫމާތު ފުލުހުންނަށް ދީފި
+								div
+									small 5 ގަޑި ކުރިން
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-5
+								img.img-responsive(src="http://f4.haveeru.com.mv/photos/2016/01/0_1453619162elections_thumb.jpg")
+							section.col-md-7(style='padding:0px;margin:0px')
+								span ޝުމްބާގެ ބަންދުގެ މުއްދަތު އަނެއްކަވެސް އިތުރު ކޮށްފި
+								div
+									small 5 ގަޑި ކުރިން
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-5
+								img.img-responsive(src="http://f3.haveeru.com.mv/photos/2015/10/0_1446023253adeeeeb_thumb.jpg")
+							section.col-md-7(style='padding:0px;margin:0px')
+								span ޝެއިޙް އިމްރާންގެ ސަބަބުން ހަމަނުޖެހުން ހިނގި ކަމަށް ގަބޫލު ކުރަން : ސިއްރު ހެކި
+								div
+									small 5 ގަޑި ކުރިން
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-5
+								img.img-responsive(src="http://f3.haveeru.com.mv/photos/2016/01/0_1453628433gaadhoo_thumb.jpg")
+							section.col-md-7(style='padding:0px;margin:0px')
+								span އެއް މިލިއަން ޑޮލަރުގެ ޗެކާ ހަވާލުވި ކަމަށް ޒިޔަތު އިއުތިރާފުވެއްޖެ
+								div
+									small 5 ގަޑި ކުރިން
+				section.col-md-4
+					section
+						img(src="http://placehold.it/350x85?text=advertisement")				
+					section.btn-group(data-toggle="buttons",style='margin-bottom:15px')
+						span.btn.btn-link އެންމެ ހިނގާ
+							input(type='radio', name="filter-type")
+						span.btn.btn-link.active ފަހުގެ ޚަބަރު
+							input(type='radio', name="filter-type")
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-3
+								img.img-responsive(src="http://dhivehi.com.mv/wp-content/uploads/2016/01/1506571_990840954321261_3553796876414375412_n-80x54.jpg")
+							section.col-md-9(style='padding:0px;margin:0px')
+								span ޅެންވެރިންގެ "ވައިބާ"އިން އަދުގެ ހާލަތު ކުރުކޮށް ފޮނިކޮށް ކިޔައިދީފި
+								div
+									small 5 ގަޑި ކުރިން
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-3
+								img.img-responsive(src="http://dhivehi.com.mv/wp-content/uploads/2015/02/gaadhoo-people-80x54.jpg")
+							section.col-md-9(style='padding:0px;margin:0px')
+								span އަމަލް ކްލޫނީއަށް ވުރެ ބޮޑު ސަމާލުކަމެއް ލައިލާ އަލީގެ ފައިވާންކޮޅަށް؟
+								div
+									small 5 ގަޑި ކުރިން
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-3
+								img.img-responsive(src="http://dhivehi.com.mv/wp-content/uploads/2016/01/1506571_990840954321261_3553796876414375412_n-80x54.jpg")
+							section.col-md-9(style='padding:0px;margin:0px')
+								span ޝަރީއަތަށް މައްސަލަ ނުފޮނުވައި އަހަރެއް ވަންދެން މީހަކު ބަންދުގައި ބެހެއްޓި މައްސަލައެއް ފެންމަތިވެއްޖެ
+								div
+									small 5 ގަޑި ކުރިން
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-3
+								img.img-responsive(src="http://dhivehi.com.mv/wp-content/uploads/2016/01/1506571_990840954321261_3553796876414375412_n-80x54.jpg")
+							section.col-md-9(style='padding:0px;margin:0px')
+								span އަމަލް ކްލޫނީއަށް ވުރެ ބޮޑު ސަމާލުކަމެއް ލައިލާ އަލީގެ ފައިވާންކޮޅަށް؟
+								div
+									small 5 ގަޑި ކުރިން
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-3
+								img.img-responsive(src="http://dhivehi.com.mv/wp-content/uploads/2015/02/gaadhoo-people-80x54.jpg")
+							section.col-md-9(style='padding:0px;margin:0px')
+								span އަމަލް ކްލޫނީއަށް ވުރެ ބޮޑު ސަމާލުކަމެއް ލައިލާ އަލީގެ ފައިވާންކޮޅަށް؟
+								div
+									small 5 ގަޑި ކުރިން
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-3
+								img.img-responsive(src="http://dhivehi.com.mv/wp-content/uploads/2016/01/police2-80x54.jpg")
+							section.col-md-9(style='padding:0px;margin:0px')
+								span އަމަލް ކްލޫނީއަށް ވުރެ ބޮޑު ސަމާލުކަމެއް ލައިލާ އަލީގެ ފައިވާންކޮޅަށް؟
+								div
+									small 5 ގަޑި ކުރިން
+					section.row.news-el-4
+						a(href="/")
+							section.col-md-3
+								img.img-responsive(src="http://dhivehi.com.mv/wp-content/uploads/2016/01/1506571_990840954321261_3553796876414375412_n-80x54.jpg")
+							section.col-md-9(style='padding:0px;margin:0px')
+								span އަމަލް ކްލޫނީއަށް ވުރެ ބޮޑު ސަމާލުކަމެއް ލައިލާ އަލީގެ ފައިވާންކޮޅަށް؟
+								div
+									small 5 ގަޑި ކުރިން
+
+				//- section.col-md-4
+				//- 	section.advertisement.ad-1
+				//- 		div.adcapt އިސްތިހާރު
+		hr
+	section.container
+		section.row
+			section.col-md-7
+				section.row.homepage-category
+					section.col-md-12
+						h4.homepage-category-heading
+							a(href="") ކުޅިވަރު
+					section.col-md-7
+						a(href="").news-el.news-el-2.long
+							h3 ތިން ދާއިރާއެއްގެ އިންތިޚާބު ބާތިލްކުރަން ހުށަހެޅި މައްސަލަތައް ބަލައެއް ނުގަތް
+							img.img-responsive(src="http://dhivehi.com.mv/wp-content/uploads/2016/01/Moodhu-364x245.jpg")
+						section
+							ul.homepage-category-bullet
+								li
+									a(href="") ތިން ދާއިރާއެއްގެ އިންތިޚާބު ބާތިލްކުރަން ހުށަހެޅި މައްސަލަތައް ބަލައެއް ނުގަތް
+								li
+									a(href="") އެމްއެންޑީއެފްއާ ގުޅޭ ގޮތުން ދޮގު ހަބަރު ފަތުރާ ފަރާތްތަކާ މެދު ފިޔަވަޅު އަޅާނެ ކަމަށް ބުނެފި
+								li
+									a(href="") މޯބައިލް މަނީގެ ހިދުމަތް ތައާރަފް ކުރުމަށް އުރީދޫ އާއި އެމްއައިބީއާ އެކު ސޮއިކޮށްފި
+
+					section.col-md-5
+						a(href="").news-el.news-el-3
+							img.img-responsive(src="http://f1.haveeru.com.mv/photos/2016/01/0_1453773747th_news.jpg")
+							h3 ކަނޑު އަޑީގައި ބޭނުންކުރާ ދެ ރޮބަޓް އެމްއެންޑީއެފަށް ހޯދަނީ
+							div
+								small 5 ގަޑި ކުރިން							
+						a(href="").news-el.news-el-3
+							img.img-responsive(src="http://f1.haveeru.com.mv/photos/2016/01/0_1453777923chinainternet_news.jpg")
+							h3 ކަނޑު އަޑީގައި ބޭނުންކުރާ ދެ ރޮބަޓް އެމްއެންޑީއެފަށް ހޯދަނީ
+							div
+								small 5 ގަޑި ކުރިން							
+				section
+					img(src="http://placehold.it/610x150?text=advertisement")
+					br
+					br
+				section.row.homepage-category
+					section.col-md-12
+						h4.homepage-category-heading
+							a(href="") ޚަބަރު
+					section.col-md-7
+						a(href="").news-el.news-el-2.long
+							h3 ތިން ދާއިރާއެއްގެ އިންތިޚާބު ބާތިލްކުރަން ހުށަހެޅި މައްސަލަތައް ބަލައެއް ނުގަތް
+							img.img-responsive(src="http://f1.haveeru.com.mv/photos/2015/12/0_1450339964dhin_news.jpg")
+						section
+							ul.homepage-category-bullet
+								li
+									a(href="") ތިން ދާއިރާއެއްގެ އިންތިޚާބު ބާތިލްކުރަން ހުށަހެޅި މައްސަލަތައް ބަލައެއް ނުގަތް
+								li
+									a(href="") އެމްއެންޑީއެފްއާ ގުޅޭ ގޮތުން ދޮގު ހަބަރު ފަތުރާ ފަރާތްތަކާ މެދު ފިޔަވަޅު އަޅާނެ ކަމަށް ބުނެފި
+								li
+									a(href="") މޯބައިލް މަނީގެ ހިދުމަތް ތައާރަފް ކުރުމަށް އުރީދޫ އާއި އެމްއައިބީއާ އެކު ސޮއިކޮށްފި
+
+					section.col-md-5
+						a(href="").news-el.news-el-3
+							img.img-responsive(src="http://f1.haveeru.com.mv/photos/2013/12/0_138674307311_news.jpg")
+							h3 ކަނޑު އަޑީގައި ބޭނުންކުރާ ދެ ރޮބަޓް އެމްއެންޑީއެފަށް ހޯދަނީ
+							div
+								small 5 ގަޑި ކުރިން							
+						a(href="").news-el.news-el-3
+							img.img-responsive(src="http://f1.haveeru.com.mv/photos/2013/12/0_138674307311_news.jpg")
+							h3 ކަނޑު އަޑީގައި ބޭނުންކުރާ ދެ ރޮބަޓް އެމްއެންޑީއެފަށް ހޯދަނީ
+							div
+								small 5 ގަޑި ކުރިން							
+				section.row.homepage-category
+					section.col-md-12
+						h4.homepage-category-heading
+							a(href="") މުނިފޫހިފިލުވުން
+					section.col-md-7
+						a(href="").news-el.news-el-2.long
+							h3 ތިން ދާއިރާއެއްގެ އިންތިޚާބު ބާތިލްކުރަން ހުށަހެޅި މައްސަލަތައް ބަލައެއް ނުގަތް
+							img.img-responsive(src="http://f1.haveeru.com.mv/photos/2015/12/0_1449732179130504120203_69_news.jpg")
+						section
+							ul.homepage-category-bullet
+								li
+									a(href="") ތިން ދާއިރާއެއްގެ އިންތިޚާބު ބާތިލްކުރަން ހުށަހެޅި މައްސަލަތައް ބަލައެއް ނުގަތް
+								li
+									a(href="") އެމްއެންޑީއެފްއާ ގުޅޭ ގޮތުން ދޮގު ހަބަރު ފަތުރާ ފަރާތްތަކާ މެދު ފިޔަވަޅު އަޅާނެ ކަމަށް ބުނެފި
+								li
+									a(href="") މޯބައިލް މަނީގެ ހިދުމަތް ތައާރަފް ކުރުމަށް އުރީދޫ އާއި އެމްއައިބީއާ އެކު ސޮއިކޮށްފި
+
+					section.col-md-5
+						a(href="").news-el.news-el-3
+							img.img-responsive(src="http://f1.haveeru.com.mv/photos/2013/12/0_138674307311_news.jpg")
+							h3 ކަނޑު އަޑީގައި ބޭނުންކުރާ ދެ ރޮބަޓް އެމްއެންޑީއެފަށް ހޯދަނީ
+							div
+								small 5 ގަޑި ކުރިން							
+						a(href="").news-el.news-el-3
+							img.img-responsive(src="http://f1.haveeru.com.mv/photos/2010/11/2330_130312932356e5b9dc9ff3d1d2e7736ed5d884b066_news.jpg")
+							h3 ކަނޑު އަޑީގައި ބޭނުންކުރާ ދެ ރޮބަޓް އެމްއެންޑީއެފަށް ހޯދަނީ
+							div
+								small 5 ގަޑި ކުރިން							
+			section.col-md-5
+				section
+					img(src="http://placehold.it/350x350?text=advertisement")
+					br
+					br
+				section.row.homepage-category
+					section.col-md-12
+						h4.homepage-category-heading
+							a(href="") ގެލެރީ
+						section
+							div#carousel-example-generic.carousel.slide(data-ride="carousel",style='width:350px')
+								ol.carousel-indicators
+									li(data-target="#carousel-example-generic", data-slide-to="0").active
+									li(data-target="#carousel-example-generic", data-slide-to="1")
+									li(data-target="#carousel-example-generic", data-slide-to="2")
+								div.carousel-inner(role="listbox")
+									div.item.active
+										img(src="http://f1.haveeru.com.mv/photos/2016/01/0_1453773747th_news.jpg")
+									div.item
+										img(src="http://f1.haveeru.com.mv/photos/2016/01/0_1453773747th_news.jpg")
+									div.item
+										img(src="http://f1.haveeru.com.mv/photos/2016/01/0_1453773747th_news.jpg")
+								a.left.carousel-control(href="#carousel-example-generic", role="button", data-slide="prev")
+									span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+									span.sr-only Prev
+								a.right.carousel-control(href="#carousel-example-generic", role="button", data-slide="next")
+									span.glyphicon.glyphicon-chevron-right(aria-hidden="true")
+									span.sr-only Next

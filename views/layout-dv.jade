@@ -1,0 +1,94 @@
+doctype html
+html
+	head
+		meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+		//meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+		block meta
+		title Vaanuvaa | Maldivian Online News
+		link(href='https://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet', type='text/css')
+		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css')
+		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.2.0-rc2/css/bootstrap-rtl.min.css')
+		//link(rel='stylesheet', href='/css/non-responsive.css')
+		link(rel='stylesheet', href='/css/dv.css')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.4.1/jquery.serializejson.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js')
+		script(src='/pretty-bytes/pretty-bytes.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/async/1.5.1/async.min.js')
+		script(src='/js/thaana.js')
+		script(src='/js/web.js')
+		script(src='/templates.js')
+		script $(function(){ $("img").each(function(){ var t = $(this); if(t.attr('src').indexOf('statics') != -1){ t.attr('src', 'http://dhivehi.com.mv' + t.attr('src')) } }) })		
+		style .container{width:1290px !important}
+		if(locals && locals._user)
+			script window.dcom.user = '#{locals._user.username}';
+	body
+		include modals/error
+		header
+			section.container(style='margin-top: 10px;')
+				section.col-md-3(style='margin:0;')
+					a(href='/')
+						img(src="http://www.vaanuvaa.mv/wp-content/uploads/2015/09/vnv-logo.png")
+				section.col-md-9
+					-if(typeof ads != 'undefined' && ads.top_banner)
+						-each ad in ads.top_banner
+							section
+								img(src="/statics/ads/" + ad.file_name)
+			section.row(style='margin-left:0')
+				section.container
+					section.row
+						section.col-xs-10
+							ul.menu.menu-dv.list-inline.list-unstyled
+								li
+									a(href="/") ފުރަތަމަ ސަފުހާ
+								li
+									a(href="/category/ރާއްޖެ") ރާއްޖެ
+								li
+									a(href="/category/ދުނިޔެ") ދުނިޔެ
+								li
+									a(href="/category/ކުޅިވަރު") ކުޅިވަރު
+								li
+									a(href="/category/ވިޔަފާރި") ވިޔަފާރި
+								li
+									a(href="/category/މުނިފޫހި ފިލުވުން") މުނިފޫހި ފިލުވުން
+								li
+									a(href="/category/ރިޕޯޓު") ރިޕޯޓު
+
+						ul.menu.list-inline.list-unstyled.pull-left.menu-dv.menu-admin-n-search
+							-if(locals._user)
+								li
+									a(href="/logout").cpx-heading Logout
+							-if(locals._user && locals._user.hasAccess("admin"))
+								li
+									a(href="/manage/admins").cpx-heading Admins
+							-if(locals._user && locals._user.hasAccess("writer"))
+								li
+									a(href="/manage/writers").cpx-heading Writers
+							li
+								form(method='get', action='/search')
+									input(type='text', placeholder='ހޯދާ', name='q').thaana.form-control
+					hr(style='border-top:1px solid #D8D8D8;')
+					
+		block body
+		script.
+			(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+
+			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+		footer(style='    background: white;    border-top: 1px solid #aaa;margin-top: 26px;')
+			.container
+				span.pull-left(style='font-family:sans serif; color:#777;direction:ltr;margin-top:5px;') Copyright &copy; 2016 Maldives Media Company. Allrights Reserved.
+				h4 މޯލްޑިވްސް މީޑިއާ ކޮމްޕެނީގެ އުފެއްދުމެއް
+				h5 ގުޅުއްވުމަށް 3345556
+
+		script.
+			$(function(){
+				$('.toggle-news-list span:first').trigger('click');
+				$("body").on('click','.toggle-news-list span', function(){
+					var type = $(this).attr('type');
+					$(this).parent().parent().find(".news-el-4").hide();
+					$(this).parent().parent().find(".news-el-4[type='"+type+"']").show();
+				})
+			})

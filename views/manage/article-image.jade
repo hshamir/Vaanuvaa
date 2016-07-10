@@ -1,0 +1,15 @@
+extends article-box
+
+block content
+	-var rand = "___aid" + ~~(Math.random()*1000000)
+	section(type='article-image', id=rand).row
+		section.col-md-4
+			h6.vod-heading Find Media
+			input(type='text', placeholder='keyword or id').form-control.thaana
+			section.form-group
+				a(href='#').add-image
+					small add a new image
+		section.col-md-3.selected-image
+			h4 no image selected
+		section.col-md-5.images(style='height: 120px;overflow-y: auto;')
+	script $(function(){ $("##{rand} .thaana").thaana();})		

@@ -1,0 +1,66 @@
+section.item
+	-if(status == "verification")
+		span(data-payload-status='pending', data-cmd-route="/cart/transaction/"+transaction_number+"/status", data-cmd-method='post').command.btn.btn-sm.btn-info.pull-right Verify
+	-if(status == "files-copied")
+		span(data-payload-status='payment-received', data-cmd-route="/cart/transaction/"+transaction_number+"/status", data-cmd-method='post').command.btn.btn-sm.btn-info.pull-right Payment Received
+	-if(status == "payment-received")
+		span(data-payload-status='disk-collected', data-cmd-route="/cart/transaction/"+transaction_number+"/status", data-cmd-method='post').command.btn.btn-sm.btn-info.pull-right Disk Collected
+	-if(status == "disk-collected")
+		span(data-payload-status='done', data-cmd-route="/cart/transaction/"+transaction_number+"/status", data-cmd-method='post').command.btn.btn-sm.btn-info.pull-right Done
+	h4.heading
+		span ##{transaction_number}
+		span &nbsp;
+		small – #{number}
+		span &nbsp;
+		small – #{time}
+		span &nbsp;
+		small – MVR #{grand_total}
+		span &nbsp;
+		small – #{total_bytes}
+	-if(note != "")
+		p(style='color:#777')
+			small=note
+	-if(goodie_note != "")
+		p(style='color:#777')
+			small=goodie_note
+	section.header.hide
+		hr
+		h4 Files
+		table.table.table-condensed
+			thead
+				tr
+					th #
+					th Name
+					th Size
+					th Price (MVR)
+					th Availability
+			tbody
+				-each file,i in files
+					-if(file)
+						tr
+							td=(i+1)
+							td=file.name
+							td=prettyBytes(file.size)
+							td=file.price
+							td
+								-if (file.datacenter)
+									span=file.datacenter.join(",")
+								-else
+									span 
+
+		-if(goodies.length)
+			h4 Goodies
+			table.table.table-condensed
+				thead
+					tr
+						th #
+						th Name
+						th Price
+						th Quantity
+				tbody
+					-each item,i in goodies
+						tr
+							td=(i+1)
+							td=item.name
+							td=item.selling_price
+							td=item.purchase_quantity

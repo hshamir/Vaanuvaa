@@ -1,0 +1,56 @@
+extends layout-manage
+
+block content
+	h1.vod-heading Articles
+	section.btn-group(data-toggle="buttons")#switch
+		button.btn.command.btn-info(type='button', data-cmd-route='/article/list?type=unpublished', data-cmd-method="get", data-cmd-template="news-admin-item", data-cmd-display='#articles')
+			input(type='radio', name='top-downloads-type')
+			| To Be Approved
+		button.btn.command.btn-info(type='button', data-cmd-route='/article/list', data-cmd-method="get", data-cmd-template="news-admin-item", data-cmd-display='#articles')
+			input(type='radio', name='top-downloads-type')
+			| Recently Published
+		button.btn.command.btn-info(type='button', data-cmd-route='/article/list?type=live', data-cmd-method="get", data-cmd-template="news-admin-item", data-cmd-display='#articles')
+			input(type='radio', name='top-downloads-type')
+			| Live Events
+		button.btn.command.btn-info(type='button', data-cmd-route='/article/unapproved-comments', data-cmd-method="get", data-cmd-template="comments-approve-item", data-cmd-display='#articles')
+			input(type='radio', name='top-downloads-type')
+			| Comments
+	a(href='/manage/write').btn.btn-danger.pull-right New Article
+	section.row
+		section.col-md-12#articles
+	script.
+		$(function(){
+			$("body").on('click','.approve-comment', function(){
+				var id = $(this).attr('data-id');
+				var self = $(this);
+				$.post('/article/approve-comment', {id:id}, function(res){
+					if(res.error){
+						return alert(res.error);
+					}
+					self.closest('.comment-container').fadeOut();
+				});
+			})
+			$("body").on('click','.publish', function(){
+				var self = $(this);
+				var id = self.attr('data-article');
+				$.post('/article/'+id+'/toggle-publish', function(res){
+					if(res.error){
+						return alert(res.error);
+					}
+					self.text(res.new_status);
+				});
+			})
+			$("body").on('click','.remove-article', function(){
+				var self = $(this);
+				var id = self.attr('data-article');
+				if(!confirm("Are you sure you want to remove this?")){
+					return;
+				}
+				$.post('/article/'+id+'/remove', function(res){
+					if(res.error){
+						return alert(res.error);
+					}
+					self.parent().parent().slideUp();
+				});
+			})
+		})

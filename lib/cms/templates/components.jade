@@ -1,0 +1,14 @@
+table.table.table-hover
+	thead
+		tr
+			th Component
+			th Status
+			th Items
+	tbody
+		-each val, key in components
+			tr
+				td=key
+				td
+					span.btn
+						i.icon.icon-ok
+				td view
