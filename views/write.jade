@@ -99,6 +99,30 @@ block content
 							input(type='radio', name='category')
 							| ރިޕޯޓު
 			section.form-group
+				label Region
+				section
+					select(name="region")#region.form-control
+						option(value='AA') AA
+						option(value='ADh') ADh
+						option(value='B') B
+						option(value='DH') DH
+						option(value='F') F
+						option(value='GA') GA
+						option(value='GDh') GDh
+						option(value='Gn') Gn
+						option(value='HA') HA
+						option(value='HDh') HDh
+						option(value='K', selected) K
+						option(value='L') L
+						option(value='Lh') Lh
+						option(value='M') M
+						option(value='N') N
+						option(value='R') R
+						option(value='S') S
+						option(value='Sh') Sh
+						option(value='TH') TH
+						option(value='V') V
+			section.form-group
 				label Live Event
 				section
 					div.btn-group(data-toggle="buttons")#live_event
@@ -254,6 +278,7 @@ block content
 				entry_type:$("#entry_type span.active").text(),
 				type:$("#type span.active").text(),
 				category:$("#category span.active").text(),
+				region:$("#region").val(),
 				contents:contents,
 				live_event:$("#live_event span.active").text() == "Yes",
 				top_article:$("#top_article span.active").text() == "Yes",
