@@ -1,0 +1,289 @@
+extends layout-dv
+
+block body
+	style .glyphicon-camera{color:#cb3837} .regions{text-align:center;} .regions a{font-size:30px;padding: 11px;} .regions a.active{font-size:40px;color:rgb(175, 19, 19);}
+	section(style='background:white')
+		section.container
+			section.row
+				section.col-md-12
+					ul.menu.menu-dv.list-inline.list-unstyled.regions
+						li
+							a(href='/region/ހއ') ހއ
+						li
+							a(href='/') ހދ
+						li
+							a(href='/') ނ
+						li
+							a(href='/') ބ
+						li
+							a(href='/') ޅ
+						li
+							a(href='/') ޅ
+						li
+							a(href='/') ޅ
+						li
+							a(href='/') ކ
+						li
+							a(href='/').active އއ
+						li
+							a(href='/') އދ
+						li
+							a(href='/') ވ
+						li
+							a(href='/') މ
+						li
+							a(href='/') ފ
+						li
+							a(href='/') ދ
+						li
+							a(href='/') ތ
+						li
+							a(href='/') ލ
+						li
+							a(href='/') ގއ
+						li
+							a(href='/') ގދ
+						li
+							a(href='/') ޏ
+
+			hr
+		section.row#region(style='background: #555;padding: 15px;margin-bottom:10px;')
+			section.container
+				section.col-md-3
+					-var article = articles.pop();
+					-if(article)
+						a(href="/" + article.article_number).news-el.news-el-2
+							-if(article.image && article.image.file)
+								img.img-responsive(src=article.image.file.sizes.medium)
+							h3=article.title
+				section.col-md-3
+					-var article = articles.pop();
+					-if(article)
+						a(href="/" + article.article_number).news-el.news-el-2
+							-if(article.image && article.image.file)
+								img.img-responsive(src=article.image.file.sizes.medium)
+							h3=article.title
+				section.col-md-3
+					-var article = articles.pop();
+					-if(article)
+						a(href="/" + article.article_number).news-el.news-el-2
+							-if(article.image && article.image.file)
+								img.img-responsive(src=article.image.file.sizes.medium)
+							h3=article.title
+				section.col-md-3
+					-var article = articles.pop();
+					-if(article)
+						a(href="/" + article.article_number).news-el.news-el-2
+							-if(article.image && article.image.file)
+								img.img-responsive(src=article.image.file.sizes.medium)
+							h3=article.title
+		section.container
+			section.row
+				-var top = articles.pop();
+				-if(top)
+					section.col-md-6#first-col
+						a(href="/" + top.article_number).news-el.news-el-3
+							-if(top.live_event)
+								span.label.label-success.label-live ވަގުތުން
+							img.img-responsive(src=top.image ? top.image.file.sizes.large: "")
+							h3(style='font-size:22px;line-height:35px;font-weight:normal;')=top.title
+				section.col-xs-3
+					-var article = articles.pop()
+						section.news-el-4.col-md-12
+							a(href="/" + article.article_number)
+								section.row(style='padding:5px;background:white;')
+									section.col-md-5(style='margin-right:0;padding-right:0;')
+										-if(article.image)
+											img.img-responsive(src=article.image.file.sizes.small)
+									section.col-md-7(style='padding:0px;margin:0px')
+										-if(article.entry_type == "Gallery")
+											span
+												span.glyphicon.glyphicon-camera
+												| &nbsp #{article.title}
+										-else
+											span=article.title
+										div(style='direction:ltr;font-family:sans-serif;text-align:right')
+											-if(article.live_event)
+												span.pull-right.label.label-success.label-live ވަގުތުން
+												small=article.time_pretty
+												small &nbsp;
+											-else
+												small=article.time_pretty
+					-var article = articles.pop()
+						section.news-el-4.col-md-12
+							a(href="/" + article.article_number)
+								section.row(style='padding:5px;background:white;')
+									section.col-md-5(style='margin-right:0;padding-right:0;')
+										-if(article.image)
+											img.img-responsive(src=article.image.file.sizes.small)
+									section.col-md-7(style='padding:0px;margin:0px')
+										-if(article.entry_type == "Gallery")
+											span
+												span.glyphicon.glyphicon-camera
+												| &nbsp #{article.title}
+										-else
+											span=article.title
+										div(style='direction:ltr;font-family:sans-serif;text-align:right')
+											-if(article.live_event)
+												span.pull-right.label.label-success.label-live ވަގުތުން
+												small=article.time_pretty
+												small &nbsp;
+											-else
+												small=article.time_pretty
+					-var article = articles.pop()
+						section.news-el-4.col-md-12
+							a(href="/" + article.article_number)
+								section.row(style='padding:5px;background:white;')
+									section.col-md-5(style='margin-right:0;padding-right:0;')
+										-if(article.image)
+											img.img-responsive(src=article.image.file.sizes.small)
+									section.col-md-7(style='padding:0px;margin:0px')
+										-if(article.entry_type == "Gallery")
+											span
+												span.glyphicon.glyphicon-camera
+												| &nbsp #{article.title}
+										-else
+											span=article.title
+										div(style='direction:ltr;font-family:sans-serif;text-align:right')
+											-if(article.live_event)
+												span.pull-right.label.label-success.label-live ވަގުތުން
+												small=article.time_pretty
+												small &nbsp;
+											-else
+												small=article.time_pretty
+					-var article = articles.pop()
+						section.news-el-4.col-md-12
+							a(href="/" + article.article_number)
+								section.row(style='padding:5px;background:white;')
+									section.col-md-5(style='margin-right:0;padding-right:0;')
+										-if(article.image)
+											img.img-responsive(src=article.image.file.sizes.small)
+									section.col-md-7(style='padding:0px;margin:0px')
+										-if(article.entry_type == "Gallery")
+											span
+												span.glyphicon.glyphicon-camera
+												| &nbsp #{article.title}
+										-else
+											span=article.title
+										div(style='direction:ltr;font-family:sans-serif;text-align:right')
+											-if(article.live_event)
+												span.pull-right.label.label-success.label-live ވަގުތުން
+												small=article.time_pretty
+												small &nbsp;
+											-else
+												small=article.time_pretty
+				section.col-md-3#third-col
+					-if(ads.homepage_above_top_news)
+						-each ad in ads.homepage_above_top_news
+							section
+								img(src="http://placehold.it/320x420?text=advertisement").img-responsive
+			hr
+			section.row
+				section.col-md-3
+					-var article = articles.pop();
+					-if(article)
+						a(href="/" + article.article_number).news-el.news-el-2
+							-if(article.image && article.image.file)
+								img.img-responsive(src=article.image.file.sizes.medium)
+							h3=article.title
+				section.col-md-3
+					-var article = articles.pop();
+					-if(article)
+						a(href="/" + article.article_number).news-el.news-el-2
+							-if(article.image && article.image.file)
+								img.img-responsive(src=article.image.file.sizes.medium)
+							h3=article.title
+				section.col-md-3
+					-var article = articles.pop();
+					-if(article)
+						a(href="/" + article.article_number).news-el.news-el-2
+							-if(article.image && article.image.file)
+								img.img-responsive(src=article.image.file.sizes.medium)
+							h3=article.title
+				section.col-md-3
+					-var article = articles.pop();
+					-if(article)
+						a(href="/" + article.article_number).news-el.news-el-2
+							-if(article.image && article.image.file)
+								img.img-responsive(src=article.image.file.sizes.medium)
+							h3=article.title
+			//
+				section.col-xs-4
+					-if(ads.homepage_above_top_news)
+						-each ad in ads.homepage_above_top_news
+							section
+								img(src="/statics/ads/" + ad.file_name)
+					section.btn-group(data-toggle="buttons",style='margin-bottom:15px').toggle-news-list
+						span.btn.btn-link(type='latest') ފަހުގެ ޚަބަރު
+							input(type='radio', name="filter-type")
+						span.btn.btn-link(type='popular') އެންމެ ހިނގާ
+							input(type='radio', name="filter-type")
+					-if(latest_all_articles.length)
+						-each article in latest_all_articles
+							section.row.news-el-4(type='latest')
+								a(href="/" + article.article_number)
+									-if(article.image && article.image.file)
+										//section.col-xs-3
+											img.img-responsive(src=article.image.file.sizes.small)
+									section.col-xs-12(style='margin:0px; font-size:15px;')
+										span.glyphicon.glyphicon-chevron-left(style='color:#CACACA;')
+										span &nbsp;
+										span=article.title
+										div(style='direction:ltr;font-family:sans-serif;text-align:right')
+											small=article.time_pretty
+					
+					-if(popular_week.length)
+						-each article in popular_week
+							section.row.news-el-4(type='popular',style='display:none')
+								a(href="/" + article.article_number)
+									-if(article.image && article.image.file)
+										//section.col-xs-3
+											img.img-responsive(src=article.image.file.sizes.small)
+									section.col-xs-12(style='margin:0px; font-size:15px;')
+										span.glyphicon.glyphicon-chevron-left(style='color:#CACACA;')
+										span &nbsp;
+										span=article.title
+										div(style='direction:ltr;font-family:sans-serif;text-align:right')
+											small=article.time_pretty
+
+	br
+	section.container
+		section.row
+			section.col-xs-7
+				section.row
+					-var last_article_number;
+					-each article in articles
+						-last_article_number = article.article_number;
+						section.col-xs-6(style='height:100px')
+							section.news-el-4.row
+								a(href="/" + article.article_number)
+									section.col-xs-5
+										-if(article.image)
+											img.img-responsive(src=article.image.file.sizes.mediumsmall)
+									section.col-xs-7(style='padding:0px;margin:0px')
+										-if(article.entry_type == "Gallery")
+											span
+												span.glyphicon.glyphicon-camera
+												| &nbsp; #{article.title}
+										-else
+											span=article.title
+										div(style='direction:ltr;font-family:sans-serif;text-align:right')
+											-if(article.live_event)
+												span.pull-right.label.label-success.label-live ވަގުތުން
+												small=article.time_pretty
+												small &nbsp;
+											-else
+												small=article.time_pretty
+				a(href='/category/'+category+'/since/' + last_article_number).btn.btn-info.btn-block
+					h5 ކުރީގެ ޚަބަރު
+			section.col-xs-5
+				-if(typeof ads != 'undefined' && ads.left_side_main)
+					-each ad in ads.left_side_main
+						section
+							img(src="/statics/ads/" + ad.file_name)
+					br
+					brfacebook
+				div.fb-page(data-href="https://www.facebook.com/facebook", data-small-header="true", data-adapt-container-width="true",data-hide-cover="false", data-show-facepile="true")
+					div.fb-xfbml-parse-ignore
+						blockquote(cite="https://www.facebook.com/facebook")
+						a(href="https://www.facebook.com/facebook") Facebook

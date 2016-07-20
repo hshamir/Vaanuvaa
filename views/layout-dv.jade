@@ -23,7 +23,7 @@ html
 		script(src='/js/web.js')
 		script(src='/templates.js')
 		script $(function(){ $("img").each(function(){ var t = $(this); if(t.attr('src').indexOf('statics') != -1){ t.attr('src', 'http://dhivehi.com.mv' + t.attr('src')) } }) })		
-		style .container{width:1245px !important} #raajje ul{display:none} #raajje:hover ul{display:block;}
+		style .container{width:1245px !important} #raajje ul{display:none; position:absolute;} #raajje:hover ul{display:block;}
 		if(locals && locals._user)
 			script window.dcom.user = '#{locals._user.username}';
 	body
@@ -47,9 +47,45 @@ html
 									a(href="/") ފުރަތަމަ ސަފުހާ
 								li#raajje
 									a(href="/category/ރާއްޖެ") ރާއްޖެ
-									ul
+									ul.menu.menu-dv.list-inline.list-unstyled
 										li
-											a(href='/') ހއ
+											a(href='/region/ހއ') ހއ
+										li
+											a(href='/') ހދ
+										li
+											a(href='/') ނ
+										li
+											a(href='/') ބ
+										li
+											a(href='/') ޅ
+										li
+											a(href='/') ޅ
+										li
+											a(href='/') ޅ
+										li
+											a(href='/') ކ
+										li
+											a(href='/') އއ
+										li
+											a(href='/') އދ
+										li
+											a(href='/') ވ
+										li
+											a(href='/') މ
+										li
+											a(href='/') ފ
+										li
+											a(href='/') ދ
+										li
+											a(href='/') ތ
+										li
+											a(href='/') ލ
+										li
+											a(href='/') ގއ
+										li
+											a(href='/') ގދ
+										li
+											a(href='/') ޏ
 								li
 									a(href="/category/ދުނިޔެ") ދުނިޔެ
 								li

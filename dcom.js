@@ -298,6 +298,11 @@ app.get('/search', function(req, res, next){
 		res.render('search-dv', page);
 	})	
 });
+app.get('/region/:cat', function(req, res, next){
+	generateCategoryPage(req,res, function(err, page){
+		res.render('category-atolls', page);
+	})	
+});
 app.get('/category/:cat', function(req, res, next){
 	generateCategoryPage(req,res, function(err, page){
 		res.render('category-dv', page);
