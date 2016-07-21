@@ -22,7 +22,7 @@ html
 		script(src='/js/thaana.js')
 		script(src='/js/web.js')
 		script(src='/templates.js')
-		script $(function(){ $("img").each(function(){ var t = $(this); if(t.attr('src').indexOf('statics') != -1){ t.attr('src', 'http://dhivehi.com.mv' + t.attr('src')) } }) })		
+		//script $(function(){ $("img").not('.ad-img').each(function(){ var t = $(this); if(t.attr('src').indexOf('statics') != -1){ t.attr('src', 'http://dhivehi.com.mv' + t.attr('src')) } }) })		
 		style .container{width:1245px !important} #raajje ul{display:none; position:absolute;} #raajje:hover ul{display:block;}
 		if(locals && locals._user)
 			script window.dcom.user = '#{locals._user.username}';
@@ -35,9 +35,9 @@ html
 						img(src="/images/logo.png")
 				section.col-md-9
 					-if(typeof ads != 'undefined' && ads.top_banner)
-						-each ad in ads.top_banner
-							section
-								img(src="/statics/ads/" + ad.file_name)
+						-var ad = ads.top_banner && ads.top_banner.length ? ads.top_banner[Math.floor(Math.random()*ads.top_banner.length)] : ads;
+						section
+							img(src="/statics/ads/" + ad.file_name).img-responsive.ad-img
 			section.row(style='margin-left:0')
 				section.container
 					section.row

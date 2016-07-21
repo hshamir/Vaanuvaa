@@ -23,45 +23,17 @@ var Media = mongoose.models.Media;
 
 var saveImage = require('./lib/util').saveImage;
 
-var q = [
-"SELECT",
-"wp_posts.*,",
-"wp_users.user_login,",
-"wp_users.display_name, p.GUID,",
-"group_concat(distinct wp_terms.name separator ',') as categories,",
-"group_concat(distinct p.guid separator ',') as att,",
-"group_concat(distinct p.ID separator ',') as ids",
-"FROM `wp_posts`",
-"inner join wp_posts as p on wp_posts.ID = p.post_parent",
-"inner join wp_users on wp_posts.post_author = wp_users.id",
-"inner join wp_term_relationships on wp_term_relationships.object_id = wp_posts.ID",
-"inner join wp_terms on wp_terms.term_id = wp_term_relationships.term_taxonomy_id ",
-"where wp_posts.post_status = 'publish' and wp_posts.post_type='post'",
-"group by wp_posts.ID",
-"order by wp_posts.ID desc ",
-"limit 100",
-].join(' ');
-
-//console.log(q);
-
-var connection = mysql.createConnection({
-	host            : 'dhivehi.com.mv',
-	user            : 'dhivehic_m',
-	password        : '529007',
-	database: "dhivehic_db"
-});
+var data = require('./migrate_data')
 async.waterfall([
 	function getPosts(fn){
-		connection.query(q, function(err, rows){
-			async.eachLimit(rows, 20, function(item, done){
-				addPost(item, function(err, d){
-					if(err){
-						console.log("err, skipping ", item, err);
-					}
-					done();
-				})
-			}, fn);
-		});
+		async.eachLimit(data, 1, function(item, done){
+			addPost(item, function(err, d){
+				if(err){
+					console.log("err, skipping ", item, err);
+				}
+				done();
+			})
+		}, fn);
 	}
 ], function(err){
 	console.log(err);
@@ -71,8 +43,12 @@ async.waterfall([
 
 function addPost(e, fn){
 	var _contents;
-	var first_image_found = true;
+	var first_image_found = false;
 	var category;
+	e.ID = parseInt(e.ID);
+	e.comment_count = parseInt(e.comment_count);
+	e.post_parent = parseInt(e.post_parent);
+	e.post_author = parseInt(e.post_author);
 	async.waterfall([
 		function skip(fn){
 			Article.count({article_number:e.ID}, function(err, c){
@@ -97,19 +73,24 @@ function addPost(e, fn){
 			//find first img
 			var i = e.att.split(',');
 			i.forEach(function(a){
-				if(!first.length && a != '' && 'jpg png gif'.indexOf(a) != -1){
-					first_image_found = false;
+				if(!a || a==""|| first.length > 0){
+					return;
+				}
+				var ext = a.split('.').pop();
+				if('jpg png gif'.indexOf(ext) != -1){
+					first_image_found = true;
 					first.push({
 						type:'image',
 						content: {
 							id:e.ID,
 							caption:e.post_title,
-							media:e.GUID,
-							fname: rndm(15) + "." + e.GUID.split('.').pop()
+							media:a,
+							fname: rndm(15) + "." + a.split('.').pop()
 						}					
 					})
 				}
-			})
+			});
+			console.log('c', first, i)
 			contents = _.compact(contents);
 			contents = first.concat(contents);
 			contents = contents.map(function(c){
@@ -147,29 +128,36 @@ function addPost(e, fn){
 			fn();
 		},
 		function firstImgNotFound(fn){
-			if(first_image_found == false){
+			if(first_image_found != false){
 				return fn();
 			}
 			console.log('no image found, scraping page');
-			request('http://dhivehi.com.mv/?p=' + e.ID, function(err, res, body){
+			var url = 'http://vaanuvaa.mv/?p=' + e.ID;
+			request(url, function(err, res, body){
 				try{
 					var $ = cheerio.load(body);
-					var media = $(".post_layout_5_img").attr('src');
+					var media = $("meta[property='og:image']").attr('content');
+					if(!media || media == ""){
+						return fn();
+					}
+					media = media.toString().trim();
+					var ext = media.split('.').pop()
+					if('jpg png gif'.indexOf(ext) == -1){
+						return fn();
+					}
 					var name = rndm(15) + "." + media.split('.').pop();
 					var ret = {
 						media:media,
-						caption:$(".photo-credit").text() || "",
+						caption:$(".photo-credit").text() || e.post_title ||  "",
 						fname:name,
 						id:e.ID
 					}
-					if(media){
-						_contents = _contents.reverse();
-						_contents.push({
-							type:'image',
-							content:ret
-						})
-						_contents = _contents.reverse();
-					}
+					_contents = _contents.reverse();
+					_contents.push({
+						type:'image',
+						content:ret
+					})
+					_contents = _contents.reverse();
 					fn();
 				}catch(e){
 					fn(e);
@@ -239,7 +227,7 @@ function addPost(e, fn){
 				if(err){
 					return fn(err);
 				}
-				console.log('saved http://dhivehi.com.mv/?p=' + e.ID);
+				console.log('saved http://vaanuvaa.mv/?p=' + e.ID);
 				fn();
 			})	
 		}

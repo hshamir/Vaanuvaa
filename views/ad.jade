@@ -3,6 +3,7 @@ extends layout-manage
 block content
 	script(src='/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')
 	link(rel='stylesheet', href='/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')
+	script(src='/templates.js')
 	h1.vod-heading Advertisements Manager
 	section.row
 		section.col-md-3
@@ -19,21 +20,18 @@ block content
 							| New advertisement 
 							span.caret
 						ul.dropdown-menu.ad-type(role='menu')
-							li(data-type='top_banner', data-size="[710, 90]")
-								a(href='#') Top banner 
-									strong 710 x 90 pixel
-							li(data-type='homepage_above_top_news', data-size="[303, 85]")
-								a(href='#') Homepage above latest news 
-									strong 303 x 85 pixel
-							li(data-type='homepage_below_top_news', data-size="[390, 85]")
-								a(href='#') Homepage below top news 
-									strong 390 x 85 pixel
-							li(data-type='left_side_main', data-size="[350, 350]")
-								a(href='#') Left side main 
-									strong 350 x 350 pixel
-							li(data-type='left_side_entertainment', data-size="[350, 350]")
-								a(href='#') Left side below entertainment 
-									strong 350 x 350 pixel
+							li(data-type='top_banner', data-size="[911, 100]")
+								a(href='#') Top banner
+									strong 911 x 100 pixel
+							li(data-type='homepage_top_left', data-size="[281, 432]")
+								a(href='#') Homepage top left
+									strong 281 x 432 pixel
+							li(data-type='article_top', data-size="[593, 286]")
+								a(href='#') Article top 
+									strong 593 x 286 pixel
+							li(data-type='article_bottom', data-size="[593, 286]")
+								a(href='#') Article bottom 
+									strong 593 x 286 pixel
 			br
 			section#ads
 
