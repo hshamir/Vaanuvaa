@@ -20,6 +20,7 @@ var mime = require('mime');
 var jade = require('jade');
 var moment = require('moment');
 var crypto = require('crypto');
+var cache = require('../lib/util').cache;	
 var filterMedia = require('../lib/util').filterMedia;
 var mapDoc = require('../lib/util').mapDoc;
 var mapContents = require('../lib/util').mapContents;
@@ -125,6 +126,10 @@ router.post('/:id/remove', authenticate, function(req, res){
 		},
 		function remove(fn){
 			Article.remove({article_number:article_number}, fn)
+		},		
+		function asyncCache(fn){		
+			cache();		
+			fn();		
 		}
 	], function(err){
 		if(err){
@@ -229,6 +234,7 @@ router.post('/:id/toggle-publish', authenticate, function(req,res){
 		d.social_media_posted = true;
 		Article.update({article_number:req.params.id},{$set:{published:_newstatus, social_media_posted:true}}, function(err, c){
 			res.json({new_status:newstatus});
+			cache();
 		})
 	})
 });
@@ -318,7 +324,7 @@ function createOrUpdateArticle (req, res, next) {
 		if(err){
 			return res.json(err);
 		}
-
+		cache();
 		res.json(doc);
 	});
 }
