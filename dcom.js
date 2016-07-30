@@ -193,7 +193,7 @@ app.get('/', function(req,res,next){
 app.get('/privacy-fb', function(req,res,next){			
 	generatePage(function(err, page){
 		var privacy = [
-			"<p>The app published content only from Dhivehi.com.mv</p>",
+			"<p>The app published content only from Vaanuvaa</p>",
 			"<p>Users privacy are protected in accordance to Facebook terms</p>",
 		].join('')
 		res.end("<html><body><h2>Privacy policy for Facebook</h2>"+privacy+"</body></html>");

@@ -38,7 +38,7 @@ router.get('/admins/add-facebook', authenticate, function(req, res, next) {
 	FB.api('oauth/access_token', {
 	    client_id: conf.facebook_client_id,
 	    client_secret: conf.facebook_client_secret,
-	    redirect_uri: 'http://dhivehi.com.mv/manage/admins/add-facebook',
+	    redirect_uri: 'http://vaanuvaa.mv/manage/admins/add-facebook',
 	    code: req.query.code
 	}, 
 	function (resp) {
@@ -49,8 +49,8 @@ router.get('/admins/add-facebook', authenticate, function(req, res, next) {
 	 
 	    var accessToken = resp.access_token;
 	    var expires = resp.expires ? resp.expires : 0;
-		redis.hset('facebook', 'access_token', accessToken);
-		redis.hset('facebook', 'code', req.query.code, function(err){
+		redis.hset('vaanuvaa-facebook', 'access_token', accessToken);
+		redis.hset('vaanuvaa-facebook', 'code', req.query.code, function(err){
 			if(err){
 				return res.end(err);
 			}
@@ -64,7 +64,7 @@ router.get('/admins', authenticate, function(req, res, next) {
 			fb_url:function(fn){
 				var u = FB.getLoginUrl({
 				    scope: 'pages_show_list',
-				    redirect_uri: 'http://dhivehi.com.mv/manage/admins/add-facebook',
+				    redirect_uri: 'http://vaanuvaa.mv/manage/admins/add-facebook',
 				    appId:conf.facebook_client_id
 				});
 				fn(null, u);
