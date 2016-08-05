@@ -82,45 +82,50 @@ block body
 				br
 				section.row.homepage-category
 					//raajje, maqbool, gallery
-					section.col-md-6
-						section.row
-							section.col-md-12
-								h4.homepage-category-heading
-									a(href="/category/ރާއްޖެ") ރާއްޖެ
-							section.col-md-8
-								-var article = categories_keys['ރާއްޖެ'].articles.pop();
-								-if(article)
-									a(href="/" + article.article_number).news-el.news-el-2
-										-if(article.image && article.image.file)
-											img.img-responsive(src=article.image.file.sizes.medium)
-										h3=article.title
-							section.col-md-4
-								-each article in categories_keys['ރާއްޖެ'].articles
-									-if(article && article.article_number)
-											a(href="/" + article.article_number)
-												section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
-													section.col-md-12(style='padding:0px;margin:0px')
-														-if(article.entry_type == "Gallery")
-															span
-																span.glyphicon.glyphicon-camera
-																| &nbsp #{article.title}
-														-else
-															span=article.title
-														div(style='direction:ltr;font-family:sans-serif;text-align:right')
-															-if(article.live_event)
-																span.pull-right.label.label-success.label-live ވަގުތުން
-																small=article.time_pretty
-																small &nbsp;
+					-if(categories_keys['ރާއްޖެ'])
+						section.col-md-6
+							section.row
+								section.col-md-12
+									h4.homepage-category-heading
+										a(href="/category/ރާއްޖެ") ރާއްޖެ
+								section.col-md-8
+									-console.log(categories_keys)
+									-var article = categories_keys['ރާއްޖެ'].articles.pop();
+									-if(article)
+										a(href="/" + article.article_number).news-el.news-el-2
+											-if(article.image && article.image.file)
+												img.img-responsive(src=article.image.file.sizes.medium)
+											h3=article.title
+								section.col-md-4
+									-each article in categories_keys['ރާއްޖެ'].articles
+										-if(article && article.article_number)
+												a(href="/" + article.article_number)
+													section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+														section.col-md-12(style='padding:0px;margin:0px')
+															-if(article.entry_type == "Gallery")
+																span
+																	span.glyphicon.glyphicon-camera
+																	| &nbsp #{article.title}
 															-else
-																small=article.time_pretty
+																span=article.title
+															div(style='direction:ltr;font-family:sans-serif;text-align:right')
+																-if(article.live_event)
+																	span.pull-right.label.label-success.label-live ވަގުތުން
+																	small=article.time_pretty
+																	small &nbsp;
+																-else
+																	small=article.time_pretty
 					section.col-md-3
 						h4.homepage-category-heading
 							a(href="/category/gallery") އެންމެ މަޤުބޫލް
 						-each article in popular
 							section.news-el-4.col-md-12
 								a(href="/" + article.article_number)
-									section.row(style='padding:5px;background:white;')
-										section.col-md-12(style='padding:0px;margin:0px')
+									section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+										section.col-md-3(style='margin-right:0;padding-right:0;')
+											-if(article.image)
+												img.img-responsive(src=article.image.file.sizes.small)
+										section.col-md-9(style='padding:0px;margin:0px')
 											-if(article.entry_type == "Gallery")
 												span
 													span.glyphicon.glyphicon-camera
@@ -156,7 +161,308 @@ block body
 													small &nbsp;
 												-else
 													small=article.time_pretty
+				section.row.homepage-category
+					//dhuniye, siyaasee, ad
+					-if(categories_keys['ދުނިޔެ'])
+						section.col-md-6
+							section.row
+								section.col-md-12
+									h4.homepage-category-heading
+										a(href="/category/ދުނިޔެ") ދުނިޔެ
+								section.col-md-8
+									-var article = categories_keys['ދުނިޔެ'].articles.pop();
+									-if(article)
+										a(href="/" + article.article_number).news-el.news-el-2
+											-if(article.image && article.image.file)
+												img.img-responsive(src=article.image.file.sizes.medium)
+											h3=article.title
+								section.col-md-4
+									-each article in categories_keys['ދުނިޔެ'].articles
+										-if(article && article.article_number)
+												a(href="/" + article.article_number)
+													section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+														section.col-md-12(style='padding:0px;margin:0px')
+															-if(article.entry_type == "Gallery")
+																span
+																	span.glyphicon.glyphicon-camera
+																	| &nbsp #{article.title}
+															-else
+																span=article.title
+															div(style='direction:ltr;font-family:sans-serif;text-align:right')
+																-if(article.live_event)
+																	span.pull-right.label.label-success.label-live ވަގުތުން
+																	small=article.time_pretty
+																	small &nbsp;
+																-else
+																	small=article.time_pretty
+					-if(categories_keys['ސިޔާސީ'])
+					section.col-md-3
+						h4.homepage-category-heading
+							a(href="/category/gallery") ސިޔާސީ
+						-var article = categories_keys['ސިޔާސީ'].articles.pop();
+							section.news-el-4.col-md-12
+								a(href="/" + article.article_number)
+									section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+										section.col-md-3(style='margin-right:0;padding-right:0;')
+											-if(article.image)
+												img.img-responsive(src=article.image.file.sizes.small)
+										section.col-md-9(style='padding:0px;margin:0px')
+											-if(article.entry_type == "Gallery")
+												span
+													span.glyphicon.glyphicon-camera
+													| &nbsp #{article.title}
+											-else
+												span=article.title
+											div(style='direction:ltr;font-family:sans-serif;text-align:right')
+												-if(article.live_event)
+													span.pull-right.label.label-success.label-live ވަގުތުން
+													small=article.time_pretty
+													small &nbsp;
+												-else
+													small=article.time_pretty
+					section.col-md-3
+						-if(typeof ads != 'undefined' && ads.homepage_top_left)
+							-var ad = ads.homepage_top_left && ads.homepage_top_left.length ? ads.homepage_top_left[Math.floor(Math.random()*ads.homepage_top_left.length)] : ads;
+							section
+								img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
 
+				section.row.homepage-category
+					//kulhivaru, sihhathu, column
+					-if(categories_keys['ކުޅިވަރު'])
+						section.col-md-6
+							section.row
+								section.col-md-12
+									h4.homepage-category-heading
+										a(href="/category/ކުޅިވަރު") ކުޅިވަރު
+								section.col-md-8
+									-var article = categories_keys['ކުޅިވަރު'].articles.pop();
+									-if(article)
+										a(href="/" + article.article_number).news-el.news-el-2
+											-if(article.image && article.image.file)
+												img.img-responsive(src=article.image.file.sizes.medium)
+											h3=article.title
+								section.col-md-4
+									-each article in categories_keys['ކުޅިވަރު'].articles
+										-if(article && article.article_number)
+												a(href="/" + article.article_number)
+													section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+														section.col-md-12(style='padding:0px;margin:0px')
+															-if(article.entry_type == "Gallery")
+																span
+																	span.glyphicon.glyphicon-camera
+																	| &nbsp #{article.title}
+															-else
+																span=article.title
+															div(style='direction:ltr;font-family:sans-serif;text-align:right')
+																-if(article.live_event)
+																	span.pull-right.label.label-success.label-live ވަގުތުން
+																	small=article.time_pretty
+																	small &nbsp;
+																-else
+																	small=article.time_pretty
+
+					-categories_keys['ސިއްހަތު'] = categories_keys['ސިއްހަތު']  ? categories_keys['ސިއްހަތު'] : categories_keys['ސިއްޙަތު'];
+					-if(categories_keys['ސިއްހަތު'])
+					section.col-md-3
+						h4.homepage-category-heading
+							a(href="/category/ސިއްހަތު") ސިއްހަތު
+						-var article = categories_keys['ސިއްހަތު'].articles.pop();
+							section.news-el-4.col-md-12
+								a(href="/" + article.article_number)
+									section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+										section.col-md-3(style='margin-right:0;padding-right:0;')
+											-if(article.image)
+												img.img-responsive(src=article.image.file.sizes.small)
+										section.col-md-9(style='padding:0px;margin:0px')
+											-if(article.entry_type == "Gallery")
+												span
+													span.glyphicon.glyphicon-camera
+													| &nbsp #{article.title}
+											-else
+												span=article.title
+											div(style='direction:ltr;font-family:sans-serif;text-align:right')
+												-if(article.live_event)
+													span.pull-right.label.label-success.label-live ވަގުތުން
+													small=article.time_pretty
+													small &nbsp;
+												-else
+													small=article.time_pretty
+					section.col-md-3
+						h4.homepage-category-heading
+							a(href="/category/gallery") ކޮލަމް
+						-if(categories_keys['ކޮލަމް'])
+							-var article = categories_keys['ކޮލަމް'].articles.pop();
+								section.news-el-4.col-md-12
+									a(href="/" + article.article_number)
+										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+											section.col-md-3(style='margin-right:0;padding-right:0;')
+												-if(article.image)
+													img.img-responsive(src=article.image.file.sizes.small)
+											section.col-md-9(style='padding:0px;margin:0px')
+												-if(article.entry_type == "Gallery")
+													span
+														span.glyphicon.glyphicon-camera
+														| &nbsp #{article.title}
+												-else
+													span=article.title
+												div(style='direction:ltr;font-family:sans-serif;text-align:right')
+													-if(article.live_event)
+														span.pull-right.label.label-success.label-live ވަގުތުން
+														small=article.time_pretty
+														small &nbsp;
+													-else
+														small=article.time_pretty
+				section.row.homepage-category
+					//viyafaari, lifestyle, dheenee
+					-if(categories_keys['ވިޔަފާރި'])
+						section.col-md-6
+							section.row
+								section.col-md-12
+									h4.homepage-category-heading
+										a(href="/category/ވިޔަފާރި") ވިޔަފާރި
+								section.col-md-8
+									-var article = categories_keys['ވިޔަފާރި'].articles.pop();
+									-if(article)
+										a(href="/" + article.article_number).news-el.news-el-2
+											-if(article.image && article.image.file)
+												img.img-responsive(src=article.image.file.sizes.medium)
+											h3=article.title
+								section.col-md-4
+									-each article in categories_keys['ވިޔަފާރި'].articles
+										-if(article && article.article_number)
+												a(href="/" + article.article_number)
+													section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+														section.col-md-12(style='padding:0px;margin:0px')
+															-if(article.entry_type == "Gallery")
+																span
+																	span.glyphicon.glyphicon-camera
+																	| &nbsp #{article.title}
+															-else
+																span=article.title
+															div(style='direction:ltr;font-family:sans-serif;text-align:right')
+																-if(article.live_event)
+																	span.pull-right.label.label-success.label-live ވަގުތުން
+																	small=article.time_pretty
+																	small &nbsp;
+																-else
+																	small=article.time_pretty
+
+					section.col-md-3
+						h4.homepage-category-heading
+							a(href="/category/ލައިފްސްޓައިލް") ލައިފްސްޓައިލް
+						-if(categories_keys['ލައިފްސްޓައިލް'])
+							-var article = categories_keys['ލައިފްސްޓައިލް'].articles.pop();
+								section.news-el-4.col-md-12
+									a(href="/" + article.article_number)
+										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+											section.col-md-3(style='margin-right:0;padding-right:0;')
+												-if(article.image)
+													img.img-responsive(src=article.image.file.sizes.small)
+											section.col-md-9(style='padding:0px;margin:0px')
+												-if(article.entry_type == "Gallery")
+													span
+														span.glyphicon.glyphicon-camera
+														| &nbsp #{article.title}
+												-else
+													span=article.title
+												div(style='direction:ltr;font-family:sans-serif;text-align:right')
+													-if(article.live_event)
+														span.pull-right.label.label-success.label-live ވަގުތުން
+														small=article.time_pretty
+														small &nbsp;
+													-else
+														small=article.time_pretty
+					section.col-md-3
+						h4.homepage-category-heading
+							a(href="/category/gallery") ދީން
+						-if(categories_keys['ދީން'])
+							-var article = categories_keys['ދީން'].articles.pop();
+								section.news-el-4.col-md-12
+									a(href="/" + article.article_number)
+										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+											section.col-md-3(style='margin-right:0;padding-right:0;')
+												-if(article.image)
+													img.img-responsive(src=article.image.file.sizes.small)
+											section.col-md-9(style='padding:0px;margin:0px')
+												-if(article.entry_type == "Gallery")
+													span
+														span.glyphicon.glyphicon-camera
+														| &nbsp #{article.title}
+												-else
+													span=article.title
+												div(style='direction:ltr;font-family:sans-serif;text-align:right')
+													-if(article.live_event)
+														span.pull-right.label.label-success.label-live ވަގުތުން
+														small=article.time_pretty
+														small &nbsp;
+													-else
+														small=article.time_pretty
+				section.row.homepage-category
+					//munifoohi filuvun, ad, vaahaka
+					section.col-md-6
+						section.row
+							section.col-md-12
+								h4.homepage-category-heading
+									a(href="/category/މުނިފޫހިފިލުވުން") މުނިފޫހިފިލުވުން
+							-if(categories_keys['މުނިފޫހިފިލުވުން'])
+								section.col-md-8
+									-var article = categories_keys['މުނިފޫހިފިލުވުން'].articles.pop();
+									-if(article)
+										a(href="/" + article.article_number).news-el.news-el-2
+											-if(article.image && article.image.file)
+												img.img-responsive(src=article.image.file.sizes.medium)
+											h3=article.title
+								section.col-md-4
+									-each article in categories_keys['ދުނިޔެ'].articles
+										-if(article && article.article_number)
+												a(href="/" + article.article_number)
+													section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+														section.col-md-12(style='padding:0px;margin:0px')
+															-if(article.entry_type == "Gallery")
+																span
+																	span.glyphicon.glyphicon-camera
+																	| &nbsp #{article.title}
+															-else
+																span=article.title
+															div(style='direction:ltr;font-family:sans-serif;text-align:right')
+																-if(article.live_event)
+																	span.pull-right.label.label-success.label-live ވަގުތުން
+																	small=article.time_pretty
+																	small &nbsp;
+																-else
+																	small=article.time_pretty
+					section.col-md-3
+						-if(typeof ads != 'undefined' && ads.homepage_top_left)
+							-var ad = ads.homepage_top_left && ads.homepage_top_left.length ? ads.homepage_top_left[Math.floor(Math.random()*ads.homepage_top_left.length)] : ads;
+							section
+								img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
+					section.col-md-3
+						h4.homepage-category-heading
+							a(href="/category/gallery") ވާހަކަ
+						-if(categories_keys['ވާހަކަ'])
+							-var article = categories_keys['ވާހަކަ'].articles.pop();
+								section.news-el-4.col-md-12
+									a(href="/" + article.article_number)
+										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+											section.col-md-3(style='margin-right:0;padding-right:0;')
+												-if(article.image)
+													img.img-responsive(src=article.image.file.sizes.small)
+											section.col-md-9(style='padding:0px;margin:0px')
+												-if(article.entry_type == "Gallery")
+													span
+														span.glyphicon.glyphicon-camera
+														| &nbsp #{article.title}
+												-else
+													span=article.title
+												div(style='direction:ltr;font-family:sans-serif;text-align:right')
+													-if(article.live_event)
+														span.pull-right.label.label-success.label-live ވަގުތުން
+														small=article.time_pretty
+														small &nbsp;
+													-else
+														small=article.time_pretty
+
+			//
 				-each category in c1
 					section.row.homepage-category
 						section.col-md-12
