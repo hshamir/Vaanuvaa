@@ -63,7 +63,7 @@ router.get('/admins', authenticate, function(req, res, next) {
 		async.auto({
 			fb_url:function(fn){
 				var u = FB.getLoginUrl({
-				    scope: 'pages_show_list',
+				    //scope: 'pages_show_list',
 				    redirect_uri: 'http://vaanuvaa.mv/manage/admins/add-facebook',
 				    appId:conf.facebook_client_id
 				});
