@@ -17,9 +17,9 @@ block body
 							hr
 					section(style='text-align:center;')
 						section.form-group
-							section.fb-like(data-href="http://dhivehi.com.mv/"+article_number, data-layout="box_count", data-action="like", data-show-faces="true", data-share="true")
+							section.fb-like(data-href="http://vaanuvaa.mv/"+article_number, data-layout="box_count", data-action="like", data-show-faces="true", data-share="true")
 						section.form-group
-							a(href="https://twitter.com/share", data-via="DhivehiOnline").twitter-share-button Tweet
+							a(href="https://twitter.com/share", data-via="mv_vaanuvaa").twitter-share-button Tweet
 						section.form-group
 			article.col-xs-6.white
 				section#article-header
@@ -198,10 +198,10 @@ block body
 		})
 
 block meta
-	meta(property="og:site_name", content="Dhivehi Online")
+	meta(property="og:site_name", content="Vaanuvaa Online")
 	meta(property="og:title", content=(title_latin=="" || !title_latin ? title : title_latin))
 	meta(property="og:description", content=(description_latin=="" || !description_latin ? description : description_latin))
 	meta(property="og:type", content="article")
-	meta(property="og:url", content="http://dhivehi.com.mv/" + article_number )
+	meta(property="og:url", content="http://vaanuvaa.mv/" + article_number )
 	-if(image != null)
-		meta(property="og:image", content="http://dhivehi.com.mv" + image.file.sizes.large)
+		meta(property="og:image", content="http://vaanuvaa.mv" + image.file.sizes.large)
