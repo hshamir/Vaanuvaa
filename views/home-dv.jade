@@ -228,45 +228,44 @@ block body
 
 				section.row.homepage-category
 					//kulhivaru, sihhathu, column
-						section.col-md-6
-							section.row
-								section.col-md-12
-									h4.homepage-category-heading
-										a(href="/category/ކުޅިވަރު") ކުޅިވަރު
-								-if(categories_keys['ކުޅިވަރު'])
-									section.col-md-8
-										-var article = categories_keys['ކުޅިވަރު'].articles.pop();
-										-if(article)
-											a(href="/" + article.article_number).news-el.news-el-2
-												-if(article.image && article.image.file)
-													img.img-responsive(src=article.image.file.sizes.medium)
-												h3=article.title
-									section.col-md-4
-										-each article in categories_keys['ކުޅިވަރު'].articles
-											-if(article && article.article_number)
-													a(href="/" + article.article_number)
-														section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
-															section.col-md-12(style='padding:0px;margin:0px')
-																-if(article.entry_type == "Gallery")
-																	span
-																		span.glyphicon.glyphicon-camera
-																		| &nbsp #{article.title}
+					section.col-md-6
+						section.row
+							section.col-md-12
+								h4.homepage-category-heading
+									a(href="/category/ކުޅިވަރު") ކުޅިވަރު
+							-if(categories_keys['ކުޅިވަރު'])
+								section.col-md-8
+									-var article = categories_keys['ކުޅިވަރު'].articles.pop();
+									-if(article)
+										a(href="/" + article.article_number).news-el.news-el-2
+											-if(article.image && article.image.file)
+												img.img-responsive(src=article.image.file.sizes.medium)
+											h3=article.title
+								section.col-md-4
+									-each article in categories_keys['ކުޅިވަރު'].articles
+										-if(article && article.article_number)
+												a(href="/" + article.article_number)
+													section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+														section.col-md-12(style='padding:0px;margin:0px')
+															-if(article.entry_type == "Gallery")
+																span
+																	span.glyphicon.glyphicon-camera
+																	| &nbsp #{article.title}
+															-else
+																span=article.title
+															div(style='direction:ltr;font-family:sans-serif;text-align:right')
+																-if(article.live_event)
+																	span.pull-right.label.label-success.label-live ވަގުތުން
+																	small=article.time_pretty
+																	small &nbsp;
 																-else
-																	span=article.title
-																div(style='direction:ltr;font-family:sans-serif;text-align:right')
-																	-if(article.live_event)
-																		span.pull-right.label.label-success.label-live ވަގުތުން
-																		small=article.time_pretty
-																		small &nbsp;
-																	-else
-																		small=article.time_pretty
+																	small=article.time_pretty
 
-					-categories_keys['ސިއްހަތު'] = categories_keys['ސިއްހަތު']  ? categories_keys['ސިއްހަތު'] : categories_keys['ސިއްޙަތު'];
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/ސިއްހަތު") ސިއްހަތު
+							a(href="/category/gallery") ސިއްހަތު
 						-if(categories_keys['ސިއްހަތު'])
-							-var article = categories_keys['ސިއްހަތު'].articles.pop();
+							-each article in categories_keys['ސިއްހަތު'].articles
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
@@ -287,6 +286,7 @@ block body
 														small &nbsp;
 													-else
 														small=article.time_pretty
+					
 					section.col-md-3
 						h4.homepage-category-heading
 							a(href="/category/gallery") ކޮލަމް
@@ -314,38 +314,38 @@ block body
 														small=article.time_pretty
 				section.row.homepage-category
 					//viyafaari, lifestyle, dheenee
-						section.col-md-6
-							section.row
-								section.col-md-12
-									h4.homepage-category-heading
-										a(href="/category/ވިޔަފާރި") ވިޔަފާރި
-									-if(categories_keys['ވިޔަފާރި'])
-										section.col-md-8
-											-var article = categories_keys['ވިޔަފާރި'].articles.pop();
-											-if(article)
-												a(href="/" + article.article_number).news-el.news-el-2
-													-if(article.image && article.image.file)
-														img.img-responsive(src=article.image.file.sizes.medium)
-													h3=article.title
-										section.col-md-4
-											-each article in categories_keys['ވިޔަފާރި'].articles
-												-if(article && article.article_number)
-														a(href="/" + article.article_number)
-															section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
-																section.col-md-12(style='padding:0px;margin:0px')
-																	-if(article.entry_type == "Gallery")
-																		span
-																			span.glyphicon.glyphicon-camera
-																			| &nbsp #{article.title}
+					section.col-md-6
+						section.row
+							section.col-md-12
+								h4.homepage-category-heading
+									a(href="/category/ވިޔަފާރި") ވިޔަފާރި
+								-if(categories_keys['ވިޔަފާރި'])
+									section.col-md-8
+										-var article = categories_keys['ވިޔަފާރި'].articles.pop();
+										-if(article)
+											a(href="/" + article.article_number).news-el.news-el-2
+												-if(article.image && article.image.file)
+													img.img-responsive(src=article.image.file.sizes.medium)
+												h3=article.title
+									section.col-md-4
+										-each article in categories_keys['ވިޔަފާރި'].articles
+											-if(article && article.article_number)
+													a(href="/" + article.article_number)
+														section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+															section.col-md-12(style='padding:0px;margin:0px')
+																-if(article.entry_type == "Gallery")
+																	span
+																		span.glyphicon.glyphicon-camera
+																		| &nbsp #{article.title}
+																-else
+																	span=article.title
+																div(style='direction:ltr;font-family:sans-serif;text-align:right')
+																	-if(article.live_event)
+																		span.pull-right.label.label-success.label-live ވަގުތުން
+																		small=article.time_pretty
+																		small &nbsp;
 																	-else
-																		span=article.title
-																	div(style='direction:ltr;font-family:sans-serif;text-align:right')
-																		-if(article.live_event)
-																			span.pull-right.label.label-success.label-live ވަގުތުން
-																			small=article.time_pretty
-																			small &nbsp;
-																		-else
-																			small=article.time_pretty
+																		small=article.time_pretty
 
 					section.col-md-3
 						h4.homepage-category-heading
