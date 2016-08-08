@@ -351,7 +351,7 @@ block body
 						h4.homepage-category-heading
 							a(href="/category/ލައިފްސްޓައިލް") ލައިފްސްޓައިލް
 						-if(categories_keys['ލައިފްސްޓައިލް'])
-							-var article = categories_keys['ލައިފްސްޓައިލް'].articles.pop();
+							-each article in categories_keys['ލައިފްސްޓައިލް'].articles
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
@@ -375,8 +375,8 @@ block body
 					section.col-md-3
 						h4.homepage-category-heading
 							a(href="/category/gallery") ދީން
-						-if(categories_keys['ދީން'])
-							-var article = categories_keys['ދީން'].articles.pop();
+						-if(categories_keys['ދީނީ'])
+							-each article in categories_keys['ދީނީ'].articles
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
