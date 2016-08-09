@@ -6,7 +6,7 @@ section.ad-manager-container(data-id=(typeof item._id != 'undefined' ? item._id 
 			span.glyphicon.glyphicon-remove
 	section.ad-manager-imageholder.ad-manager-head
 		-if(item.file_name)
-			img(src='http://img-cdn.video2home.net:8020/ads/' + item.file_name).img-responsive
+			img(src='/statics/ads/' + item.file_name).img-responsive
 	section.ad-manager-body
 		section.row
 			section.col-md-6
