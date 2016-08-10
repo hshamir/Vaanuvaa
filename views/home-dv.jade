@@ -231,11 +231,15 @@ block body
 							-var ad = ads.below_dhuniye && ads.below_dhuniye.length ? ads.below_dhuniye[Math.floor(Math.random()*ads.below_dhuniye.length)] : ads;
 							section
 								img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
+						-else
+							img(src='http://placehold.it/600x90').img-responsive
 					section.col-md-6
 						-if(typeof ads != 'undefined' && ads.below_siyaasee)
 							-var ad = ads.below_siyaasee && ads.below_siyaasee.length ? ads.below_siyaasee[Math.floor(Math.random()*ads.below_siyaasee.length)] : ads;
 							section
 								img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
+						-else
+							img(src='http://placehold.it/600x90').img-responsive
 				section.row.homepage-category
 					//kulhivaru, sihhathu, column
 					section.col-md-6
@@ -409,7 +413,12 @@ block body
 														small=article.time_pretty
 				section.row(style='margin-bottom:10px;')
 					section.col-md-12
-						img(src='https://placeholdit.imgix.net/~text?txtsize=33&txt=1250%C3%97200&w=1250&h=200').img-responsive
+						-if(typeof ads != 'undefined' && ads.below_viyafaari_block)
+							-var ad = ads.below_viyafaari_block && ads.below_viyafaari_block.length ? ads.below_viyafaari_block[Math.floor(Math.random()*ads.below_viyafaari_block.length)] : ads;
+							section
+								img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
+						-else
+							img(src='http://placehold.it/1250x200').img-responsive
 
 				section.row.homepage-category
 					//munifoohi filuvun, ad, vaahaka

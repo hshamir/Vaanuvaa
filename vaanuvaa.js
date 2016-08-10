@@ -9,5 +9,8 @@ var async = require('async');
 var redis = require("redis").createClient();
 var spawn = require('child_process').spawn; 
 var util = require('./lib/util');
-spawn('node',['lib/cache.js']);
+var cp = spawn('node',['lib/cache.js']);
+cp.stderr.on('data', function(d){console.log(d.toString().trim())})
+cp.stdout.on('data', function(d){console.log(d.toString().trim())})
+
 clusterMaster('./dcom.js')
