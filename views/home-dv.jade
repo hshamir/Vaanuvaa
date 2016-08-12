@@ -463,7 +463,7 @@ block body
 						h4.homepage-category-heading
 							a(href="/category/gallery") ވާހަކަ
 						-if(categories_keys['ވާހަކަ'])
-							-var article = categories_keys['ވާހަކަ'].articles.pop();
+							-each article in categories_keys['ވާހަކަ'].articles
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
