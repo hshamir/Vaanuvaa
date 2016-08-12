@@ -17,26 +17,27 @@ block body
 							h3(style='font-size:22px;line-height:35px;font-weight:normal;')=top.title
 				section.col-xs-3
 					-var article = articles.pop()
-						section.news-el-4.col-md-12
-							a(href="/" + article.article_number)
-								section.row(style='padding:5px;background:white;')
-									section.col-md-5(style='margin-right:0;padding-right:0;')
-										-if(article.image)
-											img.img-responsive(src=article.image.file.sizes.small)
-									section.col-md-7(style='padding:0px;margin:0px')
-										-if(article.entry_type == "Gallery")
-											span
-												span.glyphicon.glyphicon-camera
-												| &nbsp #{article.title}
-										-else
-											span=article.title
-										div(style='direction:ltr;font-family:sans-serif;text-align:right')
-											-if(article.live_event)
-												span.pull-right.label.label-success.label-live ވަގުތުން
-												small=article.time_pretty
-												small &nbsp;
+						-if(article)
+							section.news-el-4.col-md-12
+								a(href="/" + article.article_number)
+									section.row(style='padding:5px;background:white;')
+										section.col-md-5(style='margin-right:0;padding-right:0;')
+											-if(article.image)
+												img.img-responsive(src=article.image.file.sizes.small)
+										section.col-md-7(style='padding:0px;margin:0px')
+											-if(article.entry_type == "Gallery")
+												span
+													span.glyphicon.glyphicon-camera
+													| &nbsp #{article.title}
 											-else
-												small=article.time_pretty
+												span=article.title
+											div(style='direction:ltr;font-family:sans-serif;text-align:right')
+												-if(article.live_event)
+													span.pull-right.label.label-success.label-live ވަގުތުން
+													small=article.time_pretty
+													small &nbsp;
+												-else
+													small=article.time_pretty
 					-var article = articles.pop()
 						section.news-el-4.col-md-12
 							a(href="/" + article.article_number)
