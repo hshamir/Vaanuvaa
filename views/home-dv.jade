@@ -221,10 +221,30 @@ block body
 													-else
 														small=article.time_pretty
 					section.col-md-3
-						-if(typeof ads != 'undefined' && ads.homepage_top_left)
-							-var ad = ads.homepage_top_left && ads.homepage_top_left.length ? ads.homepage_top_left[Math.floor(Math.random()*ads.homepage_top_left.length)] : ads;
-							section
-								img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
+						h4.homepage-category-heading
+							a(href="/category/gallery") ކޮލަމް
+						-if(categories_keys['ކޮލަމް'])
+							-var article = categories_keys['ކޮލަމް'].articles.pop();
+								section.news-el-4.col-md-12
+									a(href="/" + article.article_number)
+										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+											section.col-md-3(style='margin-right:0;padding-right:0;')
+												-if(article.image)
+													img.img-responsive(src=article.image.file.sizes.small)
+											section.col-md-9(style='padding:0px;margin:0px')
+												-if(article.entry_type == "Gallery")
+													span
+														span.glyphicon.glyphicon-camera
+														| &nbsp #{article.title}
+												-else
+													span=article.title
+												div(style='direction:ltr;font-family:sans-serif;text-align:right')
+													-if(article.live_event)
+														span.pull-right.label.label-success.label-live ވަގުތުން
+														small=article.time_pretty
+														small &nbsp;
+													-else
+														small=article.time_pretty
 				section.row
 					section.col-md-6
 						-if(typeof ads != 'undefined' && ads.below_dhuniye)
@@ -241,7 +261,7 @@ block body
 						-else
 							img(src='http://placehold.it/600x90').img-responsive
 				section.row.homepage-category
-					//kulhivaru, sihhathu, column
+					//kulhivaru, sihhathu, report
 					section.col-md-6
 						section.row
 							section.col-md-12
@@ -303,9 +323,9 @@ block body
 					
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/gallery") ކޮލަމް
-						-if(categories_keys['ކޮލަމް'])
-							-var article = categories_keys['ކޮލަމް'].articles.pop();
+							a(href="/category/gallery") ރިޕޯޓު
+						-if(categories_keys['ރިޕޯޓު'])
+							-var article = categories_keys['ރިޕޯޓު'].articles.pop();
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
