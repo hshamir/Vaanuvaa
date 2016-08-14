@@ -321,9 +321,9 @@ block body
 					
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/gallery") ރިޕޯޓު
+							a(href="/category/ރިޕޯޓު") ރިޕޯޓު
 						-if(categories_keys['ރިޕޯޓު'])
-							-var article = categories_keys['ރިޕޯޓު'].articles.shift();
+							-each article in categories_keys['ރިޕޯޓު'].articles
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
