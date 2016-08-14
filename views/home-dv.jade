@@ -88,7 +88,7 @@ block body
 										a(href="/category/ރާއްޖެ") ރާއްޖެ
 								section.col-md-8
 									-console.log(categories_keys)
-									-var article = categories_keys['ރާއްޖެ'].articles.pop();
+									-var article = categories_keys['ރާއްޖެ'].articles.shift();
 									-if(article)
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
@@ -168,7 +168,7 @@ block body
 									h4.homepage-category-heading
 										a(href="/category/ދުނިޔެ") ދުނިޔެ
 								section.col-md-8
-									-var article = categories_keys['ދުނިޔެ'].articles.pop();
+									-var article = categories_keys['ދުނިޔެ'].articles.shift();
 									-if(article)
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
@@ -197,7 +197,7 @@ block body
 						h4.homepage-category-heading
 							a(href="/category/gallery") ސިޔާސީ
 						-if(categories_keys['ސިޔާސީ'])
-							-var article = categories_keys['ސިޔާސީ'].articles.pop();
+							-var article = categories_keys['ސިޔާސީ'].articles.shift();
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
@@ -222,7 +222,7 @@ block body
 						h4.homepage-category-heading
 							a(href="/category/gallery") ކޮލަމް
 						-if(categories_keys['ކޮލަމް'])
-							-var article = categories_keys['ކޮލަމް'].articles.pop();
+							-var article = categories_keys['ކޮލަމް'].articles.shift();
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
@@ -267,7 +267,7 @@ block body
 									a(href="/category/ކުޅިވަރު") ކުޅިވަރު
 							-if(categories_keys['ކުޅިވަރު'])
 								section.col-md-8
-									-var article = categories_keys['ކުޅިވަރު'].articles.pop();
+									-var article = categories_keys['ކުޅިވަރު'].articles.shift();
 									-if(article)
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
@@ -323,7 +323,7 @@ block body
 						h4.homepage-category-heading
 							a(href="/category/gallery") ރިޕޯޓު
 						-if(categories_keys['ރިޕޯޓު'])
-							-var article = categories_keys['ރިޕޯޓު'].articles.pop();
+							-var article = categories_keys['ރިޕޯޓު'].articles.shift();
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
@@ -353,7 +353,7 @@ block body
 									a(href="/category/ވިޔަފާރި") ވިޔަފާރި
 								-if(categories_keys['ވިޔަފާރި'])
 									section.col-md-8
-										-var article = categories_keys['ވިޔަފާރި'].articles.pop();
+										-var article = categories_keys['ވިޔަފާރި'].articles.shift();
 										-if(article)
 											a(href="/" + article.article_number).news-el.news-el-2
 												-if(article.image && article.image.file)
@@ -447,7 +447,7 @@ block body
 									a(href="/category/މުނިފޫހިފިލުވުން") މުނިފޫހިފިލުވުން
 							-if(categories_keys['މުނިފޫހިފިލުވުން'])
 								section.col-md-8
-									-var article = categories_keys['މުނިފޫހިފިލުވުން'].articles.pop();
+									-var article = categories_keys['މުނިފޫހިފިލުވުން'].articles.shift();
 									-if(article)
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
@@ -530,7 +530,7 @@ block body
 							h4.homepage-category-heading
 								a(href="")=category.category
 						section.col-md-4
-							-var article = category.articles.pop();
+							-var article = category.articles.shift();
 							-if(article)
 								a(href="/" + article.article_number).news-el.news-el-2
 									-if(article.image && article.image.file)
@@ -568,7 +568,7 @@ block body
 
 						-else
 							section.col-md-4
-								-var article = category.articles.pop();
+								-var article = category.articles.shift();
 								-if(article)
 									a(href="/" + article.article_number).news-el.news-el-2
 										-if(article.image && article.image.file)
