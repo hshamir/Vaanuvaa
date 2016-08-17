@@ -6,8 +6,6 @@ block body
 			var len = $("#second-col").height();
 			$("#first-col img, #third-col img").css("height", len+"px");
 		})
-	-var c1 = categories.splice(0,4);
-	-var c2 = categories;
 	style .glyphicon-camera{color:#cb3837} #second-col section:last-child{margin-bottom:0;}
 	section
 		section.container
@@ -90,7 +88,7 @@ block body
 										a(href="/category/ރާއްޖެ") ރާއްޖެ
 								section.col-md-8
 									-console.log(categories_keys)
-									-var article = categories_keys['ރާއްޖެ'].articles.pop();
+									-var article = categories_keys['ރާއްޖެ'].articles.shift();
 									-if(article)
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
@@ -170,7 +168,7 @@ block body
 									h4.homepage-category-heading
 										a(href="/category/ދުނިޔެ") ދުނިޔެ
 								section.col-md-8
-									-var article = categories_keys['ދުނިޔެ'].articles.pop();
+									-var article = categories_keys['ދުނިޔެ'].articles.shift();
 									-if(article)
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
@@ -199,7 +197,7 @@ block body
 						h4.homepage-category-heading
 							a(href="/category/ސިޔާސީ") ސިޔާސީ
 						-if(categories_keys['ސިޔާސީ'])
-							-var article = categories_keys['ސިޔާސީ'].articles.pop();
+							-each article in categories_keys['ސިޔާސީ'].articles
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
@@ -221,10 +219,30 @@ block body
 													-else
 														small=article.time_pretty
 					section.col-md-3
-						-if(typeof ads != 'undefined' && ads.homepage_top_left)
-							-var ad = ads.homepage_top_left && ads.homepage_top_left.length ? ads.homepage_top_left[Math.floor(Math.random()*ads.homepage_top_left.length)] : ads;
-							section
-								img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
+						h4.homepage-category-heading
+							a(href="/category/ކޮލަމް") ކޮލަމް
+						-if(categories_keys['ކޮލަމް'])
+							-each article in categories_keys['ކޮލަމް'].articles
+								section.news-el-4.col-md-12
+									a(href="/" + article.article_number)
+										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+											section.col-md-3(style='margin-right:0;padding-right:0;')
+												-if(article.image)
+													img.img-responsive(src=article.image.file.sizes.small)
+											section.col-md-9(style='padding:0px;margin:0px')
+												-if(article.entry_type == "Gallery")
+													span
+														span.glyphicon.glyphicon-camera
+														| &nbsp #{article.title}
+												-else
+													span=article.title
+												div(style='direction:ltr;font-family:sans-serif;text-align:right')
+													-if(article.live_event)
+														span.pull-right.label.label-success.label-live ވަގުތުން
+														small=article.time_pretty
+														small &nbsp;
+													-else
+														small=article.time_pretty
 				section.row
 					section.col-md-6
 						-if(typeof ads != 'undefined' && ads.below_dhuniye)
@@ -241,7 +259,7 @@ block body
 						-else
 							img(src='http://placehold.it/600x90').img-responsive
 				section.row.homepage-category
-					//kulhivaru, sihhathu, column
+					//kulhivaru, sihhathu, report
 					section.col-md-6
 						section.row
 							section.col-md-12
@@ -249,7 +267,7 @@ block body
 									a(href="/category/ކުޅިވަރު") ކުޅިވަރު
 							-if(categories_keys['ކުޅިވަރު'])
 								section.col-md-8
-									-var article = categories_keys['ކުޅިވަރު'].articles.pop();
+									-var article = categories_keys['ކުޅިވަރު'].articles.shift();
 									-if(article)
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
@@ -303,9 +321,9 @@ block body
 					
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/ކޮލަމް") ކޮލަމް
-						-if(categories_keys['ކޮލަމް'])
-							-var article = categories_keys['ކޮލަމް'].articles.pop();
+							a(href="/category/ރިޕޯޓު") ރިޕޯޓު
+						-if(categories_keys['ރިޕޯޓު'])
+							-each article in categories_keys['ރިޕޯޓު'].articles
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
@@ -335,7 +353,7 @@ block body
 									a(href="/category/ވިޔަފާރި") ވިޔަފާރި
 								-if(categories_keys['ވިޔަފާރި'])
 									section.col-md-8
-										-var article = categories_keys['ވިޔަފާރި'].articles.pop();
+										-var article = categories_keys['ވިޔަފާރި'].articles.shift();
 										-if(article)
 											a(href="/" + article.article_number).news-el.news-el-2
 												-if(article.image && article.image.file)
@@ -363,9 +381,9 @@ block body
 
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/ލައިފްސްޓައިލް") ލައިފްސްޓައިލް
-						-if(categories_keys['ލައިފްސްޓައިލް'])
-							-each article in categories_keys['ލައިފްސްޓައިލް'].articles
+							a(href="/category/ސައިންސާއި ޓެކްނޮލޮޖީ") ސައިންސާއި ޓެކްނޮލޮޖީ
+						-if(categories_keys['ސައިންސާއި ޓެކްނޮލޮޖީ'])
+							-each article in categories_keys['ސައިންސާއި ޓެކްނޮލޮޖީ'].articles
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
@@ -388,7 +406,7 @@ block body
 														small=article.time_pretty
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/ދީން") ދީން
+							a(href="/category/ދީނީ") ދީން
 						-if(categories_keys['ދީނީ'])
 							-each article in categories_keys['ދީނީ'].articles
 								section.news-el-4.col-md-12
@@ -421,7 +439,7 @@ block body
 							img(src='http://placehold.it/1250x200').img-responsive
 
 				section.row.homepage-category
-					//munifoohi filuvun, ad, vaahaka
+					//munifoohi filuvun, lifestyle, vaahaka
 					section.col-md-6
 						section.row
 							section.col-md-12
@@ -429,7 +447,7 @@ block body
 									a(href="/category/މުނިފޫހިފިލުވުން") މުނިފޫހިފިލުވުން
 							-if(categories_keys['މުނިފޫހިފިލުވުން'])
 								section.col-md-8
-									-var article = categories_keys['މުނިފޫހިފިލުވުން'].articles.pop();
+									-var article = categories_keys['މުނިފޫހިފިލުވުން'].articles.shift();
 									-if(article)
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
@@ -455,15 +473,35 @@ block body
 																-else
 																	small=article.time_pretty
 					section.col-md-3
-						-if(typeof ads != 'undefined' && ads.homepage_top_left)
-							-var ad = ads.homepage_top_left && ads.homepage_top_left.length ? ads.homepage_top_left[Math.floor(Math.random()*ads.homepage_top_left.length)] : ads;
-							section
-								img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
+						h4.homepage-category-heading
+							a(href="/category/ލައިފްސްޓައިލް") ލައިފްސްޓައިލް
+						-if(categories_keys['ލައިފްސްޓައިލް'])
+							-each article in categories_keys['ލައިފްސްޓައިލް'].articles
+								section.news-el-4.col-md-12
+									a(href="/" + article.article_number)
+										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
+											section.col-md-3(style='margin-right:0;padding-right:0;')
+												-if(article.image)
+													img.img-responsive(src=article.image.file.sizes.small)
+											section.col-md-9(style='padding:0px;margin:0px')
+												-if(article.entry_type == "Gallery")
+													span
+														span.glyphicon.glyphicon-camera
+														| &nbsp #{article.title}
+												-else
+													span=article.title
+												div(style='direction:ltr;font-family:sans-serif;text-align:right')
+													-if(article.live_event)
+														span.pull-right.label.label-success.label-live ވަގުތުން
+														small=article.time_pretty
+														small &nbsp;
+													-else
+														small=article.time_pretty
 					section.col-md-3
 						h4.homepage-category-heading
 							a(href="/category/ވާހަކަ") ވާހަކަ
 						-if(categories_keys['ވާހަކަ'])
-							-var article = categories_keys['ވާހަކަ'].articles.pop();
+							-each article in categories_keys['ވާހަކަ'].articles
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
@@ -492,7 +530,7 @@ block body
 							h4.homepage-category-heading
 								a(href="")=category.category
 						section.col-md-4
-							-var article = category.articles.pop();
+							-var article = category.articles.shift();
 							-if(article)
 								a(href="/" + article.article_number).news-el.news-el-2
 									-if(article.image && article.image.file)
@@ -530,7 +568,7 @@ block body
 
 						-else
 							section.col-md-4
-								-var article = category.articles.pop();
+								-var article = category.articles.shift();
 								-if(article)
 									a(href="/" + article.article_number).news-el.news-el-2
 										-if(article.image && article.image.file)
