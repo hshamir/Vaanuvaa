@@ -190,6 +190,9 @@ app.get('/', function(req,res,next){
 		res.render('home-dv', page);
 	})	
 });
+app.get('/zohoverify/verifyforzoho.html', function(req,res,next){			
+	res.end('1471152610828');
+});
 app.get('/privacy-fb', function(req,res,next){			
 	generatePage(function(err, page){
 		var privacy = [

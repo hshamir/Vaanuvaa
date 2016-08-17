@@ -117,7 +117,7 @@ block body
 																	small=article.time_pretty
 					section.col-md-3
 						h4.homepage-category-heading
-							a() އެންމެ މަޤުބޫލް
+							a(href="/category/gallery") އެންމެ މަޤުބޫލް
 						-each article in popular
 							section.news-el-4.col-md-12
 								a(href="/" + article.article_number)
@@ -197,7 +197,7 @@ block body
 																	small=article.time_pretty
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/ސިޔާސީ") ސިޔާސީ
+							a(href="/category/gallery") ސިޔާސީ
 						-if(categories_keys['ސިޔާސީ'])
 							-var article = categories_keys['ސިޔާސީ'].articles.pop();
 								section.news-el-4.col-md-12
@@ -277,7 +277,7 @@ block body
 
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/ސިއްހަތު") ސިއްހަތު
+							a(href="/category/gallery") ސިއްހަތު
 						-if(categories_keys['ސިއްހަތު'])
 							-each article in categories_keys['ސިއްހަތު'].articles
 								section.news-el-4.col-md-12
@@ -303,7 +303,7 @@ block body
 					
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/ކޮލަމް") ކޮލަމް
+							a(href="/category/gallery") ކޮލަމް
 						-if(categories_keys['ކޮލަމް'])
 							-var article = categories_keys['ކޮލަމް'].articles.pop();
 								section.news-el-4.col-md-12
@@ -388,7 +388,7 @@ block body
 														small=article.time_pretty
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/ދީން") ދީން
+							a(href="/category/gallery") ދީން
 						-if(categories_keys['ދީނީ'])
 							-each article in categories_keys['ދީނީ'].articles
 								section.news-el-4.col-md-12
@@ -461,7 +461,7 @@ block body
 								img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
 					section.col-md-3
 						h4.homepage-category-heading
-							a(href="/category/ވާހަކަ") ވާހަކަ
+							a(href="/category/gallery") ވާހަކަ
 						-if(categories_keys['ވާހަކަ'])
 							-var article = categories_keys['ވާހަކަ'].articles.pop();
 								section.news-el-4.col-md-12
