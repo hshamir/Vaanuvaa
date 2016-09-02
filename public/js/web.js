@@ -408,219 +408,26 @@ $(function(){
 		}
 		setTimeout(window.cinepix.filterSearch,0);
 	})
-	$("body").on('keyup', '#finder', function(){
-		var t = window.cinepix.searchTime;
-		if(t){
-			window.clearTimeout(window.cinepix.searchTime);
-		}
-		window.cinepix.searchTime = setTimeout(function(){
-			var val = $("#finder").val();
-			if(val == '' || val.length < 2){
-				$("#main-content").show();
-				$("#search-content").hide();
-				return;
-			}
-			if(window.cinepix.searchXHR){
-				window.cinepix.searchXHR.abort();
-			}
-			var search_params = {
-				query:val
-			}
-			$("#main-content").hide();
-			$("#search-content").show();
-			if(cinepix.searchSince){
-				search_params.since = cinepix.searchSince;
-			}
-			if(cinepix.searchType){
-				search_params.type = cinepix.searchType;
-			}
-			window.cinepix.searchXHR = $.getJSON('/media/search',search_params,function(res){
-				cinepix.searchSince = null;
-				if(!res.length && !search_params.since){
-					var html = jade.render('not-found');
-					$("#search-content").html(html);
-					return;
-				}
-				var items = _.map(res, function(m){
-					m.files = _.sortBy(m.files, function(a){
-						var score = parseFloat(a.season + '.' + a.episode);
-						return score;
-					});
-					var lastfile = _.last(m.files);
-					m.lastfile = lastfile;
-					return jade.render('item',{item:m, lastfile:lastfile});
-				});
-				if(search_params.since){
-					$("#search-content .listing").append(items.join(''));
-					if(res.length < 4){
-						$("#search-more").remove();
-					}
-				}else{
-					var more = res.length < 4 ?'':jade.render('search-more');
-					var html = '<ul class="dl-horizontal listing list-inline">'+items.join('')+'</ul>' + more;
-					$("#search-content").html(html);
-				}
-			});	
-		},300);
-	})
-	$("body").on('click', '.media a', function(e){
-		// e.preventDefault();
-		// e.stopPropagation();
-		// var media = $(this).parent();
-		//cinepix.displayMedia(media, "html");		
-	});
-
-	$("body").on("change", "#media-retrieve-data", function(){
-		var val = $(this).val();
-		$("#loader").show();
-		$.post('/media/retrieve-data',{url:val}, function(res){
-			$("#loader").hide();
-			for(prop in res){
-				$("#new-media-info-container input[media-prop='"+prop+"']").val(res[prop]);
-			}
-			$("#new-media-info-container textarea[media-prop='description']").html(res.description);
-			$("#media-image").attr('src',"/media/pipe?url=" + res.poster);
-		});
-	});
-	$("body").on("dragenter","#file-dropper", function(e){
-		e.stopPropagation();
-		e.preventDefault();
-		var self = $(this);
-		self.css('border', '2px solid #0B85A1');
-	});
-	$("body").on("dragend","#file-dropper", function(e){
-		e.stopPropagation();
-		e.preventDefault();
-		var self = $(this);
-		self.css('border', '2px solid red');
-	});
-	$("body").on("dragover","#file-dropper", function(e){
-		e.stopPropagation();
-		e.preventDefault();
-	});
-	
-	$("body").on("drop","#file-dropper", function(e){
-		e.stopPropagation();
-		e.preventDefault();
-		var self = $(this);
-		self.css('border', '2px solid transparent');
-		var files = e.originalEvent.dataTransfer.files;
-		for(var i=0; i<files.length; i++){
-			files_container.push(files[i]);
-		}
-		renderFiles();
-	});
-	$("body").on('click', '#media-type label', function(){
-		$("#media-file-type").hide();
-		$("#media-image").attr("src","");
-		files_container.length = 0;
-		window.cinepix.selectedMedia = {};
-		var self = $(this);
-		var type = self.text();
-		var template = self.attr('media-template');
-		var html = jade.render(template);
-		$("#file-container").html('');
-		files_container.length = 0;
-		$("#new-media-info-container").html(html);
-		if(type == "App"){
-			type = "application";
-		}
-		var engine = new Bloodhound({
-			datumTokenizer: function(d){
-				return Bloodhound.tokenizers.whitespace(d.title)
-			},
-			queryTokenizer: Bloodhound.tokenizers.whitespace,
-			prefetch:{
-				url:'/media/search?type='+type.toLowerCase()+'&fields=title&include_unpublished=1&limit=1000000',
-				ttl:1000,
-				filter:function(media){
-					return $.map(media, function (data) {
-						data.value = data.title;
-						return data;
-					});
-				}
-			}
-		});
-		engine.clearPrefetchCache();
-		engine.initialize();			
-		$(".search").typeahead(
-			{
-				hint: true,
-				highlight: true,
-				minLength: 1
-			},
-			{
-				displayKey: 'value',
-				source: engine.ttAdapter()
-			}
-		)
-		.on("typeahead:selected", function(datum, obj){
-			$("#loader").show();
-			$.getJSON('/media/' + obj._id, function(obj){
-				$("#loader").hide();
-				$("#media-file-type label:first").trigger('click');
-				window.cinepix.selectedMedia = obj;
-				$("[media-prop-type='text']").each(function(){
-					var self = $(this);
-					var prop = self.attr("media-prop");
-					self.val(obj[prop]);
-				});
-				$("[media-prop-type='group']").each(function(){
-					var self = $(this);
-					var prop = self.attr("media-prop");
-					self.find('label').each(function(){
-						if($(this).text().trim() == obj[prop]){
-							$(this).addClass('active');
-						}else{
-							$(this).removeClass('active');
-						}
-					});
-				});
-				$("#new-media-form-content").show();
-				$("#media-file-type").show();
-				var html = jade.render('file-details',{files:obj.files});
-				$("#display-uploaded-media").html(html);
-				var options = jade.render('newmedia-media-options',{id:obj._id});
-				$("#save-info").parent().append(options);
-			});
-		})	
-	})
-	$("body").on('click', '#media-file-type label', function(){
-		var self = $(this);
-		var template = self.attr('media-template');
-		var html = jade.render(template);
-		$("#media-file-type-container").html(html);
-	});
 
 
-	$('body').on('click', function (e) {
-		if (!$(e.target).parent().parent().hasClass('media') && $(e.target).parents('.popover.in').length === 0) { 
-			$(".media").popover('destroy').removeClass('selected');
-		}
-	});
-	$("body").on('click', '.remove-upload-file', function(){
-		var index = $(this).attr('data-index');
-		files_container.splice(index,1);
-		renderFiles();
-	});
-   $(window).scroll(function() {
-       if (($(window).height() + $(window).scrollTop()) >= $("#sub-contents").position().top) {
-           $('#cart-mobile').hide();
-       }else{
-           $('#cart-mobile').show();
-       }
-    });	
-   $("body").on('click', '#cart-mobile', function(){
-		$('html, body').animate({
-		    scrollTop: $("#sub-contents").offset().top
-		}, 200);   	
-   })
 });
 
-function renderFiles(){
-	$("#file-container").html('');
-	files_container.forEach(function(file, index){
-		var html = jade.render('file-container',{index:index, file:file.name||file.fileName, size:prettyBytes(file.size||file.fileSize)});
-		$("#file-container").append(html);
-	})
-}
+enquire.register("screen and (max-width:1000px)", {
+    unmatch:function(){
+    	$(function(){
+			var len = $("#second-col").height();
+			$("#first-col img, #third-col img").css("height", len+"px");   		
+    	})
+    },
+    match:function(){
+		$(function(){ 
+			$("#first-col img, #third-col img").css("height", "auto");
+			$("img").each(function(){ 
+				var src = $(this).attr('src');
+				src = src.replace('_sm','_md');
+				console.log(src);
+				$(this).attr("src",src) 
+			}) 
+		})
+    }
+});

@@ -1,11 +1,6 @@
 extends layout-dv
 
 block body
-	script.
-		$(function(){
-			var len = $("#second-col").height();
-			$("#first-col img, #third-col img").css("height", len+"px");
-		})
 	style .glyphicon-camera{color:#cb3837} #second-col section:last-child{margin-bottom:0;}
 	section
 		section.container
@@ -15,7 +10,7 @@ block body
 					-each article in breaking
 						a(href='/'+article.article_number).breaking-news.col-md-12
 							h5 ކުއްލި ޚަބަރު
-							h1=article.title
+							h1.mheading=article.title
 							-if(article.image)
 								img(src=article.image.file.sizes.large)
 							br
@@ -30,12 +25,12 @@ block body
 							-if(top.live_event)
 								span.label.label-success.label-live ވަގުތުން
 							img.img-responsive(src=top.image ? top.image.file.sizes.large: "")
-							h3(style='font-size:22px;line-height:35px;font-weight:normal;')=top.title
+							h3(style='font-size:22px;line-height:35px;font-weight:normal;').mheading=top.title
 				section.col-md-3#second-col
 					a(href="/" + homepage_main.second_main_article.article_number).news-el.news-el-2b
 						-if(homepage_main.second_main_article.live_event)
 							span.label.label-success.label-live ވަގުތުން
-						h3=homepage_main.second_main_article.title
+						h3.mheading=homepage_main.second_main_article.title
 						img.img-responsive(src=homepage_main.second_main_article.image ? homepage_main.second_main_article.image.file.sizes.mediumsmall: "")
 					-if(homepage_main.primary_article_list.length)
 						-each article in homepage_main.primary_article_list
@@ -48,10 +43,10 @@ block body
 										section.col-md-7(style='padding:0px;margin:0px')
 											-if(article.entry_type == "Gallery")
 												span
-													span.glyphicon.glyphicon-camera
+													span.glyphicon.glyphicon-camera.mheading
 													| &nbsp #{article.title}
 											-else
-												span=article.title
+												span.mheading=article.title
 											div(style='direction:ltr;font-family:sans-serif;text-align:right')
 												-if(article.live_event)
 													span.pull-right.label.label-success.label-live ވަގުތުން
@@ -87,13 +82,12 @@ block body
 									h4.homepage-category-heading
 										a(href="/category/ރާއްޖެ") ރާއްޖެ
 								section.col-md-8
-									-console.log(categories_keys)
 									-var article = categories_keys['ރާއްޖެ'].articles.shift();
 									-if(article)
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
 												img.img-responsive(src=article.image.file.sizes.medium)
-											h3=article.title
+											h3.mheading=article.title
 								section.col-md-4
 									-each article in categories_keys['ރާއްޖެ'].articles
 										-if(article && article.article_number)
@@ -102,10 +96,10 @@ block body
 														section.col-md-12(style='padding:0px;margin:0px')
 															-if(article.entry_type == "Gallery")
 																span
-																	span.glyphicon.glyphicon-camera
+																	span.mheading.glyphicon.glyphicon-camera
 																	| &nbsp #{article.title}
 															-else
-																span=article.title
+																span.mheading=article.title
 															div(style='direction:ltr;font-family:sans-serif;text-align:right')
 																-if(article.live_event)
 																	span.pull-right.label.label-success.label-live ވަގުތުން
@@ -126,10 +120,10 @@ block body
 										section.col-md-9(style='padding:0px;margin:0px')
 											-if(article.entry_type == "Gallery")
 												span
-													span.glyphicon.glyphicon-camera
+													span.glyphicon.glyphicon-camera.mheading
 													| &nbsp #{article.title}
 											-else
-												span=article.title
+												span.mheading=article.title
 											div(style='direction:ltr;font-family:sans-serif;text-align:right')
 												-if(article.live_event)
 													span.pull-right.label.label-success.label-live ވަގުތުން
@@ -148,10 +142,10 @@ block body
 											img.img-responsive(src=article.image.file.sizes.medium)
 											-if(article.entry_type == "Gallery")
 												span
-													span.glyphicon.glyphicon-camera
+													span.glyphicon.glyphicon-camera.mheading
 													| &nbsp #{article.title}
 											-else
-												span=article.title
+												span.mheading=article.title
 											div(style='direction:ltr;font-family:sans-serif;text-align:right')
 												-if(article.live_event)
 													span.pull-right.label.label-success.label-live ވަގުތުން
@@ -173,7 +167,7 @@ block body
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
 												img.img-responsive(src=article.image.file.sizes.medium)
-											h3=article.title
+											h3.mheading=article.title
 								section.col-md-4
 									-each article in categories_keys['ދުނިޔެ'].articles
 										-if(article && article.article_number)
@@ -182,10 +176,10 @@ block body
 														section.col-md-12(style='padding:0px;margin:0px')
 															-if(article.entry_type == "Gallery")
 																span
-																	span.glyphicon.glyphicon-camera
+																	span.glyphicon.glyphicon-camera.mheading
 																	| &nbsp #{article.title}
 															-else
-																span=article.title
+																span.mheading=article.title
 															div(style='direction:ltr;font-family:sans-serif;text-align:right')
 																-if(article.live_event)
 																	span.pull-right.label.label-success.label-live ވަގުތުން
@@ -201,16 +195,16 @@ block body
 								section.news-el-4.col-md-12
 									a(href="/" + article.article_number)
 										section.row(style='padding:5px;background:white;border-bottom:solid 1px #f0f0f0;')
-											section.col-md-3(style='margin-right:0;padding-right:0;')
+											section.col-md-3.col-xs-12(style='margin-right:0;padding-right:0;')
 												-if(article.image)
 													img.img-responsive(src=article.image.file.sizes.small)
-											section.col-md-9(style='padding:0px;margin:0px')
+											section.col-md-9.col-xs-12(style='padding:0px;margin:0px')
 												-if(article.entry_type == "Gallery")
 													span
-														span.glyphicon.glyphicon-camera
+														span.glyphicon.glyphicon-camera.mheading
 														| &nbsp #{article.title}
 												-else
-													span=article.title
+													span.mheading=article.title
 												div(style='direction:ltr;font-family:sans-serif;text-align:right')
 													-if(article.live_event)
 														span.pull-right.label.label-success.label-live ވަގުތުން
@@ -232,10 +226,10 @@ block body
 											section.col-md-9(style='padding:0px;margin:0px')
 												-if(article.entry_type == "Gallery")
 													span
-														span.glyphicon.glyphicon-camera
+														span.glyphicon.glyphicon-camera.mheading
 														| &nbsp #{article.title}
 												-else
-													span=article.title
+													span.mheading=article.title
 												div(style='direction:ltr;font-family:sans-serif;text-align:right')
 													-if(article.live_event)
 														span.pull-right.label.label-success.label-live ވަގުތުން
@@ -272,7 +266,7 @@ block body
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
 												img.img-responsive(src=article.image.file.sizes.medium)
-											h3=article.title
+											h3.mheading=article.title
 								section.col-md-4
 									-each article in categories_keys['ކުޅިވަރު'].articles
 										-if(article && article.article_number)
@@ -281,10 +275,10 @@ block body
 														section.col-md-12(style='padding:0px;margin:0px')
 															-if(article.entry_type == "Gallery")
 																span
-																	span.glyphicon.glyphicon-camera
+																	span.glyphicon.glyphicon-camera.mheading
 																	| &nbsp #{article.title}
 															-else
-																span=article.title
+																span.mheading=article.title
 															div(style='direction:ltr;font-family:sans-serif;text-align:right')
 																-if(article.live_event)
 																	span.pull-right.label.label-success.label-live ވަގުތުން
@@ -307,10 +301,10 @@ block body
 											section.col-md-9(style='padding:0px;margin:0px')
 												-if(article.entry_type == "Gallery")
 													span
-														span.glyphicon.glyphicon-camera
+														span.glyphicon.glyphicon-camera.mheading
 														| &nbsp #{article.title}
 												-else
-													span=article.title
+													span.mheading=article.title
 												div(style='direction:ltr;font-family:sans-serif;text-align:right')
 													-if(article.live_event)
 														span.pull-right.label.label-success.label-live ވަގުތުން
@@ -333,10 +327,10 @@ block body
 											section.col-md-9(style='padding:0px;margin:0px')
 												-if(article.entry_type == "Gallery")
 													span
-														span.glyphicon.glyphicon-camera
+														span.glyphicon.glyphicon-camera.mheading
 														| &nbsp #{article.title}
 												-else
-													span=article.title
+													span.mheading=article.title
 												div(style='direction:ltr;font-family:sans-serif;text-align:right')
 													-if(article.live_event)
 														span.pull-right.label.label-success.label-live ވަގުތުން
@@ -358,7 +352,7 @@ block body
 											a(href="/" + article.article_number).news-el.news-el-2
 												-if(article.image && article.image.file)
 													img.img-responsive(src=article.image.file.sizes.medium)
-												h3=article.title
+												h3.mheading=article.title
 									section.col-md-4
 										-each article in categories_keys['ވިޔަފާރި'].articles
 											-if(article && article.article_number)
@@ -367,10 +361,10 @@ block body
 															section.col-md-12(style='padding:0px;margin:0px')
 																-if(article.entry_type == "Gallery")
 																	span
-																		span.glyphicon.glyphicon-camera
+																		span.glyphicon.glyphicon-camera.mheading
 																		| &nbsp #{article.title}
 																-else
-																	span=article.title
+																	span.mheading=article.title
 																div(style='direction:ltr;font-family:sans-serif;text-align:right')
 																	-if(article.live_event)
 																		span.pull-right.label.label-success.label-live ވަގުތުން
@@ -393,10 +387,10 @@ block body
 											section.col-md-9(style='padding:0px;margin:0px')
 												-if(article.entry_type == "Gallery")
 													span
-														span.glyphicon.glyphicon-camera
+														span.glyphicon.glyphicon-camera.mheading
 														| &nbsp #{article.title}
 												-else
-													span=article.title
+													span.mheading=article.title
 												div(style='direction:ltr;font-family:sans-serif;text-align:right')
 													-if(article.live_event)
 														span.pull-right.label.label-success.label-live ވަގުތުން
@@ -418,10 +412,10 @@ block body
 											section.col-md-9(style='padding:0px;margin:0px')
 												-if(article.entry_type == "Gallery")
 													span
-														span.glyphicon.glyphicon-camera
+														span.glyphicon.glyphicon-camera.mheading
 														| &nbsp #{article.title}
 												-else
-													span=article.title
+													span.mheading=article.title
 												div(style='direction:ltr;font-family:sans-serif;text-align:right')
 													-if(article.live_event)
 														span.pull-right.label.label-success.label-live ވަގުތުން
@@ -452,7 +446,7 @@ block body
 										a(href="/" + article.article_number).news-el.news-el-2
 											-if(article.image && article.image.file)
 												img.img-responsive(src=article.image.file.sizes.medium)
-											h3=article.title
+											h3.mheading=article.title
 								section.col-md-4
 									-each article in categories_keys['މުނިފޫހިފިލުވުން'].articles
 										-if(article && article.article_number)
@@ -461,10 +455,10 @@ block body
 														section.col-md-12(style='padding:0px;margin:0px')
 															-if(article.entry_type == "Gallery")
 																span
-																	span.glyphicon.glyphicon-camera
+																	span.glyphicon.glyphicon-camera.mheading
 																	| &nbsp #{article.title}
 															-else
-																span=article.title
+																span.mheading=article.title
 															div(style='direction:ltr;font-family:sans-serif;text-align:right')
 																-if(article.live_event)
 																	span.pull-right.label.label-success.label-live ވަގުތުން
@@ -486,10 +480,10 @@ block body
 											section.col-md-9(style='padding:0px;margin:0px')
 												-if(article.entry_type == "Gallery")
 													span
-														span.glyphicon.glyphicon-camera
+														span.glyphicon.glyphicon-camera.mheading
 														| &nbsp #{article.title}
 												-else
-													span=article.title
+													span.mheading=article.title
 												div(style='direction:ltr;font-family:sans-serif;text-align:right')
 													-if(article.live_event)
 														span.pull-right.label.label-success.label-live ވަގުތުން
@@ -511,10 +505,10 @@ block body
 											section.col-md-9(style='padding:0px;margin:0px')
 												-if(article.entry_type == "Gallery")
 													span
-														span.glyphicon.glyphicon-camera
+														span.glyphicon.glyphicon-camera.mheading
 														| &nbsp #{article.title}
 												-else
-													span=article.title
+													span.mheading=article.title
 												div(style='direction:ltr;font-family:sans-serif;text-align:right')
 													-if(article.live_event)
 														span.pull-right.label.label-success.label-live ވަގުތުން
