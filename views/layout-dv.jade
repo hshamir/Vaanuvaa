@@ -33,7 +33,7 @@ html
 			@media (min-width: 1000px) { .container{width:1245px !important} } 
 			#raajje ul{display:none; position:absolute;} #raajje:hover ul{display:block;}
 		script.
-			$(function(){ $("img").each(function(){ $(this).attr("src","http://vaanuvaa.mv"+$(this).attr('src')) }) })
+			//$(function(){ $("img").each(function(){ $(this).attr("src","http://vaanuvaa.mv"+$(this).attr('src')) }) })
 		if(locals && locals._user)
 			script window.dcom.user = '#{locals._user.username}';
 	body

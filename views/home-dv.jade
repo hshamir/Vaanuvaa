@@ -107,6 +107,15 @@ block body
 																	small &nbsp;
 																-else
 																	small=article.time_pretty
+							section.row
+								section.col-md-12
+									-if(typeof ads != 'undefined' && ads.below_raajje)
+										-var ad = ads.below_raajje && ads.below_raajje.length ? ads.below_raajje[Math.floor(Math.random()*ads.below_raajje.length)] : ads;
+										section
+											img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
+									-else
+										img(src='http://placehold.it/600x200').img-responsive
+
 					section.col-md-3
 						h4.homepage-category-heading
 							a() އެންމެ މަޤުބޫލް
