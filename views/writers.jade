@@ -3,13 +3,13 @@ extends layout-manage
 block content
 	h1.vod-heading Articles
 	section.btn-group(data-toggle="buttons")#switch
-		button.btn.command.btn-info(type='button', data-cmd-route='/article/list?type=unpublished', data-cmd-method="get", data-cmd-template="news-admin-item", data-cmd-display='#articles')
+		button.btn.articles-ret.btn-info(type='button', data-cmd-route='/article/list?type=unpublished', data-cmd-method="get", data-cmd-template="news-admin-item", data-cmd-display='#articles')
 			input(type='radio', name='top-downloads-type')
 			| To Be Approved
-		button.btn.command.btn-info(type='button', data-cmd-route='/article/list', data-cmd-method="get", data-cmd-template="news-admin-item", data-cmd-display='#articles')
+		button.btn.articles-ret.btn-info(type='button', data-cmd-route='/article/list', data-cmd-method="get", data-cmd-template="news-admin-item", data-cmd-display='#articles')
 			input(type='radio', name='top-downloads-type')
 			| Recently Published
-		button.btn.command.btn-info(type='button', data-cmd-route='/article/list?type=live', data-cmd-method="get", data-cmd-template="news-admin-item", data-cmd-display='#articles')
+		button.btn.articles-ret.btn-info(type='button', data-cmd-route='/article/list?type=live', data-cmd-method="get", data-cmd-template="news-admin-item", data-cmd-display='#articles')
 			input(type='radio', name='top-downloads-type')
 			| Live Events
 		button.btn.command.btn-info(type='button', data-cmd-route='/article/unapproved-comments', data-cmd-method="get", data-cmd-template="comments-approve-item", data-cmd-display='#articles')
@@ -18,8 +18,39 @@ block content
 	a(href='/manage/write').btn.btn-danger.pull-right New Article
 	section.row
 		section.col-md-12#articles
+		section.col-md-12#controls
 	script.
 		$(function(){
+			function load(url, template, append){
+				$("#controls").html('');
+				$.getJSON(url, function(res){
+					var html = res.map(function(art) {
+						return jade.render(template, {item:art});
+					}).join('');
+					if(append){
+						$("#articles").append(html);
+					}else{
+						$("#articles").html(html);
+					}
+					if(res.length == 30){
+						var since = _.last(res);
+						var html = "<span class='btn btn-info load-more' data-since='"+since._id+"'>more...</span>";
+						$("#controls").html(html);
+					}
+				});				
+			}
+			$("body").on('click','#switch .btn', function(){
+				var url = $(this).attr('data-cmd-route');
+				var template = $(this).attr('data-cmd-template');
+				load(url, template, false);
+			});
+			$("body").on('click','.load-more', function(){
+				$("#controls").html('');
+				var url = $('#switch .btn.active').attr('data-cmd-route');
+				var template = $('#switch .btn.active').attr('data-cmd-template');
+				url = url + "?since=" + $(this).attr('data-since');
+				load(url, template, true);
+			});
 			$("body").on('click','.approve-comment', function(){
 				var id = $(this).attr('data-id');
 				var self = $(this);

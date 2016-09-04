@@ -51,6 +51,9 @@ router.get('/list', authenticate, function(req, res){
 	if(type == "live"){
 		q.live_event = true;
 	}
+	if(req.query.since){
+		q._id =  {$lt:req.query.since}
+	}
 	Article
 	.find(q, {revisions:0})
 	.lean()
