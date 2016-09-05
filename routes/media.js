@@ -38,6 +38,9 @@ var authenticateAdmin = require('./authenticate').authenticateAdmin;
 
 var router = express.Router();
 
+router.get('/', authenticate, function(req, res,next) {
+	res.render('media');
+})
 router.get('/find', authenticate, function(req, res,next) {
 	var type = req.query.type;
 	var query = req.query.query;

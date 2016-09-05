@@ -1,0 +1,28 @@
+extends layout-manage
+
+block content
+	style.
+		#albums > section{
+			background:#fff;
+			margin-bottom:10px;
+		}
+	h1.vod-heading Media
+	section.row
+		section.col-md-3
+			section#search-album.form-group
+				input(type='text', placeholder='Search albums...').form-control
+			section.row#albums
+				section.col-md-12
+					h4 Opening of Flower Bridge
+					h5
+						small 16/6/1980 | 15 items
+				section.col-md-12
+					h4 Opening of Flower Bridge
+					h5
+						small 16/6/1980 | 10 items
+		section.col-md-3#content
+		section.col-md-6#display
+	script.
+		$(function(){
+
+		})
