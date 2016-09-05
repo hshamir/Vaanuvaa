@@ -1,0 +1,44 @@
+-var tid = ~~(Math.random() * 100000000);
+-var modal_id = "modal_" + tid;
+-var modal_form_id = "modal_" + tid;
+div.modal.fade.user-edit-settings-modal(tabindex="-1", role="dialog", aria-hidden="true", id=modal_id)
+	div.modal-dialog.modal-md
+		div.modal-content
+			div.modal-header
+				button(type='button', data-dismiss='modal').close
+					span(aria-hidden='true') &times;
+					span.sr-only close
+				h4.modal-title Change status
+			div.modal-body
+				form.form
+					section.form-group
+						label Status
+						section
+							div.btn-group(data-toggle="buttons").status
+								span(class='btn btn-info' + (typeof status != "undefined" && status == "Active" ? " active":""))
+									input(type='radio', name='Lease')
+									| Active
+								span(class='btn btn-info' + (typeof status != "undefined" && status == "Blacklisted" ? " active":""))
+									input(type='radio', name='Sale')
+									| Blacklisted
+					section.form-group
+						label Details
+						section
+							textarea.form-control(name='details', placeholder='Details...').details
+					section.form-group
+						button(type='button', data-customer=customer).btn.change-status-confirm Update status
+script.
+	$(function(){
+		$("##{modal_id} .time").datetimepicker();
+		$("##{modal_id} ").modal('show');
+		$('body').on('click', '##{modal_id} .change-status-confirm', function(){
+			var data = $("##{modal_id} form").serializeJSON();
+			data.status = $("##{modal_id} .status .btn.active").text();
+			vod.handleCommand({
+				route:"/customer/#{_id}/change-status",
+				method:"post",
+				payload:data
+			});
+
+		})
+	});

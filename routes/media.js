@@ -30,7 +30,7 @@ require('../lib/models/Media.js');
 
 var Media = mongoose.models.Media;
 var User = mongoose.models.User; 
-var Ad = mongoose.models.Ad; 
+var Album = mongoose.models.Album; 
 var renderPage = require('../lib/render_page').renderPage;
 
 var authenticate = require('./authenticate').authenticate;
@@ -40,6 +40,61 @@ var router = express.Router();
 
 router.get('/', authenticate, function(req, res,next) {
 	res.render('media');
+})
+router.get('/albums', authenticate, function(req, res,next) {
+	var name = req.query.name;
+	var limit = 20;
+	Album
+	.find({name:new RegExp(name,'i')})
+	.lean()
+	.exec(function(err, albums){
+		albums = albums.map(function(album){
+			album.time_long = moment(album.time).format("DD/MM/YYYY");
+			return album;
+		})
+		res.json(albums);
+	})
+})
+router.get('/album/:id', authenticate, function(req, res,next) {
+	var id = req.params.id;
+	Media
+	.find({album:id})
+	.lean()
+	.exec(function(err, media){
+		res.json(media);
+	})
+})
+router.get('/add-media', authenticate, function(req, res,next) {
+	var a = jade.renderFile('views/evals/add-media-dialog.jade');
+	res.json({html:a});		
+})
+router.get('/new-album', authenticate, function(req, res,next) {
+	var a = jade.renderFile('views/evals/album-new.jade');
+	res.json({html:a});		
+})
+router.post('/new-album', authenticate, function(req, res,next) {
+	async.waterfall([
+		function validate(fn){
+			if(!req.body.name || req.body.name == ""){
+				return fn("Invalid name");
+			}
+			fn();
+		},
+		function save(fn){
+			new Album(req.body)
+			.save(function(err, d){
+				fn(err);
+			})
+		}
+	], function(err){
+		var html='';
+		if(err){
+			html = jade.renderFile('views/evals/error.jade', {error:err});
+		}else{
+			html = '<script>$(".modal").modal("hide")</script>';
+		}
+		res.json({html:html});
+	})		
 })
 router.get('/find', authenticate, function(req, res,next) {
 	var type = req.query.type;

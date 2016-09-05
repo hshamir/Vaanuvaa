@@ -1,0 +1,36 @@
+-var tid = ~~(Math.random() * 100000000);
+-var modal_id = "modal_" + tid;
+-var modal_form_id = "modal_" + tid;
+div.modal.fade.user-edit-settings-modal(tabindex="-1", role="dialog", aria-hidden="true", id=modal_id)
+	div.modal-dialog.modal-md
+		div.modal-content
+			div.modal-header
+				button(type='button', data-dismiss='modal').close
+					span(aria-hidden='true') &times;
+					span.sr-only close
+				h4.modal-title Create a new album
+			div.modal-body
+				form.form
+					section.form-group
+						label Album name
+						section
+							input(type='text', placeholder='album name', name='name').form-control.name
+					section.form-group
+						label Description
+						section
+							textarea.form-control(name='description', placeholder='Description...').description
+					section.form-group
+						button(type='button').btn.add-album Create
+script.
+	$(function(){
+		$("##{modal_id} ").modal('show');
+		$('body').on('click', '##{modal_id} .add-album', function(){
+			var data = $("##{modal_id} form").serializeJSON();
+			cinepix.handleCommand({
+				route:"/media/new-album",
+				method:"post",
+				payload:data
+			});
+
+		})
+	});

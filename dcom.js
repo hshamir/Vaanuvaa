@@ -47,6 +47,7 @@ mongoose.connect('mongodb://'+host+':27017/' + conf.db,{server:{poolSize:5}});
 require('./lib/models/Article')
 require('./lib/models/Media')
 require('./lib/models/User')
+require('./lib/models/Album')
 require('./lib/models/Log')
 require('./lib/models/UserGroup')
 require('./lib/models/Ad')
@@ -71,6 +72,7 @@ var User = mongoose.models.User;
 var UserGroup = mongoose.models.UserGroup;
 var Media = mongoose.models.Media;
 var Log = mongoose.models.Log;
+var Album = mongoose.models.Log;
 
 
 var rss = require('./lib/util').rss;
