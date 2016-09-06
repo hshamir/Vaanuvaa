@@ -25,27 +25,22 @@ script.
 		$('body').on('click', '##{modal_id} .upload', function(){
 			var files = $('##{modal_id} .file-select');
 			files = files.get(0).files;
+			var form = new FormData();
 			if(!files.length){
 				return alert('no file selected');
 			}
-			var req =  superagent.post('/media/image');
-			req.set("Content-Type", "application/octet-stream");
-			for(var i=0;i<files.length;i++){
-				var f = files[i];
-				req.send(f);
+			for(var i in files){
+				if(files.hasOwnProperty(i) && files[i] instanceof File){
+					form.append(i, files[i]);
+				}
 			}
-			req.end(function(res){
-				console.log(res);
+			var req =  superagent.post('/media/image?type=bulk&album=#{album}')
+			.send(form)
+			//.set('Content-Type', 'application/json')
+			.end(function(err, res){
+				$(".modal").modal('hide');
 			})
 
 		})
-		$('body').on('click', '##{modal_id} .add-album', function(){
-			var data = $("##{modal_id} form").serializeJSON();
-			cinepix.handleCommand({
-				route:"/media/new-album?type=bulk",
-				method:"post",
-				payload:data
-			});
 
-		})
 	});

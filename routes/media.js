@@ -65,7 +65,7 @@ router.get('/album/:id', authenticate, function(req, res,next) {
 	})
 })
 router.get('/add-media', authenticate, function(req, res,next) {
-	var a = jade.renderFile('views/evals/add-media-dialog.jade');
+	var a = jade.renderFile('views/evals/add-media-dialog.jade',{album:req.query.album});
 	res.json({html:a});		
 })
 router.get('/new-album', authenticate, function(req, res,next) {
