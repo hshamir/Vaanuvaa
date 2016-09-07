@@ -9,6 +9,9 @@ block content
 			margin-bottom:10px;
 			cursor:pointer;
 		}
+		.album-item.active{
+			background: aquamarine;
+		}
 		.media-item >section{
 			cursor:pointer;
 			padding:5px;
@@ -31,6 +34,17 @@ block content
 		var album_req;
 		var album_items_req;
 		$(function(){
+			$("body").on('click','#save-info', function(){
+				var id = $(this).attr('data-id');
+				var data = $("#media-info-form").serializeJSON();
+				$.post('/media/'+id+'/info',data, function(res){
+					if(res.error){
+						return alert(res.error);
+					}
+					var data = encodeURIComponent(JSON.stringify(res));
+					$("#"+id).attr('data-media',data);
+				});
+			});
 			$("body").on('click','.display-media', function(){
 				var media = $(this).attr('data-media');
 				media = JSON.parse(decodeURIComponent(media));
@@ -45,6 +59,9 @@ block content
 			});
 			$("body").on('click','.album-item', function(){
 				var id = $(this).attr('data-id');
+				$('.album-item').removeClass('active');
+				$(this).addClass('active');
+				$("#display").html('');
 				$("#content").html(jade.render("album-items",{id:id}));
 				if(album_items_req){
 					album_items_req.abort();

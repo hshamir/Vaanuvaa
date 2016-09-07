@@ -126,5 +126,24 @@ router.post('/image', authenticate, function(req, res,next) {
 		res.json(media);
 	});
 });
+router.post('/:id/info', authenticate, function(req, res,next) {
+	var id = req.params.id;
+	req.body.tags = req.body.tags.split(",");
+	req.body.tags = _.compact(req.body.tags);
+	req.body.tags = req.body.tags.map(function(t){
+		return t.trim();
+	})
+	Media.update({_id:id},{$set:req.body}, function(err, c){
+		if(err){
+			return res.json({error:err});
+		}
+		Media
+		.findOne({_id:id})
+		.lean()
+		.exec(function(err, m){
+			res.json(m);
+		})
+	})
+});
 
 module.exports = router;
