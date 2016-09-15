@@ -128,7 +128,9 @@ router.post('/:id/remove', authenticate, function(req, res){
 			fn();
 		},
 		function remove(fn){
-			Article.remove({article_number:article_number}, fn)
+			Article.remove({article_number:article_number}, function(err){
+				fn();
+			})
 		},		
 		function asyncCache(fn){		
 			cache();		

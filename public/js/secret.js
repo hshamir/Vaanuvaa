@@ -18,10 +18,10 @@ window.addBlock = function addBlock(type, after, data){
 				el.find("input").val();
 				break;
 			case "youtube":
-				el.find("input").val();
-				if(obj.content.indexOf('embed') == -1){
-					obj.content.replace("watch?v=", "embed/");
+				if(data.content.indexOf('embed') == -1){
+					data.content.replace("embed/","watch?v=");
 				}					
+				el.find("input").val(data.content);
 				break;
 		}
 		el.attr("data-time", data.time);
