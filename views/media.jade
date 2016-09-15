@@ -9,6 +9,9 @@ block content
 			margin-bottom:10px;
 			cursor:pointer;
 		}
+		.album-item.active{
+			background: aquamarine;
+		}
 		.media-item >section{
 			cursor:pointer;
 			padding:5px;
@@ -26,17 +29,28 @@ block content
 					span.btn.btn-info.btn-block.command(data-cmd-route="/media/new-album") Add album
 		section.col-md-3#content
 		section.col-md-6#display
-			section.row
-				section.col-md-12
-					section#media-display
-						img(src='https://placeholdit.imgix.net/~text?txtsize=500&txt=500x500&w=500&h=500').img-responsive
-				section.col-md-12
-					span.btn.btn-danger.pull-right delete
 
 	script.
 		var album_req;
 		var album_items_req;
 		$(function(){
+			$("body").on('click','#save-info', function(){
+				var id = $(this).attr('data-id');
+				var data = $("#media-info-form").serializeJSON();
+				$.post('/media/'+id+'/info',data, function(res){
+					if(res.error){
+						return alert(res.error);
+					}
+					var data = encodeURIComponent(JSON.stringify(res));
+					$("#"+id).attr('data-media',data);
+				});
+			});
+			$("body").on('click','.display-media', function(){
+				var media = $(this).attr('data-media');
+				media = JSON.parse(decodeURIComponent(media));
+				var html = jade.render("display-media",{media:media});
+				$("#display").html(html);
+			})
 			$("body").on('click','#add-media', function(){
 				var id = $(this).attr('data-id');
 				cinepix.handleCommand({
@@ -45,13 +59,17 @@ block content
 			});
 			$("body").on('click','.album-item', function(){
 				var id = $(this).attr('data-id');
+				$('.album-item').removeClass('active');
+				$(this).addClass('active');
+				$("#display").html('');
 				$("#content").html(jade.render("album-items",{id:id}));
 				if(album_items_req){
 					album_items_req.abort();
 				}
 				$.getJSON('/media/album/'+id, function(res){
 					var html = res.map(function(media){
-						return jade.render('media-item', media);
+						console.log(media);
+						return jade.render('media-item', {media:media});
 					}).join('');
 					if(!res.length){
 						html = "<h3>No item found in this album</h3>";

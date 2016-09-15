@@ -65,7 +65,7 @@ router.get('/album/:id', authenticate, function(req, res,next) {
 	})
 })
 router.get('/add-media', authenticate, function(req, res,next) {
-	var a = jade.renderFile('views/evals/add-media-dialog.jade');
+	var a = jade.renderFile('views/evals/add-media-dialog.jade',{album:req.query.album});
 	res.json({html:a});		
 })
 router.get('/new-album', authenticate, function(req, res,next) {
@@ -125,6 +125,25 @@ router.post('/image', authenticate, function(req, res,next) {
 		}
 		res.json(media);
 	});
+});
+router.post('/:id/info', authenticate, function(req, res,next) {
+	var id = req.params.id;
+	req.body.tags = req.body.tags.split(",");
+	req.body.tags = _.compact(req.body.tags);
+	req.body.tags = req.body.tags.map(function(t){
+		return t.trim();
+	})
+	Media.update({_id:id},{$set:req.body}, function(err, c){
+		if(err){
+			return res.json({error:err});
+		}
+		Media
+		.findOne({_id:id})
+		.lean()
+		.exec(function(err, m){
+			res.json(m);
+		})
+	})
 });
 
 module.exports = router;

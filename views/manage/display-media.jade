@@ -1,0 +1,28 @@
+section.row
+	section.col-md-12
+		section
+			code=media._id
+		section#media-display
+			img(src=media.file.sizes.large).img-responsive
+	section.col-md-12
+		span.btn.btn-danger.pull-right.btn-xs delete
+		form.form#media-info-form
+			section.form-group
+				label Short Description Dhivehi (optional)
+				-console.log(media);
+				textarea.form-control.thaana(name='description_dv')=(typeof media.description_dv != "undefined" ? media.description_dv : "")
+			section.form-group
+				label Short Description English (optional)
+				textarea.form-control(name='description_en')=(typeof media.description_en != "undefined" ? media.description_en : "")
+			section.form-group
+				label Tags (seperated by comma)
+				p
+					small Ex: president, #elections2018, raees launch
+				textarea.form-control(name='tags')=(typeof media.tags != "undefined" ? media.tags.join(',') : "")
+			section.form-group
+				label Source or Photographer (optional)
+				input(type='text', name='source', value=(typeof media.source != "undefined" ? media.source : "")).form-control
+			section.form-group
+				span.save.btn.btn-info(data-id=media._id)#save-info Save
+	script.
+		$('.thaana').thaana();
