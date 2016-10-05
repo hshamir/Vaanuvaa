@@ -352,6 +352,9 @@ app.get('/:id', function(req, res, next){
 			.findOne({article_number:id},{revisions:0})
 			.lean()
 			.exec(function(err, doc){
+				if(err){
+					return fn(err);
+				}
 				mapDoc(doc, fn);
 			});
 		},
@@ -369,7 +372,11 @@ app.get('/:id', function(req, res, next){
 		}
 	}, function(err, p){
 		if(err){
-			return res.json({error:err});
+			if(req.xhr){
+				return res.json({error:err});
+			}else{
+				return res.redirect('/');
+			}
 		}
 		var d = p.article;
 		d.ads = p.ads;
