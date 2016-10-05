@@ -342,7 +342,7 @@ app.get('/live', function(req, res, next){
 		d.latest_all_articles = p.latest_all_articles;
 		d.channel = req.query.s || "dhitv";
 		res.render('live',d);
-	})
+	});
 });
 app.get('/:id', function(req, res, next){
 	var id = req.params.id;
@@ -352,7 +352,7 @@ app.get('/:id', function(req, res, next){
 			.findOne({article_number:id},{revisions:0})
 			.lean()
 			.exec(function(err, doc){
-				if(err){
+				if(err || !doc){
 					return fn(err);
 				}
 				mapDoc(doc, fn);
