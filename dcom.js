@@ -371,7 +371,7 @@ app.get('/:id', function(req, res, next){
 			})
 		}
 	}, function(err, p){
-		if(err){
+		if(err || !p){
 			if(req.xhr){
 				return res.json({error:err});
 			}else{
