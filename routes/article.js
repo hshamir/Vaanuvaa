@@ -237,7 +237,7 @@ router.post('/:id/toggle-publish', authenticate, function(req,res){
 			share(d.article_number);
 		}
 		d.social_media_posted = true;
-		Article.update({article_number:req.params.id},{$set:{published:_newstatus, social_media_posted:true}}, function(err, c){
+		Article.update({article_number:req.params.id},{$set:{published:_newstatus, social_media_posted:true, time:new Date()}}, function(err, c){
 			res.json({new_status:newstatus});
 			cache();
 		})
