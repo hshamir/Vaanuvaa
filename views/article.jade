@@ -124,14 +124,25 @@ block body
 											span=item.title
 											div(style='direction:ltr;font-family:sans-serif;text-align:right')
 												small=item.time_pretty
-				section.btn-group(data-toggle="buttons",style='margin-bottom:15px')
-					span.btn.btn-link އެންމެ ހިނގާ
+				section.btn-group(data-toggle="buttons",style='margin-bottom:15px').toggle-news-list
+					span.btn.btn-link(type='latest') ފަހުގެ ޚަބަރު
 						input(type='radio', name="filter-type")
-					span.btn.btn-link.active ފަހުގެ ޚަބަރު
+					span.btn.btn-link(type='popular') އެންމެ ހިނގާ
 						input(type='radio', name="filter-type")
 				-if(latest_all_articles.length)
 					-each article in latest_all_articles
-						section.row.news-el-4
+						section.row.news-el-4(type='latest')
+							a(href="/" + article.article_number)
+								-if(article.image && article.image.file)
+									section.col-xs-3
+										img.img-responsive(src=article.image.file.sizes.small)
+								section.col-xs-9(style='padding:0px;margin:0px')
+									span(style='font-size:16px')=article.title
+									div(style='direction:ltr;font-family:sans-serif;text-align:right')
+										small=article.time_pretty
+				-if(popular_week.length)
+					-each article in popular_week
+						section.row.news-el-4(type='popular',style='display:none')
 							a(href="/" + article.article_number)
 								-if(article.image && article.image.file)
 									section.col-xs-3

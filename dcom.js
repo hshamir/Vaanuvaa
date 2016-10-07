@@ -359,6 +359,16 @@ app.get('/:id', function(req, res, next){
 			});
 		},
 		ads:getAds,
+		popular_week:function(fn){
+			Article
+			.find({published:true, time:{$gt:moment().subtract(7,'day').toDate()}},{revisions:0})
+			.sort({views:-1})
+			.limit(6)
+			.lean()
+			.exec(function(err, d){
+				async.map(d, mapDoc, fn);
+			})
+		},		
 		latest_all_articles:function(fn){
 			var q = {published:true, entry_type:'News Article'};
 			Article
