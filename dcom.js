@@ -391,6 +391,7 @@ app.get('/:id', function(req, res, next){
 		var d = p.article;
 		d.ads = p.ads;
 		d.latest_all_articles = p.latest_all_articles;
+		d.popular_week = p.popular_week;
 		d.comments = d.comments.map(function(c){
 			c.time_pretty = moment(c.time).fromNow()
 			return c;
