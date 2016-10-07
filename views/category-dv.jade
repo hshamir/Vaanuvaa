@@ -141,6 +141,11 @@ block body
 							-if(article.image && article.image.file)
 								img.img-responsive(src=article.image.file.sizes.medium)
 							h3=article.title
+			section.col-xs-4
+					-if(ads.homepage_above_top_news)
+						-each ad in ads.homepage_above_top_news
+							section
+								img(src="/statics/ads/" + ad.file_name)
 			//
 				section.col-xs-4
 					-if(ads.homepage_above_top_news)
