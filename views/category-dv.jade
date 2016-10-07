@@ -107,10 +107,10 @@ block body
 												-else
 													small=article.time_pretty
 				section.col-md-3#third-col
-					-if(ads.homepage_above_top_news)
-						-each ad in ads.homepage_above_top_news
-							section
-								img(src="http://placehold.it/320x420?text=advertisement").img-responsive
+					-if(typeof ads != 'undefined' && ads.category_top_left)
+						-var ad = ads.category_top_left && ads.category_top_left.length ? ads.category_top_left[Math.floor(Math.random()*ads.category_top_left.length)] : ads;
+						section
+							img(src="/statics/ads/" + ad.file_name).ad-img.img-responsive
 			hr
 			section.row
 				section.col-md-3
@@ -141,11 +141,6 @@ block body
 							-if(article.image && article.image.file)
 								img.img-responsive(src=article.image.file.sizes.medium)
 							h3=article.title
-			section.col-xs-4
-					-if(ads.homepage_above_top_news)
-						-each ad in ads.homepage_above_top_news
-							section
-								img(src="/statics/ads/" + ad.file_name)
 			//
 				section.col-xs-4
 					-if(ads.homepage_above_top_news)
